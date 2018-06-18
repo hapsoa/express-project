@@ -11,14 +11,14 @@ block content
 
     img.logo(src="../../images/kakao-talk/logo-squared.png")
     form.user-info(action="" method="post")
-        .info-box#email
-            input(type="email" placeholder="카카오계정 (이메일)")
+        .info-box.bottom-border
+            input#email(type="email" placeholder="카카오계정 (이메일)")
             i.material-icons arrow_drop_down
         .info-box
-            input(type="password" placeholder="비밀번호")
+            input#password(type="password" placeholder="비밀번호")
     //form.login(action="" method="post")
     //    input(type="button" value="로그인")
-    a.login(href="/kakaotalk/friends") 로그인
+    #login 로그인
 
     .login-option
         label
