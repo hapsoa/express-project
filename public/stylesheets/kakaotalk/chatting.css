@@ -30,23 +30,27 @@
     .lists > .chatting-log-box > .friend-element {
       display: flex;
       min-height: fit-content; }
-      .lists > .chatting-log-box > .friend-element > .title-image {
+      .lists > .chatting-log-box > .friend-element > .image-container {
         width: 40px;
-        height: 40px;
-        margin-right: 5px;
-        background-image: url("../../images/kakao-talk/title-profile.jpg");
-        background-position: 50% 20%;
-        background-size: cover;
-        border-radius: 50%; }
+        margin-right: 5px; }
+        .lists > .chatting-log-box > .friend-element > .image-container > .title-image {
+          width: 100%;
+          height: 40px;
+          background-image: url("../../images/kakao-talk/title-profile.jpg");
+          background-position: 50% 20%;
+          background-size: cover;
+          border-radius: 50%; }
       .lists > .chatting-log-box > .friend-element > .chat-bundle {
         flex: 1; }
+        .lists > .chatting-log-box > .friend-element > .chat-bundle > .name {
+          margin-bottom: 5px; }
     .lists > .chatting-log-box .speech-bubble {
       padding: 5px;
       width: fit-content;
       max-width: 200px;
       height: fit-content;
       min-height: fit-content;
-      margin: 5px 0;
+      margin-bottom: 5px;
       font-size: 0.8rem;
       border-radius: 5px; }
     .lists > .chatting-log-box .moon {
@@ -77,5 +81,8 @@
       border: 0; }
       .lists > .input-box > input:focus {
         border: 0; }
+
+.hidden {
+  visibility: hidden; }
 
 /*# sourceMappingURL=chatting.css.map */

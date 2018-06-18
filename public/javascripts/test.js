@@ -26,7 +26,13 @@ var $sender = $('#sender');
 
 $sender.on('click', function() {
     var message = $input.val();
-    $('.chat-state-container')
-        .append('<h1>' + message + '</h1>')
+    var template = `
+        <div class="speech-bubble self">${message}</div>
+    `;
+    $('.chatting-log-box')
+        .append(template)
+
+    $input.val('');
 });
+
 
