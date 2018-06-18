@@ -1,0 +1,12 @@
+-----당장 할일 ---
+
+overflow: hidden과
+white-space: no-wrap
+설정을 하고
+
+color: 를 rgb(0,0,0,0)
+
+
+-------문제점-----
+
+오른쪽 범위가 밖에 벗어났다.

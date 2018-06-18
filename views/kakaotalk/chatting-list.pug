@@ -1,0 +1,82 @@
+extends main.pug
+
+block link
+    link(rel='stylesheet', href='/stylesheets/kakaotalk/main.css')
+    link(rel='stylesheet', href='/stylesheets/kakaotalk/chatting-list.css')
+
+block category
+    include category
+
+block friends
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-1
+        a(href="/kakaotalk/chatting").content-box
+            .name 이승만
+            .sentence 으아아아아ㅏㅏ아ㅏ
+                br
+                | 모르겠어여ㅓㅓ어어ㅓㅓㅓㅓ어ㅓ어ㅓ러ㅓㅑ
+        .time 오전 11:18
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-6
+        a(href="/kakaotalk/chatting").content-box
+            .name 윤보선
+            .sentence 화이링이에요~
+        .time 오전 4:03
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-9
+        a(href="/kakaotalk/chatting").content-box
+            .name 박정희
+            .sentence MaboPlayLogo.swift
+        .time 18/6/10
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-11
+        a(href="/kakaotalk/chatting").content-box
+            .name 최규하
+            .sentence 넵넵 내일 봬여!!
+        .time 18/6/9
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-1
+        a(href="/kakaotalk/chatting").content-box
+            .name 전두환
+            .sentence 넵 쉬세요~
+        .time 18/6/9
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-2
+        a(href="/kakaotalk/chatting").content-box
+            .name 노태우
+            .sentence 안녕하세요 배달의민족입니다
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-4
+        a(href="/kakaotalk/chatting").content-box
+            .name 김영삼
+            .sentence 와
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-5
+        a(href="/kakaotalk/chatting").content-box
+            .name 김대중
+            .sentence 관심있는분 있을까봐 공유드려요
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-7
+        a(href="/kakaotalk/chatting").content-box
+            .name 노무현
+            .sentence config.zip
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-8
+        a(href="/kakaotalk/chatting").content-box
+            .name 이명박
+            .sentence 결제가 완료되었습니다.
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-10
+        a(href="/kakaotalk/chatting").content-box
+            .name 박근혜
+            .sentence 나가고 싶어요
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-1
+        a(href="/kakaotalk/chatting").content-box
+            .name 문재인
+            .sentence 북미 회담이 잘돼야할텐데
+    .chatting-list
+        a(href="/kakaotalk/personal-profile").profile-image.profile-1
+        a(href="/kakaotalk/chatting").content-box
+            .name 문재인
+            .sentence 북미 회담이 잘돼야할텐데

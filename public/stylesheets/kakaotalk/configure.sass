@@ -1,0 +1,51 @@
+@import global
+//@import main
+
+.category
+  display: flex
+  align-items: center
+  > a
+    display: flex
+    align-items: center
+  i
+    @include margin-10-horizon
+    cursor: pointer
+    &:hover
+      color: #00B7FF
+
+  > .title
+    flex: 1
+
+
+.lists
+  @include lists-basic-property
+
+  > .configure
+    width: 100%
+    box-sizing: padding-box
+
+    > .element
+      display: flex
+      height: 50px
+      min-height: 50px
+      width: 100%
+      align-items: center
+
+      > i
+        @include margin-10-horizon
+      > .title
+        flex: 1
+        height: 100%
+        line-height: 49px
+        border-bottom: 1px solid #eee
+      > .text-box
+        > .detail-explanation
+          color: #aaaaaa
+          font-size: 0.9rem
+
+      &:hover
+        background-color: rgba(200,200,200,0.1)
+
+
+  > #configure-1, #configure-2
+    border-bottom: 5px solid #ddd

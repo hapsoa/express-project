@@ -1,0 +1,191 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+.content {
+  min-width: 1024px;
+  max-width: 1024px; }
+
+.empty-column-box {
+  flex: 1; }
+
+header {
+  z-index: 1000;
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  height: 350px; }
+  header .menu-grid {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #aaa;
+    position: fixed; }
+    header .menu-grid .content {
+      display: flex;
+      align-items: center;
+      height: 100%; }
+      header .menu-grid .content > img.camera {
+        height: 80%;
+        padding-right: 10px;
+        border-right: solid 2px #777; }
+        header .menu-grid .content > img.camera:hover {
+          cursor: pointer; }
+      header .menu-grid .content > img.logo {
+        height: 80%;
+        padding-left: 10px; }
+        header .menu-grid .content > img.logo:hover {
+          cursor: pointer; }
+      header .menu-grid .content > form.search-box {
+        height: 100%;
+        width: 400px;
+        display: flex;
+        align-items: center;
+        margin-left: 150px;
+        margin-right: 200px;
+        position: relative; }
+        header .menu-grid .content > form.search-box input {
+          -webkit-appearance: none;
+          width: 100%;
+          line-height: 2rem;
+          height: 2rem;
+          font-size: 1.2rem;
+          border-radius: 5px;
+          padding-left: 30px; }
+          header .menu-grid .content > form.search-box input .placeholder {
+            color: #f00; }
+        header .menu-grid .content > form.search-box i.fas.fa-search {
+          position: absolute;
+          left: 10px;
+          color: #aaa;
+          pointer-events: none; }
+      header .menu-grid .content i {
+        margin-right: 15px; }
+        header .menu-grid .content i:hover {
+          cursor: pointer;
+          color: deepskyblue; }
+  header .profile-grid {
+    display: flex;
+    width: 100%;
+    height: 250px;
+    border-bottom: 1px solid #aaa;
+    position: fixed;
+    top: 50px; }
+    header .profile-grid .content {
+      display: flex;
+      height: 100%;
+      padding-top: 50px; }
+      header .profile-grid .content > img.person {
+        border-radius: 50%;
+        height: 70%;
+        margin-right: 40px;
+        margin-top: 15px;
+        cursor: pointer; }
+      header .profile-grid .content .profile-content .profile-name {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px; }
+        header .profile-grid .content .profile-content .profile-name .name {
+          font-size: 1.1rem;
+          font-weight: bold;
+          margin-right: 5px;
+          cursor: pointer; }
+        header .profile-grid .content .profile-content .profile-name i.fas.fa-check-circle {
+          margin-right: 20px;
+          color: deepskyblue; }
+        header .profile-grid .content .profile-content .profile-name .follow-button {
+          border: 2px deepskyblue solid;
+          color: deepskyblue;
+          border-radius: 5px;
+          padding: 5px 15px 0; }
+          header .profile-grid .content .profile-content .profile-name .follow-button:hover {
+            cursor: pointer;
+            color: white;
+            background-color: deepskyblue; }
+      header .profile-grid .content .profile-content .profile-introduce {
+        color: #777777;
+        margin-bottom: 30px; }
+      header .profile-grid .content .profile-configure {
+        display: flex; }
+        header .profile-grid .content .profile-configure .posts-configure, header .profile-grid .content .profile-configure .followers-configure, header .profile-grid .content .profile-configure .following-configure {
+          margin-right: 20px; }
+          header .profile-grid .content .profile-configure .posts-configure .value, header .profile-grid .content .profile-configure .followers-configure .value, header .profile-grid .content .profile-configure .following-configure .value {
+            font-size: 2rem; }
+          header .profile-grid .content .profile-configure .posts-configure .configure-name, header .profile-grid .content .profile-configure .followers-configure .configure-name, header .profile-grid .content .profile-configure .following-configure .configure-name {
+            color: #777777; }
+  header .category-grid {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #aaa;
+    position: fixed;
+    top: 300px; }
+    header .category-grid .content {
+      display: flex;
+      align-items: center;
+      padding-left: 179.3px; }
+      header .category-grid .content i {
+        font-size: 1.3rem;
+        color: #777777;
+        margin-right: 70px; }
+        header .category-grid .content i:hover {
+          color: deepskyblue;
+          cursor: pointer; }
+
+section .media-grid {
+  display: flex;
+  position: relative;
+  top: 350px;
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+  background-color: #ecf2f5;
+  padding-top: 50px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2) inset; }
+  section .media-grid > .content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: flex-start; }
+    section .media-grid > .content .media-box {
+      width: 320px;
+      height: 320px;
+      margin-bottom: calc((1024px - 960px) / 2);
+      position: relative; }
+      section .media-grid > .content .media-box .media {
+        width: 100%;
+        height: 100%; }
+      section .media-grid > .content .media-box .curtain {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; }
+        section .media-grid > .content .media-box .curtain:hover {
+          background-color: rgba(0, 0, 0, 0.3);
+          cursor: pointer; }
+
+section .circle-button {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
+  background-color: deepskyblue;
+  border-radius: 50%; }
+  section .circle-button:hover {
+    background-color: black; }
+    section .circle-button:hover > .inner-circle-border {
+      border-color: deepskyblue; }
+  section .circle-button .inner-circle-border {
+    position: fixed;
+    right: 60px;
+    bottom: 60px;
+    width: 40px;
+    height: 40px;
+    border: 3px solid white;
+    border-radius: 50%; }
+
+/*# sourceMappingURL=instagram.css.map */

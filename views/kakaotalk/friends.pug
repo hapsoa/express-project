@@ -1,0 +1,60 @@
+extends main.pug
+
+block link
+    link(rel='stylesheet', href='/stylesheets/kakaotalk/main.css')
+    link(rel='stylesheet', href='/stylesheets/kakaotalk/friends.css')
+
+block category
+    include category
+
+block friends
+    .my-profile
+        .title 내 프로필
+        .profile
+            .profile-image.profile-1
+            .name 허재종
+    .group
+        .title 그룹
+        .profile#plus-friend
+            .profile-image.profile-2
+            .name 플러스친구
+            .introduce 8
+            i.material-icons arrow_forward_ios
+
+    .friends
+        .title 친구 98
+        a(href="/kakaotalk/personal-profile")
+            .profile
+                .profile-image.profile-3
+                .name 문재인
+                .introduce Cerca Trova
+        .profile
+            .profile-image.profile-4
+            .name 박근혜
+        .profile
+            .profile-image.profile-5
+            .name 이명박
+            .introduce ♡♡♡
+        .profile
+            .profile-image.profile-6
+            .name 안혜진
+            .introduce 안심하라구!
+        .profile
+            .profile-image.profile-7
+            .name 노무현
+            .introduce 이쁜혜영이
+        .profile
+            .profile-image.profile-8
+            .name 김대중
+            .introduce 쓰담쓰담 - 10cm
+        .profile
+            .profile-image.profile-9
+            .name 김영삼
+            .introduce 건강과 안전, 최고의 가치입니다
+        .profile
+            .profile-image.profile-10
+            .name 노태우
+            .introduce 후반전~
+        .profile
+            .profile-image.profile-11
+            .name 전두환

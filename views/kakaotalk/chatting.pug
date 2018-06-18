@@ -1,0 +1,44 @@
+extends main.pug
+
+block link
+    link(rel='stylesheet', href='/stylesheets/kakaotalk/main.css')
+    link(rel='stylesheet', href='/stylesheets/kakaotalk/chatting.css')
+
+block category
+    a(href="javascript:history.back()")
+        i.material-icons arrow_back
+    .title 문재인
+    i.material-icons search
+    i.material-icons view_headline
+block friends
+    .chatting-log-box
+        .friend-element
+            .title-image
+            .chat-bundle
+                .name 문재인
+                .speech-bubble.moon 속으론
+                .speech-bubble.moon 그렇게
+                .speech-bubble.moon 생각안하시는거
+                .speech-bubble.moon 다알아요
+                .speech-bubble.moon ^__^
+        .speech-bubble.self ... 속의 생각을 이제서야 말한건데... 몰라주다니
+        .friend-element
+            .title-image
+            .chat-bundle
+                .name 문재인
+                .speech-bubble.moon 그렇게 말해두
+                .speech-bubble.moon 다
+                .speech-bubble.moon 알아요!!
+                .speech-bubble.moon ^^
+        .speech-bubble.self 너도 눈찌를깡
+        .friend-element
+            .title-image
+            .chat-bundle
+                .name 문재인
+                img(src="/images/kakao-talk/chat-imoticon.png" alt="imoticon image")
+    .input-box
+        i.material-icons.icon add_box
+        input.typing-box(type="text")
+        i.material-icons.icon mood
+        .icon#shop #
+

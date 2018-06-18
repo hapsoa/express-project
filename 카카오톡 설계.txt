@@ -1,0 +1,5 @@
+global한 sass를 따로 떼어내자.
+
+
+
+layout.pug 에 있는 link태그로 걸려있는 css파일의 종류도 바꿔치기 해주고 싶은데..

@@ -1,0 +1,232 @@
+$gray: #777777
+$light-gray: #aaa
+$deepskyblue: deepskyblue
+
+*
+  box-sizing: border-box
+
+body
+  margin: 0
+  padding: 0
+
+.content
+  min-width: 1024px
+  max-width: 1024px
+  //border-left: 1px solid #000
+  //border-right: 1px solid #000
+  //background-color: aqua
+
+.empty-column-box
+  flex: 1
+
+header
+  z-index: 1000
+  position: fixed
+  background-color: white
+  width: 100%
+  height: 350px
+  .menu-grid
+    display: flex
+    width: 100%
+    height: 50px
+    border-bottom: 1px solid #aaa
+    position: fixed
+    >
+    .content
+      display: flex
+      align-items: center
+      height: 100%
+      >img.camera
+        height: 80%
+        padding-right: 10px
+        border-right: solid 2px #777
+        &:hover
+          cursor: pointer
+      >img.logo
+        height: 80%
+        padding-left: 10px
+        &:hover
+          cursor: pointer
+      >form.search-box
+        height: 100%
+        width: 400px
+        display: flex
+        align-items: center
+        margin-left: 150px
+        margin-right: 200px
+        position: relative
+        >
+        input
+          -webkit-appearance: none
+          width: 100%
+          line-height: 2rem
+          height: 2rem
+          font-size: 1.2rem
+          border-radius: 5px
+          padding-left: 30px
+          >
+          .placeholder
+            color: #f00
+        i.fas.fa-search
+          position: absolute
+          left: 10px
+          color: $light-gray
+          pointer-events: none
+
+      >
+      i
+        margin-right: 15px
+        &:hover
+          cursor: pointer
+          color: $deepskyblue
+
+
+  .profile-grid
+    display: flex
+    width: 100%
+    height: 250px
+    border-bottom: 1px solid #aaa
+    position: fixed
+    top: 50px
+    >
+    .content
+      display: flex
+      height: 100%
+      padding-top: 50px
+      > img.person
+        border-radius: 50%
+        height: 70%
+        margin-right: 40px
+        margin-top: 15px
+        cursor: pointer
+      >
+      .profile-content
+        >
+        .profile-name
+          display: flex
+          align-items: center
+          margin-bottom: 15px
+          >
+          .name
+            font-size: 1.1rem
+            font-weight: bold
+            margin-right: 5px
+            cursor: pointer
+          >
+          i.fas.fa-check-circle
+            margin-right: 20px
+            color: $deepskyblue
+          >
+          .follow-button
+            border: 2px deepskyblue solid
+            color: deepskyblue
+            border-radius: 5px
+            padding: 5px 15px 0
+            &:hover
+              cursor: pointer
+              color: white
+              background-color: $deepskyblue
+
+        >
+        .profile-introduce
+          color: #777777
+          margin-bottom: 30px
+      >
+      .profile-configure
+        display: flex
+        >
+        .posts-configure, .followers-configure, .following-configure
+          margin-right: 20px
+          >
+          .value
+            font-size: 2rem
+          >
+          .configure-name
+            color: $gray
+
+
+  .category-grid
+    display: flex
+    width: 100%
+    height: 50px
+    border-bottom: 1px solid #aaa
+    position: fixed
+    top: 300px
+
+    >
+    .content
+      display: flex
+      align-items: center
+      padding-left: 179.3px
+      >
+      i
+        font-size: 1.3rem
+        color: #777777
+        margin-right: 70px
+        &:hover
+          color: $deepskyblue
+          cursor: pointer
+
+section
+  .media-grid
+    display: flex
+    position: relative
+    top: 350px
+    width: 100%
+    border-bottom: 1px solid #aaa
+    background-color: #ecf2f5
+    padding-top: 50px
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2) inset
+    >.content
+      display: flex
+      justify-content: space-between
+      flex-wrap: wrap
+      align-content: flex-start
+      //padding: 20px
+      >
+      .media-box
+        width: 320px
+        height: 320px
+        margin-bottom: calc((1024px - 960px) / 2)
+        position: relative
+        >
+        .media
+          width: 100%
+          height: 100%
+        >
+        .curtain
+          position: absolute
+          top: 0
+          left: 0
+          width: 100%
+          height: 100%
+          &:hover
+            background-color: rgba(0,0,0,0.3)
+            cursor: pointer
+
+
+
+  .circle-button
+    position: fixed
+    right: 50px
+    bottom: 50px
+    width: 60px
+    height: 60px
+    background-color: $deepskyblue
+    border-radius: 50%
+    &:hover
+      background-color: black
+      > .inner-circle-border
+        border-color: $deepskyblue
+    >
+    .inner-circle-border
+      position: fixed
+      right: 60px
+      bottom: 60px
+      width: 40px
+      height: 40px
+      border: 3px solid white
+      border-radius: 50%
+
+
+

@@ -1,0 +1,93 @@
+@import global
+
+.category
+  display: flex
+  align-items: center
+  > a
+    display: flex
+    align-items: center
+  i
+    @include margin-10-horizon
+    cursor: pointer
+    &:hover
+      color: #00B7FF
+
+  > .title
+    flex: 1
+
+.lists
+  @include lists-basic-property
+
+  > .chatting-log-box
+    display: flex
+    flex-direction: column
+
+    overflow: auto
+
+    width: 100%
+    height: 550px
+    padding: 5px
+
+    background-color: #fafafa
+
+    > .friend-element
+      display: flex
+      min-height: fit-content
+      > .title-image
+        width: 40px
+        height: 40px
+        margin-right: 5px
+
+        background-image: url("../../images/kakao-talk/title-profile.jpg")
+        background-position: 50% 20%
+        background-size: cover
+        border-radius: 50%
+
+      > .chat-bundle
+        flex: 1
+
+    .speech-bubble
+      padding: 5px
+      width: fit-content
+      max-width: 200px
+      height: fit-content
+      min-height: fit-content
+
+      margin: 5px 0
+
+      font-size: 0.8rem
+      border-radius: 5px
+
+
+    .moon
+      background-color: #bbb
+
+    .self
+      align-self: flex-end
+      color: white
+      background-color: #000
+
+  > .input-box
+    display: flex
+    align-items: center
+
+    width: 100%
+    height: 50px
+
+    > .icon
+      margin: 0 5px
+      color: #aaa
+      @include icon-button-hover-property
+
+    #shop
+      font-size: 1.3rem
+      height: fit-content
+      margin-bottom: 3px
+
+    > input
+      flex: 1
+      height: 30px
+      font-size: 1.2rem
+      border: 0
+      &:focus
+        border: 0

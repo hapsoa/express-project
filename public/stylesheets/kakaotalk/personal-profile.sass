@@ -1,0 +1,147 @@
+@import global
+@import util
+
+.button
+  @include category-button
+  &:hover
+    color: #00B7FF
+    border-bottom: 1px solid #444
+
+.background-image
+  display: flex
+  justify-content: center
+  position: relative
+
+  width: 100%
+  height: 430px
+
+  background: url("../../images/kakao-talk/profile-background.jpeg") center
+  background-size: cover
+
+  > .top-menu-box
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+    width: 100%
+    height: 50px
+
+    > a
+      @include atag-icon-deco
+      @include margin-10-horizon
+      cursor: pointer
+
+  > .bottom-menu-box
+    display: flex
+    align-items: flex-start
+    position: absolute
+    bottom: 0
+
+    width: 100%
+    height: 30px
+
+    > a
+      display: flex
+      justify-content: center
+      align-items: center
+
+      width: 1.3rem
+      height: 1.3rem
+      margin: 0 5px
+
+      border-radius: 50%
+      border: solid 1px #eee
+
+      &:hover
+        border-color: #00B7FF
+        > i
+         color: #00B7FF
+
+      > i
+        color: #eee
+        cursor: pointer
+
+      > i.fas
+        font-size: 0.8rem
+      > i.fas.fa-gift
+        padding-bottom : 1px
+        padding-left: 1px
+
+      > i.material-icons
+        font-size: 1rem
+
+  > .title-image
+    position: absolute
+    bottom: -20px
+
+    width: 100px
+    height: 100px
+
+    background-image: url("../../images/kakao-talk/title-profile.jpg")
+    background-position: 50% 20%
+    background-size: cover
+    border-radius: 50%
+
+.profile-content
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  width: 100%
+  height: 170px
+
+  > .name
+    width: 100%
+    height: 20px
+    margin-top: 30px
+
+    text-align: center
+
+  > .phone-number
+    height: 20px
+
+    text-align: center
+    font-size: 0.7rem
+
+  > .buttons-box
+    display: flex
+    justify-content: center
+
+    width: 100%
+    height: 60px
+    margin-top: 10px
+
+    > .button-box
+      display: flex
+      flex-direction: column
+      align-items: center
+
+      width: 65px
+      height: 100%
+      @include margin-10-horizon
+
+      > .icon-background
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+
+        width: 40px
+        height: 40px
+        min-height: 40px
+        margin-bottom: 10px
+
+        background-color: #eee
+        border-radius: 50%
+
+        > i
+          color: #533f3e
+
+        > i.fas.fa-comment
+          font-size: 1.3rem
+
+      a
+        text-decoration-line: none
+
+      > .title
+        font-size: 0.7rem

@@ -1,0 +1,209 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        title firebase
+
+        link(rel='stylesheet', href='/stylesheets/firebase.css')
+
+        link(href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet")
+
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+
+    body
+        .total
+            aside#left-bar
+                .logo
+                    img(src="/images/firebase/firebase-logo.png" alt="firebase logo image")
+                .category#category-1
+                    .element
+                        .icon-wrapper
+                            i.material-icons home
+                        .detail-explanation Project Overview
+                    .element
+                        .icon-wrapper
+                            img(src="images/firebase/gear.png" alt="gear image")
+                .scroll-box
+                    .category#category-2
+                        .element
+                            .icon-wrapper
+                                i.material-icons people
+                            .detail-explanation Authentication
+                        .element
+                            .icon-wrapper
+                                img(src ="images/firebase/bureau.png" alt="bureau image")
+                            .detail-explanation Database
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/picture-folder.png" alt="picture folder image")
+                            .detail-explanation Storage
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                            .detail-explanation Hosting
+                        .element
+                            .icon-wrapper
+                                .literal-icon
+                                    span 〔
+                                    |···
+                                    span 〕
+                            .detail-explanation Functions
+                        .element
+                            .icon-wrapper
+                                .literal-icon ML
+                            .detail-explanation ML Kit
+                    .category#category-3
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                            .detail-explanation Crashlytics
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                            .detail-explanation Performance
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                            .detail-explanation Test Lab
+                    .category#category-4
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                            .detail-explanation Dashboard
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                            .detail-explanation Events
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                            .detail-explanation conversions
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                            .detail-explanation Audiences
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                            .detail-explanation Funnels
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                        .element
+                            .icon-wrapper
+                                img(src="images/firebase/globe.png" alt="globe")
+                .extendable-button
+                    .element
+                        .icon-wrapper
+                            i.material-icons keyboard_arrow_right
+
+            .main-window
+                header
+                    .main-title-grid
+                        .category-grid
+                            .apps.pointer-cursor handycode-app
+                            i.material-icons.pointer-cursor arrow_drop_down
+                            .empty-column-box
+                            .document.pointer-cursor 문서로 이동
+                            i.fas.fa-bell.pointer-cursor
+                            .profile-image.pointer-cursor
+                        .title-grid
+                            .title 개요
+                            .empty-column-box
+                            i.fas.fa-question-circle.pointer-cursor
+                    .sub-title-grid
+                        i.material-icons mail
+                        .content 새로운 Firebase 기능, 연구, 이벤트에 관한 이메일 업데이트를 수신합니다.
+                        .request.pointer-cursor 신청
+                section
+                    .app-box
+                        .empty-column-box
+                        .aligned-content-box
+                            .title-box
+                                .number 프로젝트의 앱 1개
+                                .empty-column-box
+                                .add-app.pointer-cursor 다른 앱 추가
+                            .content-box
+                                .code-title-box
+                                    .icon
+                                        i.material-icons android
+                                    .content
+                                        .content-title Handy Code
+                                        .content-description com.samsung.andriod.codemaker
+                                    .option
+                                        i.material-icons.pointer-cursor more_vert
+                                .statistic-box
+                                    .number-of-users
+                                        .day-users
+                                            .name 일일 활성 사용자 수
+                                            .value
+                                                .main-value 31
+                                                .percentage -26.2%
+                                            img.graph(src="/images/firebase/graph-1.PNG" alt="graph image")
+                                        .month-users
+                                            .name 월간 활성 사용자 수
+                                            .value
+                                                .main-value 622
+                                                .percentage +0.5%
+                                            img.graph(src="/images/firebase/graph-2.PNG" alt="graph image")
+                                    .unusal-end
+                                        .not-unusal-end-users
+                                            .name 비정상 종료가 발생하지 않은 사용자
+                                            .value
+                                                .main-value 85%
+                                            img.graph(src="/images/firebase/graph-3.PNG" alt="graph image")
+                                        .number-of-unusal-end
+                                            .name 비정상 종료
+                                            .value
+                                                .main-value 176
+                                            img.graph(src="/images/firebase/graph-4.PNG" alt="graph image")
+                        .empty-column-box
+                    .search-box
+                        .empty-column-box
+                        .aligned-content-box
+                            .title Firebase 탐색
+                            .card-zone
+                                .card
+                                    img(src="/images/firebase/card-1.png" alt="card 1 image")
+                                    .content-box
+                                        .content-title Analytics
+                                        .content-detail 자세한 분석을 확인하여 사용자가 앱에 참여하는 방식을 측정하고 분석할 수 있습니다.
+                                        .buttons-box
+                                            .know-button 자세히 알아보기
+                                            .start-button 시작하기
+                                .card
+                                    img(src="/images/firebase/card-2.png" alt="card 2 image")
+                                    .content-box
+                                        .content-title Authentication
+                                        .content-detail 서버측 코드 없이 다양한 제공업체의 사용자를 인증하고 관리할 수 있습니다.
+                                        .buttons-box
+                                            .know-button 자세히 알아보기
+                                            .start-button 시작하기
+                                .card
+                                    img(src="/images/firebase/card-3.png" alt="card 3 image")
+                                    .content-box
+                                        .content-title Database
+                                        .content-detail 연결된 모든 클라이언트에서 실시간으로 데이터를 저장하고 동기화할 수 있습니다.
+                                        .buttons-box
+                                            .know-button 자세히 알아보기
+                                            .start-button 시작하기
+                                .card
+                                    img(src="/images/firebase/card-4.png" alt="card 4 image")
+                                    .content-box
+                                        .content-title Storage
+                                        .content-detail 서버측 코드 없이 이미지, 오디오, 도영상과 같은 사용자가 생성한 콘텐츠를 저장하고 가져올 수 있습니다.
+                                        .buttons-box
+                                            .know-button 자세히 알아보기
+                                            .start-button 시작하기
+                        .empty-column-box
+

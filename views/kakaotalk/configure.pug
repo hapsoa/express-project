@@ -1,0 +1,56 @@
+extends main.pug
+
+block link
+    link(rel='stylesheet', href='/stylesheets/kakaotalk/main.css')
+    link(rel='stylesheet', href='/stylesheets/kakaotalk/configure.css')
+
+block category
+    a(href="javascript:history.back()")
+        i.material-icons arrow_back
+    .title 설정
+    i.material-icons search
+
+block friends
+    .configure#configure-1
+        .element
+            i.material-icons volume_up
+            .title 공지사항
+        .element
+            i.material-icons free_breakfast
+            .title 실험실
+        .element
+            i.material-icons perm_device_information
+            .text-box
+                .title 버전정보
+                .detail-explanation 7.2.2
+
+    .configure#configure-2
+        .element
+            i.material-icons lock
+            .title 개인/보안
+        .element
+            i.material-icons notification_important
+            .title 알림
+        .element
+            i.material-icons person
+            .title 친구
+        .element
+            i.material-icons chat_bubble
+            .title 채팅
+        .element
+            i.material-icons brightness_medium
+            .title 화면
+        .element
+            i.material-icons brightness_medium
+            .title 테마
+        .element
+            i.material-icons brightness_medium
+            .title 게임별
+        .element
+            i.material-icons brightness_medium
+            .title 기타
+
+    .configure#customer-service
+        .element
+            i.material-icons brightness_medium
+            .title 고객센터/도움말

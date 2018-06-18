@@ -1,0 +1,105 @@
+메뉴 바를 만든다.
+
+menu-grid
+profile-grid
+category-grid
+photo-grid
+
+profile-name
+profile-introduce
+profile-configure
+
+
+.content
+	.input-zone
+		i.material-icons search
+		input(placeholder="SEARCH")
+
+---당장 할일----
+
+serach 텍스트 구문 클릭시 사라지게 한다.
+
+box-shadow를 만든다.
+
+
+
+속성에다가 css를 주고 싶다.
+
+
+----------수업 메모---------------
+가로를 먼저 구획을 잡아라, 큰거를 먼저
+
+써라(종이에)
+
+스크롤 영역이 어디인지 잡는게 중요해
+
+calc(100vh - 350px)
+overflow: scroll
+
+컨텐츠들이 중앙으로 정렬되어 있잖아
+
+body에는 min-width //스크롤되고, 안찌그러져
+
+max-width: 960jpx 
+margin: auto
+
+.flex-empty
+	flex: 1
+
+.flex-auto
+	width: auto	
+
+align-itmes: center
+justify-content: center
+
+.찍고 내리면 아래도 다 적용된다.
+
+손으로 그리드를 그려가면서 한다.
+외곽을 잡아가면서 안쪽으로 들어가야 한다.
+
+css
+씹히지 않으려면 !important	
+
+
+각 브라우저 마다 달라지기 때문에 미리 설정
+border: none
+outline: none
+
+
+<<속성 적용>>
+&::placeholder
+	font-size: 12px
+
+transform: scale
+transform-origin	
+
+스크롤바 커스터마이징
+custom scrollbar styling
+
+firebase
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

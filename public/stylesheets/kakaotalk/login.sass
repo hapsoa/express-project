@@ -1,0 +1,112 @@
+@import global
+
+.content
+  background-color: #FBE300
+
+.window-button-box
+  width: 100%
+  height: 30px
+  display: flex
+  justify-content: flex-end
+  align-items: center
+
+  color: rgba(0,0,0,0.3)
+  > i
+    cursor: pointer
+    padding-left: 7px
+  > i#menu
+    border-right: rgba(0,0,0,0.3) 1px solid
+    padding-right: 7px
+
+img.logo
+  width: 100px
+  height: 100px
+  margin: 50px 0
+
+
+form.user-info
+  width: 250px
+  height: 100px
+  margin: 10px 0
+
+  background-color: white
+  border: rgba(0,0,0,0.2) 1px solid
+
+  > .info-box
+    position: relative
+    width: 100%
+    height: 50%
+    display: flex
+
+    > input
+      width: 100%
+      height: 100%
+      margin: 0
+      border: 0
+    > i
+      position: absolute
+      right: 10px
+      align-self: center
+
+      cursor: pointer
+  > #email
+    border-bottom: 1px solid rgba(0,0,0,0.1)
+
+a.login
+  width: 255px
+  height: 60px
+  margin-bottom: 10px
+
+  background-color: #675353
+  border-radius: 5px
+  color: rgba(255, 255, 255, 0.3)
+  text-align: center
+  line-height: 56px
+  &:hover
+    color: #00B7FF
+
+  @mixin icon-button-hover-property
+
+
+.login-option
+  width: 250px
+  height: 30px
+  margin-bottom: 20px
+
+  > label
+    width: 100%
+    height: 100%
+    display: flex
+    align-items: center
+
+    font-size: 0.8rem
+    color: #675353
+    > input
+      width: 15px
+      height: 15px
+
+.guide-id
+  width: 255px
+  height: 100px
+
+  font-size: 0.8rem
+  > .detail-explanation
+    color: #675353
+  > .guide
+    text-decoration-line: underline
+    cursor: pointer
+
+.guide-password
+  width: 180px
+  height: 30px
+
+  color: #675353
+  font-size: 0.8rem
+  border: $test-border
+  text-align: center
+  line-height: 28px
+  border-radius: 5px
+  cursor: pointer
+  &:hover
+    color: #00B7FF
+    border-color: #00B7FF

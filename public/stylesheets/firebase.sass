@@ -1,0 +1,436 @@
+$test-border: 1px solid #777
+$icon-color: #babcbe
+$icon-hover-color: #3e4552
+
+*
+  box-sizing: border-box
+
+//*
+//  border: 1px solid #777
+
+body
+  padding: 0
+  margin: 0
+  width: 100%
+  height: 100vh
+  font-family: 'Roboto', sans-serif
+
+.total
+  width: 100%
+  height: 100%
+  display: flex
+
+.empty-column-box
+  flex: 1
+.aligned-content-box
+  max-width: 1024px
+
+
+aside#left-bar
+  width: 70px
+  height: 100%
+  position: fixed
+  z-index: 1000
+  transition-property: width
+  transition-duration: 1s
+  background-color: #222936
+  overflow: hidden
+  >
+  .logo
+    width: 100%
+    height: 50px
+    border-bottom: $test-border
+    display: flex
+    align-items: center
+    justify-content: center
+    cursor: pointer
+    >
+    img
+      width: 30px
+      height: 30px
+
+  .category
+    display: flex
+    flex-direction: column
+    //align-items: center
+    color: $icon-color
+
+  .element
+    display: flex
+    height: 25px
+    overflow: hidden
+    width: 220px
+    align-items: center
+    cursor: pointer
+    &:hover
+      background-color: $icon-hover-color
+    >
+    img
+      width: 25px
+      //height: 100%
+    >
+    .icon-wrapper
+      width: 70px
+      height: 100%
+      display: flex
+      justify-content: center
+      align-content: center
+    >
+    .detail-explanation
+      //display: none
+      width: 150px
+      height: 100%
+      white-space: nowrap
+      line-height: 25px
+    >
+    .literal-icon
+      >
+      span
+        font-weight: bold
+  >
+  #category-1
+    border-bottom: $test-border
+    background-color: #222936
+    color: #45bbf6
+  >
+  .scroll-box
+    width: 100%
+    height: 400px
+    overflow: hidden
+    >
+    #category-2
+      border-bottom: $test-border
+      background-color: #181f26
+      color: $icon-color
+    >
+    #category-3
+      border-bottom: $test-border
+      background-color: #181f26
+      color: $icon-color
+    >
+    #category-4
+      border-bottom: $test-border
+      background-color: #181f26
+      color: $icon-color
+  >
+  .extendable-button
+    width: 100%
+    height: 40px
+    background-color: #222936
+    color: $icon-color
+    >
+    .element
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+
+  &:hover
+    width: 220px
+    >
+    .scroll-box
+      overflow: auto
+      &::-webkit-scrollbar
+        display: none
+
+
+
+
+.main-window
+  width: calc(100% - 70px)
+  height: 100%
+  position: relative
+  left: 70px
+  >
+  header
+    position: fixed
+    width: calc(100% - 70px)
+    >
+    .main-title-grid
+      width: 100%
+      height: 100px
+      background-color: #0091e1
+      >
+      .category-grid
+        width: 100%
+        height: 50px
+        display: flex
+        align-items: center
+        >
+        .apps
+          height: 100%
+          line-height: 50px
+          color: #9edff5
+          margin-left: 20px
+        >
+        i.material-icons
+          color: #9edff5
+        .document
+          height: 100%
+          line-height: 50px
+          color: #9edff5
+          margin: 0 10px
+        i.fas.fa-bell
+          color: #9edff5
+          margin: 0 10px
+        .profile-image
+          background-image: url("../images/firebase/profile-image.png")
+          background-size: 100% 100%
+          border-radius: 50%
+          width: 30px
+          height: 30px
+          margin-left: 10px
+          margin-right: 20px
+      >
+      .title-grid
+        display: flex
+        align-items: center
+        height: calc(100% - 50px)
+        >
+        .title
+          color: #fff
+          font-size: 1.5rem
+          margin-left: 20px
+          height: 100%
+          line-height: 50px
+        >
+        i.fas.fa-question-circle
+          color: #9edff5
+          font-size: 1.3rem
+          margin-right: 20px
+    >
+    .sub-title-grid
+      display: flex
+      align-items: center
+      justify-content: center
+      width: 100%
+      height: 50px
+      >
+      i.material-icons
+        color: #0091e1
+      >
+      .content
+        margin: 0 10px
+        height: 100%
+        line-height: 50px
+      >
+      .request
+        color: #0091e1
+        height: 100%
+        line-height: 50px
+        margin-left: 10px
+  >
+  section
+    position: absolute
+    top: calc(100px + 50px)
+    width: 100%
+    height: calc(100% - 150px)
+    overflow: auto
+    >
+    .app-box
+      display: flex
+      width: 100%
+      height: 400px
+      background-color: #e9ecef
+      >
+      .aligned-content-box
+        display: flex
+        flex-direction: column
+        justify-content: center
+        min-width: 1024px
+        >
+        .title-box
+          display: flex
+          align-items: center
+          width: 100%
+          height: 15%
+          padding: 0 10px
+          >
+          .number
+            color: #747577
+          .add-app
+            color: #0091e1
+        >
+        .content-box
+          border: 1px solid #bbb
+          background-color: #fff
+          width: 100%
+          height: 70%
+          border-radius: 10px
+          box-shadow: 0 1px 3px 1px #bbb
+          display: flex
+          flex-direction: column
+          >
+          .code-title-box
+            width: 100%
+            height: 60px
+            display: flex
+            align-items: center
+
+            padding: 5px
+            border-bottom: 1px solid #bbb
+            >
+            .icon
+              width: 40px
+              height: 40px
+              display: flex
+              align-items: center
+              justify-content: center
+              margin-right: 10px
+
+              border: 1px solid #bbb
+              border-radius: 50%
+              >
+              i.material-icons
+                color: #00b79b
+            >
+            .content
+              flex: 1
+              > .content-title
+                font-size: 1.2rem
+                font-weight: bold
+              >
+              .content-description
+                color: #888
+          >
+          .statistic-box
+            width: 100%
+            height: calc(100% - 60px)
+            display: flex
+
+            font-size: 0.8rem
+            >
+            .number-of-users
+              width: 50%
+              height: 100%
+              display: flex
+
+              border-right: 1px solid #bbb
+              padding: 20px
+              >
+              .day-users
+                width: 50%
+                height: 100%
+                .percentage
+                  font-size: 0.8rem
+                  color: red
+                  padding-bottom: 2px
+              >
+              .month-users
+                width: 50%
+                height: 100%
+                .percentage
+                  font-size: 0.8rem
+                  color: lightseagreen
+                  padding-bottom: 2px
+            >
+            .unusal-end
+              width: 50%
+              height: 100%
+              display: flex
+
+              padding: 20px
+              >
+              .not-unusal-end-users
+                width: 50%
+                height: 100%
+              >
+              .number-of-unusal-end
+                width: 50%
+                height: 100%
+            .name
+              color: #aaa
+              margin-bottom: 10px
+            .value
+              display: flex
+              align-items: flex-end
+              > .main-value
+                font-size: 1.5rem
+                margin-right: 10px
+
+            img.graph
+              width: 70%
+    >
+    .search-box
+      display: flex
+      width: 100%
+      background-color: #c9d2d7
+      .aligned-content-box
+        display: flex
+        flex-direction: column
+        justify-content: center
+        >
+        .title
+          width: 100%
+          height: 80px
+          line-height: 80px
+          margin-top: 50px
+          color: #5c6063
+          font-size: 1.5rem
+        >
+        .card-zone
+          display: flex
+          justify-content: space-between
+          flex-wrap: wrap
+
+          >
+          .card
+            width: 300px
+            height: 300px
+            margin-bottom: calc((1024px - 900px)/2)
+
+            //border: $test-border
+            box-shadow: 0 1px 2px 1px #aaaaaa
+            background-color: white
+            border-bottom-left-radius: 10px
+            border-bottom-right-radius: 10px
+            >
+            img
+              width: 100%
+            >
+            .content-box
+              padding: 10px
+              > .content-title
+                font-weight: bold
+                font-size: 1.2rem
+              > .content-detail
+                height: 100px
+                color: #999
+              > .buttons-box
+                display: flex
+                justify-content: space-between
+
+                color: dodgerblue
+                > .know-button
+                  text-decoration-line: underline
+                  cursor: pointer
+                > .start-button
+                  cursor: pointer
+
+::-webkit-scrollbar
+  width: 12px
+  background-color: #F5F5F5
+
+
+::-webkit-scrollbar-thumb
+  border-radius: 10px
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)
+  background-color: #888
+
+.pointer-cursor
+  cursor: pointer
+
+@media screen and (max-width: 1024px)
+  .card-zone
+    width: 650px
+
+@media screen and (max-width: 700px)
+  .card-zone
+    width: 400px
+    //justify-content: center
+    flex-direction: column
+    flex-wrap: nowrap
+    align-items: center
+
+
+
