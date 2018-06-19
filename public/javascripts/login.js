@@ -15,4 +15,4 @@ $login.on('click', function() {
         else
             window.location = '/kakaotalk/friends';
     }
-)
+);

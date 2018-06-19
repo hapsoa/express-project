@@ -1,2 +1,38 @@
+extends layout
 
+block link
+    link(rel='stylesheet', href='/stylesheets/calculator/content.css')
 
+block content
+    .window-bar-grid
+        .circle-button.close
+        .circle-button.minimize
+        .circle-button.maximize
+    .value-grid#value 0
+    .calculation-grid
+        .cal-bundle
+            .cal-button.top-button#ac AC
+            .cal-button.top-button#convert-sign +/-
+            .cal-button.top-button#percent %
+            .cal-button.right-button.operator(operator='/')#division ÷
+        .cal-bundle
+            .cal-button.number#seven 7
+            .cal-button.number#eight 8
+            .cal-button.number#nine 9
+            .cal-button.right-button.operator(operator='*')#multiplication ×
+        .cal-bundle
+            .cal-button.number#four 4
+            .cal-button.number#five 5
+            .cal-button.number#six 6
+            .cal-button.right-button.operator(operator='-')#subtraction -
+        .cal-bundle
+            .cal-button.number#one 1
+            .cal-button.number#two 2
+            .cal-button.number#three 3
+            .cal-button.right-button.operator(operator='+')#addition +
+        .cal-bundle.last-bundle
+            .cal-button.number#zero 0
+            .cal-button#dot .
+            .cal-button.right-button#equal =
+
+    script(src="/javascripts/calculator/content.js")

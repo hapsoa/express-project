@@ -1,5 +1,5 @@
 console.log('hello'); //System.out.println('hello')
-console.warn('woarn!!!!');
+console.warn('warn!!!!');
 console.error('error');
 
 var a = 10;
