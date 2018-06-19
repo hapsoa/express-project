@@ -59,4 +59,8 @@ $convertingSign.on('click', function () {
 
 });
 
-$
+$percent.on('click', function() {
+    //나누기 100을 한 값을 나타내준다.
+    expression = $value.text();
+    $value.text(String(Number(expression)/100));
+});
