@@ -9,12 +9,15 @@ var expression; //화면에 뜨는 수식 전체
 var $ac = $('#ac');
 var $convertingSign = $('#convert-sign');
 var $percent = $('#percent');
+var $dot = $('#dot');
+
+var $calButton = $('cal-button');
 
 $number.on('click', function () {
 
     expression = $value.text();
 
-    if (Number(expression) === 0)
+    if (expression === '0')
     // 0을 없애고 해당 수를 채운다.
         $value.text('');
 
@@ -29,10 +32,16 @@ $operator.on('click', function () {
 
     expression = $value.text();
 
-    // 연산자를 붙여준다.
-    expression += $(this).attr('operator');
+    // 연산자를 2개이상 붙일 수 없다.
+    if (expression.charAt(expression.length-1) !== '+' &&
+        expression.charAt(expression.length-1) !== '-' &&
+        expression.charAt(expression.length-1) !== '*' &&
+        expression.charAt(expression.length-1) !== '/')
+        expression += $(this).attr('operator');
 
     $value.text(expression);
+
+
 });
 
 $equal.on('click', function () {
@@ -63,4 +72,18 @@ $percent.on('click', function() {
     //나누기 100을 한 값을 나타내준다.
     expression = $value.text();
     $value.text(String(Number(expression)/100));
+});
+
+$dot.on('click', function() {
+    //끝에 점을 하나 찍는다.
+    expression = $value.text();
+    $value.text(expression + $dot.text());
+});
+
+$calButton.on('click', function() {
+    //길이가 길어지면 폰트 크기를 줄인다.
+    expression = $value.text();
+
+    if (expression.length > 9)
+        $value.css('font-size', 1 + 'rem');
 });
