@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var kakaotalkRouter = require('./routes/kakaotalk');
 var calculatorRouter = require('./routes/calculator');
+var jsonFilter01Router = require('./routes/jsonFilter01');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/kakaotalk', kakaotalkRouter);
 app.use('/calculator', calculatorRouter);
+app.use('/json-filter-01', jsonFilter01Router);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
