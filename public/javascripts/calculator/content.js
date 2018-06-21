@@ -11,7 +11,7 @@ var $convertingSign = $('#convert-sign');
 var $percent = $('#percent');
 var $dot = $('#dot');
 
-var $calButton = $('cal-button');
+var $calButton = $('.cal-button');
 
 $number.on('click', function () {
 
@@ -77,13 +77,18 @@ $percent.on('click', function() {
 $dot.on('click', function() {
     //끝에 점을 하나 찍는다.
     expression = $value.text();
-    $value.text(expression + $dot.text());
+    if (expression.charAt(expression.length - 1) !== '.')
+        $value.text(expression + $dot.text());
 });
 
 $calButton.on('click', function() {
     //길이가 길어지면 폰트 크기를 줄인다.
     expression = $value.text();
+    console.log(expression);
 
-    if (expression.length > 9)
-        $value.css('font-size', 1 + 'rem');
+    if (expression.length < 9)
+        $value.css('font-size', '2.8rem');
+    else
+        $value.css('font-size', '1rem');
 });
+
