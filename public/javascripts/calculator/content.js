@@ -15,7 +15,7 @@
     var $percent = $('#percent');
     var $dot = $('#dot');
 
-    var $calButton = $('cal-button');
+    var $calButton = $('.cal-button');
 
     $number.on('click', function () {
 
