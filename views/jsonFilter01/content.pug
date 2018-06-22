@@ -5,25 +5,25 @@ block link
 
 block content
     .select-grid
-        select#gender // 성별
+        select(index = 0) // 성별
             option.one 성별(ALL)
             option.two 남
             option.three 여
 
-        select#undergrad // 학번
+        select(index = 1) // 학번
             option 학번(ALL)
             option 2010
             option 2014
             option 2016
 
-        select#age // 나이
+        select(index = 2) // 나이
             option 나이(ALL)
             option 25
             option 24
             option 22
             option 21
 
-    .button 검색!!
+
 
     .names-box
 

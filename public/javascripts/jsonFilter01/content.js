@@ -69,33 +69,110 @@
     const $button = $('.button');
     const $names = $('.names-box');
 
-    $button.on('click', function () {
+    const filters = ['성별(ALL)', '학번(ALL)', '나이(ALL)'];
 
-        const $genderSelected = $('#gender option:selected');
-        const $undergradSelected = $('#undergrad option:selected');
-        const $ageSelected = $('#age option:selected');
+    // $('select').on('change', function () {
+    //
+    //     const $this = $(this);
+    //     const $selectedOption = $this.find('option:selected');
+    //
+    //     const currentFilter = $selectedOption.text();
+    //
+    //     const index = $this.attr('index') * 1;
+    //
+    //     filters[index] = currentFilter;
+    //     console.log(filters);
 
-        // select 조건에 따라 분류해서 이름을 보여준다.
+
+    //     const filterItems = function(filters, studentInfo) {
+    //
+    //         // 분류에 따라서 json을 변경
+    //
+    //         const modifiedData = [];
+    //
+    //         if (filters[0] !== '성별(ALL)' &&
+    //             filters[1] !== '학번(ALL)' &&
+    //             filters[2] !== '나이(ALL)') {
+    //
+    //             for (let i = 0; i < studentInfo.length; i++) {
+    //                 if (filters[0] === studentInfo[i].gender) {
+    //
+    //                     for (let j = 0; j < studentInfo[i].children.length; j++) {
+    //                         if (filters[1] ===
+    //                             studentInfo[i].children[j].undergrad) {
+    //
+    //                             for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
+    //                                 if (filters[2] ===
+    //                                     studentInfo[i].children[j].children[k].age) {
+    //
+    //                                     for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
+    //                                         modifiedData.push(studentInfo[i].children[j].children[k].children[l]);
+    //                                     }
+    //                                 }
+    //                             }
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //
+    //
+    //             for (let i = 0; i < modifiedData.length; i++)
+    //                 $names.text(modifiedData[i].name);
+    //         }
+    //
+    //
+    //         if (filters[0] === '성별(ALL)' &&
+    //             filters[1] !== '학번(ALL)' &&
+    //             filters[2] !== '나이(ALL)') {
+    //
+    //             for (let prop in studentInfo) {
+    //
+    //                 for ()
+    //                 prop.children
+    //
+    //
+    //             }
+    //
+    //         }
+    //
+    //
+    //     };
+    //
+    //     filterItems(filters, studentInfo);
+    //
+    // });
 
 
-        if ($genderSelected.text() !== '성별(ALL)' &&
-            $undergradSelected.text() !== '학번(ALL)' &&
-            $ageSelected.text() !== '나이(ALL)') {
+    $('select').on('change', function () {
+
+        const $this = $(this);
+        const $selectedOption = $this.find('option:selected');
+
+        const currentFilter = $selectedOption.text();
+
+        const index = $this.attr('index') * 1;
+
+        filters[index] = currentFilter;
+        console.log(filters);
+
+        if (filters[0] !== '성별(ALL)' &&
+            filters[1] !== '학번(ALL)' &&
+            filters[2] !== '나이(ALL)') {
 
             const names = function () {
                 let namesString = '';
 
-                console.log($genderSelected.text());
+                console.log(filters[0]);
 
                 for (let i = 0; i < studentInfo.length; i++) {
-                    if ($genderSelected.text() === studentInfo[i].gender) {
+                    if (filters[0] === studentInfo[i].gender) {
 
                         for (let j = 0; j < studentInfo[i].children.length; j++) {
-                            if ($undergradSelected.text() ===
+                            if (filters[1] ===
                                 studentInfo[i].children[j].undergrad) {
 
                                 for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
-                                    if ($ageSelected.text() ===
+                                    if (filters[2] ===
                                         studentInfo[i].children[j].children[k].age) {
 
                                         for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
@@ -120,24 +197,22 @@
         }
 
 
-        if ($genderSelected.text() === '성별(ALL)' &&
-            $undergradSelected.text() !== '학번(ALL)' &&
-            $ageSelected.text() !== '나이(ALL)') {
+        if (filters[0] === '성별(ALL)' &&
+            filters[1] !== '학번(ALL)' &&
+            filters[2] !== '나이(ALL)') {
 
             const names = function () {
                 let namesString = '';
 
-                console.log($genderSelected.text());
-
                 for (let i = 0; i < studentInfo.length; i++) {
-                    if ($genderSelected.text() !== studentInfo[i].gender) {
+                    if (filters[0] !== studentInfo[i].gender) {
 
                         for (let j = 0; j < studentInfo[i].children.length; j++) {
-                            if ($undergradSelected.text() ===
+                            if (filters[1] ===
                                 studentInfo[i].children[j].undergrad) {
 
                                 for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
-                                    if ($ageSelected.text() ===
+                                    if (filters[2] ===
                                         studentInfo[i].children[j].children[k].age) {
 
                                         for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
@@ -162,24 +237,23 @@
         }
 
 
-        if ($genderSelected.text() !== '성별(ALL)' &&
-            $undergradSelected.text() === '학번(ALL)' &&
-            $ageSelected.text() !== '나이(ALL)') {
+        if (filters[0] !== '성별(ALL)' &&
+            filters[1] === '학번(ALL)' &&
+            filters[2] !== '나이(ALL)') {
 
             const names = function () {
                 let namesString = '';
 
-                console.log($genderSelected.text());
 
                 for (let i = 0; i < studentInfo.length; i++) {
-                    if ($genderSelected.text() === studentInfo[i].gender) {
+                    if (filters[0] === studentInfo[i].gender) {
 
                         for (let j = 0; j < studentInfo[i].children.length; j++) {
-                            if ($undergradSelected.text() !==
+                            if (filters[1] !==
                                 studentInfo[i].children[j].undergrad) {
 
                                 for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
-                                    if ($ageSelected.text() ===
+                                    if (filters[2] ===
                                         studentInfo[i].children[j].children[k].age) {
 
                                         for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
@@ -203,66 +277,23 @@
 
         }
 
-        if ($genderSelected.text() !== '성별(ALL)' &&
-            $undergradSelected.text() !== '학번(ALL)' &&
-            $ageSelected.text() === '나이(ALL)') {
+        if (filters[0] !== '성별(ALL)' &&
+            filters[1] !== '학번(ALL)' &&
+            filters[2] === '나이(ALL)') {
 
             const names = function () {
                 let namesString = '';
 
-                console.log($genderSelected.text());
 
                 for (let i = 0; i < studentInfo.length; i++) {
-                    if ($genderSelected.text() === studentInfo[i].gender) {
+                    if (filters[0] === studentInfo[i].gender) {
 
                         for (let j = 0; j < studentInfo[i].children.length; j++) {
-                            if ($undergradSelected.text() ===
+                            if (filters[1] ===
                                 studentInfo[i].children[j].undergrad) {
 
                                 for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
-                                    if ($ageSelected.text() !==
-                                        studentInfo[i].children[j].children[k].age) {
-
-                                        for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
-                                            namesString += studentInfo[i].children[j].children[k].children[l].name + ' ';
-                                        }
-
-                                    }
-                                }
-
-                            }
-                        }
-
-                    }
-                }
-
-
-                return namesString;
-            };
-
-            $names.text(names);
-
-        }
-
-
-        if ($genderSelected.text() === '성별(ALL)' &&
-            $undergradSelected.text() === '학번(ALL)' &&
-            $ageSelected.text() !== '나이(ALL)') {
-
-            const names = function () {
-                let namesString = '';
-
-                console.log($genderSelected.text());
-
-                for (let i = 0; i < studentInfo.length; i++) {
-                    if ($genderSelected.text() !== studentInfo[i].gender) {
-
-                        for (let j = 0; j < studentInfo[i].children.length; j++) {
-                            if ($undergradSelected.text() !==
-                                studentInfo[i].children[j].undergrad) {
-
-                                for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
-                                    if ($ageSelected.text() ===
+                                    if (filters[2] !==
                                         studentInfo[i].children[j].children[k].age) {
 
                                         for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
@@ -287,24 +318,23 @@
         }
 
 
-        if ($genderSelected.text() === '성별(ALL)' &&
-            $undergradSelected.text() !== '학번(ALL)' &&
-            $ageSelected.text() === '나이(ALL)') {
+        if (filters[0] === '성별(ALL)' &&
+            filters[1] === '학번(ALL)' &&
+            filters[2] !== '나이(ALL)') {
 
             const names = function () {
                 let namesString = '';
 
-                console.log($genderSelected.text());
 
                 for (let i = 0; i < studentInfo.length; i++) {
-                    if ($genderSelected.text() !== studentInfo[i].gender) {
+                    if (filters[0] !== studentInfo[i].gender) {
 
                         for (let j = 0; j < studentInfo[i].children.length; j++) {
-                            if ($undergradSelected.text() ===
+                            if (filters[1] !==
                                 studentInfo[i].children[j].undergrad) {
 
                                 for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
-                                    if ($ageSelected.text() !==
+                                    if (filters[2] ===
                                         studentInfo[i].children[j].children[k].age) {
 
                                         for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
@@ -329,24 +359,23 @@
         }
 
 
-        if ($genderSelected.text() !== '성별(ALL)' &&
-            $undergradSelected.text() === '학번(ALL)' &&
-            $ageSelected.text() === '나이(ALL)') {
+        if (filters[0] === '성별(ALL)' &&
+            filters[1] !== '학번(ALL)' &&
+            filters[2] === '나이(ALL)') {
 
             const names = function () {
                 let namesString = '';
 
-                console.log($genderSelected.text());
 
                 for (let i = 0; i < studentInfo.length; i++) {
-                    if ($genderSelected.text() === studentInfo[i].gender) {
+                    if (filters[0] !== studentInfo[i].gender) {
 
                         for (let j = 0; j < studentInfo[i].children.length; j++) {
-                            if ($undergradSelected.text() !==
+                            if (filters[1] ===
                                 studentInfo[i].children[j].undergrad) {
 
                                 for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
-                                    if ($ageSelected.text() !==
+                                    if (filters[2] !==
                                         studentInfo[i].children[j].children[k].age) {
 
                                         for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
@@ -370,24 +399,24 @@
 
         }
 
-        if ($genderSelected.text() === '성별(ALL)' &&
-            $undergradSelected.text() === '학번(ALL)' &&
-            $ageSelected.text() === '나이(ALL)') {
+
+        if (filters[0] !== '성별(ALL)' &&
+            filters[1] === '학번(ALL)' &&
+            filters[2] === '나이(ALL)') {
 
             const names = function () {
                 let namesString = '';
 
-                console.log($genderSelected.text());
 
                 for (let i = 0; i < studentInfo.length; i++) {
-                    if ($genderSelected.text() !== studentInfo[i].gender) {
+                    if (filters[0] === studentInfo[i].gender) {
 
                         for (let j = 0; j < studentInfo[i].children.length; j++) {
-                            if ($undergradSelected.text() !==
+                            if (filters[1] !==
                                 studentInfo[i].children[j].undergrad) {
 
                                 for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
-                                    if ($ageSelected.text() !==
+                                    if (filters[2] !==
                                         studentInfo[i].children[j].children[k].age) {
 
                                         for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
@@ -411,12 +440,48 @@
 
         }
 
+        if (filters[0] === '성별(ALL)' &&
+            filters[1] === '학번(ALL)' &&
+            filters[2] === '나이(ALL)') {
+
+            const names = function () {
+                let namesString = '';
+
+
+                for (let i = 0; i < studentInfo.length; i++) {
+                    if (filters[0] !== studentInfo[i].gender) {
+
+                        for (let j = 0; j < studentInfo[i].children.length; j++) {
+                            if (filters[1] !==
+                                studentInfo[i].children[j].undergrad) {
+
+                                for (let k = 0; k < studentInfo[i].children[j].children.length; k++) {
+                                    if (filters[2] !==
+                                        studentInfo[i].children[j].children[k].age) {
+
+                                        for (let l = 0; l < studentInfo[i].children[j].children[k].children.length; l++) {
+                                            namesString += studentInfo[i].children[j].children[k].children[l].name + ' ';
+                                        }
+
+                                    }
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+
+
+                return namesString;
+            };
+
+            $names.text(names);
+
+        }
 
 
     });
-
-
-
 
 
 })();
