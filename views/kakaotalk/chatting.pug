@@ -17,60 +17,80 @@ block friends
                 .title-image
             .chat-bundle
                 .name 문재인
-                .speech-bubble.moon 속으론
+                .bubble-line
+                    .speech-bubble.moon 속으론
         .friend-element
             .image-container
             .chat-bundle
-                .speech-bubble.moon 그렇게
+                .bubble-line
+                    .speech-bubble.moon 그렇게
         .friend-element
             .image-container
             .title-image
             .chat-bundle
-                .speech-bubble.moon 생각안하시는거
+                .bubble-line
+                    .speech-bubble.moon 생각안하시는거
         .friend-element
             .image-container
             .chat-bundle
-                .speech-bubble.moon 다알아요
+                .bubble-line
+                    .speech-bubble.moon 다알아요
         .friend-element
             .image-container
             .chat-bundle
-                .speech-bubble.moon ^__^
+                .bubble-line
+                    .speech-bubble.moon ^__^
+                    .time 오후 12:28
 
-        .speech-bubble.self ... 속의 생각을 이제서야 말한건데... 몰라주다니
-
-        .friend-element
-            .image-container
-                .title-image
-            .chat-bundle
-                .name 문재인
-                .speech-bubble.moon 그렇게 말해두
-        .friend-element
-            .image-container
-            .chat-bundle
-                .speech-bubble.moon 다
-        .friend-element
-            .image-container
-            .chat-bundle
-                .speech-bubble.moon 알아요!!
-        .friend-element
-            .image-container
-            .chat-bundle
-                .speech-bubble.moon ^^
-
-        .speech-bubble.self 너도 눈찌를깡
+        .self-element
+            .time 오후 12:28
+            .speech-bubble.self ... 속의 생각을 이제서야 말한건데... 몰라주다니
 
         .friend-element
             .image-container
                 .title-image
             .chat-bundle
                 .name 문재인
-                img(src="/images/kakao-talk/chat-imoticon.png" alt="imoticon image")
+                .bubble-line
+                    .speech-bubble.moon 그렇게 말해두
+        .friend-element
+            .image-container
+            .chat-bundle
+                .bubble-line
+                    .speech-bubble.moon 다
+        .friend-element
+            .image-container
+            .chat-bundle
+                .bubble-line
+                    .speech-bubble.moon 알아요!!
+                    .time 오후 12:30
+        .friend-element
+            .image-container
+                .title-image
+            .chat-bundle
+                .bubble-line
+                    .speech-bubble.moon ^^
+                    .time 오후 12:31
+                    i.material-icons close
+
+        .self-element
+            .time 오후 12:28
+            .speech-bubble.self 너도 눈찌를깡
+
+        .friend-element
+            .image-container
+                .title-image
+            .chat-bundle
+                .name 문재인
+                .bubble-line
+                    img(src="/images/kakao-talk/chat-imoticon.png" alt="imoticon image")
     .input-box
         i.material-icons.icon#sender add_box
         input.typing-box(type="text")#messageInput
         i.material-icons.icon mood
         .icon#shop #
 
-
-    script(src="/javascripts/test.js")
+    script(src='https://www.gstatic.com/firebasejs/4.12.1/firebase.js')
+    script(src="/javascripts/kakaotalk/firebase.js")
+    script(src="/javascripts/kakaotalk/test.js")
 

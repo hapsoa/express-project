@@ -40,10 +40,21 @@
           background-position: 50% 20%;
           background-size: cover;
           border-radius: 50%; }
-      .lists > .chatting-log-box > .friend-element > .chat-bundle {
-        flex: 1; }
-        .lists > .chatting-log-box > .friend-element > .chat-bundle > .name {
+      .lists > .chatting-log-box > .friend-element > .chat-bundle > .bubble-line {
+        display: flex; }
+        .lists > .chatting-log-box > .friend-element > .chat-bundle > .bubble-line > .name {
           margin-bottom: 5px; }
+        .lists > .chatting-log-box > .friend-element > .chat-bundle > .bubble-line > .time {
+          width: fit-content;
+          align-self: flex-end;
+          margin-bottom: 5px;
+          margin-left: 5px;
+          font-size: 0.6rem;
+          color: #aaaaaa; }
+        .lists > .chatting-log-box > .friend-element > .chat-bundle > .bubble-line > i.material-icons {
+          align-self: flex-end;
+          color: red;
+          font-size: 1rem; }
     .lists > .chatting-log-box .speech-bubble {
       padding: 5px;
       width: fit-content;
@@ -55,10 +66,19 @@
       border-radius: 5px; }
     .lists > .chatting-log-box .moon {
       background-color: #bbb; }
-    .lists > .chatting-log-box .self {
-      align-self: flex-end;
-      color: white;
-      background-color: #000; }
+    .lists > .chatting-log-box .self-element {
+      display: flex;
+      min-height: fit-content;
+      justify-content: flex-end; }
+      .lists > .chatting-log-box .self-element > .time {
+        align-self: flex-end;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        font-size: 0.6rem;
+        color: #aaaaaa; }
+      .lists > .chatting-log-box .self-element > .self {
+        color: white;
+        background-color: #000; }
   .lists > .input-box {
     display: flex;
     align-items: center;

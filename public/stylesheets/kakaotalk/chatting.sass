@@ -46,9 +46,28 @@
           border-radius: 50%
 
       > .chat-bundle
-        flex: 1
-        > .name
-          margin-bottom: 5px
+
+        > .bubble-line
+          display: flex
+          > .name
+            margin-bottom: 5px
+
+          > .time
+            width: fit-content
+            align-self: flex-end
+
+            margin-bottom: 5px
+            margin-left: 5px
+            font-size: 0.6rem
+            color: #aaaaaa
+
+          > i.material-icons
+            align-self: flex-end
+
+            color: red
+            font-size: 1rem
+
+
 
     .speech-bubble
       padding: 5px
@@ -66,10 +85,23 @@
     .moon
       background-color: #bbb
 
-    .self
-      align-self: flex-end
-      color: white
-      background-color: #000
+    .self-element
+      display: flex
+      min-height: fit-content
+      justify-content: flex-end
+
+      > .time
+        align-self: flex-end
+        margin-right: 5px
+        margin-bottom: 5px
+
+        font-size: 0.6rem
+        color: #aaaaaa
+
+      > .self
+        //align-self: flex-end
+        color: white
+        background-color: #000
 
   > .input-box
     display: flex
