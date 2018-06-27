@@ -37,7 +37,7 @@
     });
 
     let $cancel;
-
+    let pastId;
 
     chatApi.on('child_added', function (d) {
 
@@ -93,6 +93,23 @@
                 $('.chatting-log-box')
                     .append(template);
             }
+            else if(d[key].id === pastId) {
+                template = `
+             <div class="friend-element">
+                <div class="image-container"></div>
+                <div class="chat-bundle">                    
+                    <div class="bubble-line">                        
+                        <div class="speech-bubble moon">${message}</div>
+                        <div class="time">${printingTime}</div>
+                        
+                    </div>
+                </div>                
+            </div>
+            `;
+
+                $('.chatting-log-box')
+                    .append(template);
+            }
             else {
                 template = `
              <div class="friend-element">
@@ -118,17 +135,18 @@
 
 
         $cancel = $('.self-element > i.material-icons');
-// { messageId : { id : , message : , date}}
 
+        // { messageId : { id : , message : , date}}
         $cancel.on('click', function () {
 
             console.log($(this).attr('messageId'));
             // 삭제 시켜야 한다.
             chatApi.deleteMessage($(this).attr('messageId'));
-            // 누르는 채팅창의 id를 알아야 하는데
 
 
         });
+
+        pastId = d[key].id;
 
 
     });
