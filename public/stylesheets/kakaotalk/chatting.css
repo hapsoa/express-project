@@ -56,6 +56,7 @@
           color: red;
           font-size: 1rem; }
     .lists > .chatting-log-box .speech-bubble {
+      overflow-wrap: break-word;
       padding: 5px;
       width: fit-content;
       max-width: 200px;

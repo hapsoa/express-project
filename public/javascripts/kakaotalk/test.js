@@ -1,22 +1,5 @@
 (function() {
 
-    var a = 10;
-    var b = 'a';
-    var c = null;
-    var d = undefined;
-    var e = [1, 2, 3, 4];
-    var f = {a: 10}; // json
-
-    var g = [1, 2, 'a', {a: [2, 3, 4]}];
-
-//선언
-    var h = function () {
-        console.log('나는 함순데')
-    }
-
-//호출
-//h();
-
 
     var $input = $('#messageInput');
     var $sender = $('#sender');
@@ -27,7 +10,8 @@
         // console.log(e);
         if (e.keyCode === 13) {
             console.log($input.val());
-            chatApi.sendMessage('jaejong', $input.val());
+            if ($input.val() !== '')
+                chatApi.sendMessage('jaejong', $input.val());
             $input.val('');
 
             $(".chatting-log-box").scrollTop($(".chatting-log-box")[0].scrollHeight);
@@ -95,7 +79,7 @@
             }
             else if(d[key].id === pastId) {
                 template = `
-             <div class="friend-element">
+             <div class="friend-element" messageId=${messageId}>
                 <div class="image-container"></div>
                 <div class="chat-bundle">                    
                     <div class="bubble-line">                        
@@ -112,7 +96,7 @@
             }
             else {
                 template = `
-             <div class="friend-element">
+             <div class="friend-element" messageId=${messageId} isFirst="true">
                 <div class="image-container">
                     <div class="title-image"></div>
                 </div>
@@ -155,13 +139,14 @@
     chatApi.on('child_removed', function (d) {
         // { messageId : { id : , message : , date}}
 
-        // 리로드 되면 삭제되긴 하는데, 하자마자 바로 삭제 해야 할듯
         const key = Object.keys(d)[0];
 
-        console.log(key + 'yes');
+        if (d[key].id === 'jaejong')
+            $('.self-element[messageId=' + key + ']').remove();
+        else
+            $('.friend-element[messageId=' + key + ']').remove();
 
-
-        $('.self-element[messageId=' + key+ ']').remove();
+        pastId = '';
     });
 
 
