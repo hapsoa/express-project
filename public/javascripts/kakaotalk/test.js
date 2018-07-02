@@ -1,7 +1,19 @@
-(function() {
+(function () {
 
     let $root = $('.chatting-log-box');
     let template;
+
+    function Dialog() {
+        template = '';
+
+        const $transparentBlackBox = $('.transparent-black-box');
+
+        this.setDisplay = function () {
+            // $content.css('background-color', 'black');
+            $transparentBlackBox.css('background-color', 'rgba(0,0,0,0.3)');
+        };
+
+    }
 
     function Element(id, isMine) {
         if (isMine) {
@@ -30,7 +42,12 @@
         const that = this;
 
         if (isMine) {
-            $ele.find('i.material-icons').on('click', function() {
+            $ele.find('i.material-icons').on('click', function () {
+
+                //dialog 창이 뜬다.
+                const dialog = new Dialog();
+                dialog.setDisplay();
+
                 chatApi.deleteMessage(id);
             });
         }
@@ -42,15 +59,15 @@
         if (isMine !== undefined && !isMine)
             $ele.addClass('receive');
 
-        this.getTime = function() {
+        this.getTime = function () {
             return elementData.date;
         };
 
-        this.getUserName = function() {
+        this.getUserName = function () {
             return elementData.id;
         };
 
-        this.setMessage = function(data) {
+        this.setMessage = function (data) {
             elementData = data;
 
             $ele.find('.speech-bubble').text(data.message);
@@ -58,38 +75,37 @@
             $ele.find('.time').text(data.date);
         };
 
-        this.setVisibleTime = function(usage) {
+        this.setVisibleTime = function (usage) {
             $ele.find('.time').css('visibility', usage ? 'visible' : 'hidden');
         };
 
-        this.setVisibleName = function(usage) {
+        this.setVisibleName = function (usage) {
             $ele.find('.name').css('display', usage ? 'block' : 'none');
         };
 
-        this.setVisibleProfile = function(usage) {
+        this.setVisibleProfile = function (usage) {
             $ele.find('.title-image').css('display', usage ? 'block' : 'none');
         };
 
 
-        let prev = null;
-        this.prev = function(ele) {
-            if (ele === undefined)
-                return prev;
-
+        // pre
+        var prev = null;
+        this.prev = function (ele) {
+            if (ele === undefined) return prev;
             prev = ele;
             that.update();
         };
 
-        let next = null;
-        this.next = function(ele) {
-            if (ele === undefined)
-                return next;
+        // next
+        var next = null;
+        this.next = function (ele) {
+            if (ele === undefined) return next;
             next = ele;
             that.update();
         };
 
         // check Visible
-        this.update = function() {
+        this.update = function () {
             // 1. 이전께 내가 보낸 거면서 시간이 같으면 나의 이름과 사진을 삭제한다.
             if (prev !== null && prev.getUserName() === that.getUserName() && prev.getTime() === that.getTime()) {
                 that.setVisibleName(false);
@@ -105,43 +121,38 @@
             } else {
                 that.setVisibleTime(true);
             }
+        };
 
-            this.remove = function() {
-                $ele.remove();
-                let prev = that.prev();
-                let next = that.next();
+        this.remove = function () {
+            $ele.remove();
+            var prev = that.prev();
+            var next = that.next();
+            if (prev !== null) prev.next(next);
 
-                if (prev !== null)
-                    prev.next(next);
+            if (next !== null) next.prev(prev);
+        };
 
-                if (next !== null)
-                    next.prev(prev);
-            };
+        // get date, get text ,get user
+        $ele.appendTo($root);
+        this.$ele = $ele;
+        return this;
 
-            $ele.appendTo($root);
-
-            return this;
-        }
 
     }
 
-    let userId = 'jaejong';
+    let userId = 'jaejongss';
 
     let eles = {};
     let lastElement = null;
 
-    chatApi.on('child_added', function(d) {
+    chatApi.on('child_added', function (d) {
 
-        let id = Object.keys(d)[0];
-        let data = d[id];
-
-        let date = new Date(data.date);
+        var id = Object.keys(d)[0];
+        var data = d[id];
+        var date = new Date(data.date);
         let dateString = (date.getHours() >= 12 ? '오후 ' + ((date.getHours() === 12) ? date.getHours() : date.getHours() - 12) : '오전 ' + date.getHours()) + ':' + date.getMinutes();
-
         data.date = dateString;
-
-        let ele = new Element(id, userId === data.id);
-
+        var ele = new Element(id, userId === data.id);
         ele.setMessage(data);
 
         if (lastElement !== null) {
@@ -154,33 +165,24 @@
         $(".chatting-log-box").scrollTop($(".chatting-log-box")[0].scrollHeight);
     });
 
-    chatApi.on('child_removed', function(d) {
-        let id = Object.keys(d)[0];
-        let ele = eles[id];
-
+    // 메세지 삭제 이벤트
+    chatApi.on('child_removed', function (d) {
+        var id = Object.keys(d)[0];
+        var ele = eles[id];
         ele.remove();
         delete eles[id];
     });
 
     let $textarea = $('#messageInput');
 
-    $textarea.on('keyup', function(event) {
-
-        let val = $textarea.val();
-
+    $textarea.on('keyup', function (event) {
+        var val = $textarea.val();
         if (event.keyCode === 13) {
 
             $textarea.val('');
-
-            if (val !== '')
-                chatApi.sendMessage(userId, val);
+            if (val !== '') chatApi.sendMessage(userId, val);
         }
-
     });
-
-
-
-
 
 
     //
@@ -333,7 +335,6 @@
     //     pastId = '';
     // });
     //
-
 
 
 })();
