@@ -10,6 +10,8 @@ var usersRouter = require('./routes/users');
 var kakaotalkRouter = require('./routes/kakaotalk');
 var calculatorRouter = require('./routes/calculator');
 var jsonFilter01Router = require('./routes/jsonFilter01');
+var selectionControlsRouter = require('./routes/selectionControls');
+var textFinderRouter = require('./routes/textFinder');
 
 var app = express();
 
@@ -34,6 +36,8 @@ app.use('/users', usersRouter);
 app.use('/kakaotalk', kakaotalkRouter);
 app.use('/calculator', calculatorRouter);
 app.use('/json-filter-01', jsonFilter01Router);
+app.use('/selectionControls', selectionControlsRouter);
+app.use('/textFinder', textFinderRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

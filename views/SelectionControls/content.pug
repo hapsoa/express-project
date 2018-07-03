@@ -1,0 +1,34 @@
+extends basic
+
+block link
+    link(rel='stylesheet', href='/stylesheets/SelectionControls/content.css')
+
+block content
+    .window-option
+        i.fas.fa-square-full
+        i.fas.fa-circle
+        i.fas.fa-caret-down
+
+    .category
+        i.material-icons menu
+        .category-title Settings
+        i.material-icons search
+        i.material-icons more_vert
+
+    .button-bundle
+        .title Checkboxes
+        .item
+            i.far.fa-square
+            .name Line item selected
+        .item
+            i.far.fa-square
+            .name Line item unselected
+
+    .button-bundle
+        .title Radio buttons
+        .item
+            i.far.fa-square
+            .name Line item selected
+        .item
+            i.far.fa-square
+            .name Line item unselected

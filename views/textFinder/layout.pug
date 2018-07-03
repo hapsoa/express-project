@@ -2,26 +2,30 @@ doctype html
 html
     head
         meta(charset="UTF-8")
-        title kakao talk
+        title Text Finder
 
-        script(
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        // jquery
+        script(src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous")
 
-        link(rel='stylesheet', href='/stylesheets/kakaotalk/basic.css')
+
+        link(rel='stylesheet', href='/stylesheets/textFinder/layout.css')
+
         block link
 
+        // font
         link(href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet")
 
+        // icon
         link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous")
         link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
 
 
     body
         .empty-column-box
-        .content
-            block content
+        .main
+            block main
 
         .empty-column-box
 
