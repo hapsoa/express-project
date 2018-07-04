@@ -7,7 +7,9 @@
 
     console.log($openCloseButton.attr('status'));
 
-    // 검색 옵션을 열고 닫는다
+    /**
+     * 검색 옵션을 열고 닫는다
+     */
     $openCloseButton.on('click', function () {
 
         if ($openCloseButton.attr('status') === undefined ||
@@ -24,15 +26,27 @@
 
     });
 
+    /**
+     * checkbox 버튼
+     */
     function Button(targetClass) {
         const $target = $(targetClass);
         const $name = $target.parent().find('.name');
 
-        this.doit = function () {
+        this.applyText = function ($text) {
             if ($name.text() === '밑줄')
-                console.log('hi');
-            if ($name.text() === '백그라운드')
-                console.log('hi2');
+                $text.find('span').css('text-decoration-line', 'underline');
+            if ($name.text() === '백그라운드') {
+                // 텍스트에다 그 위치의 글자를 형광칠한다
+                // $text에 어떻게 그 위치만 적용시킬 수 있을까
+                    // 적용한다.
+                $text.find('span').css('background-color', 'yellow');
+
+            }
+            if ($name.text() === '굵게')
+                $text.find('span').css('font-weight', 'bold');
+            if ($name.text() === '기울이기')
+                $text.find('span').css('font-style', 'oblique');
         };
 
         return this;
@@ -40,6 +54,7 @@
 
 
     // 적용할 함수들을 담아둔다.
+    const textApplies = [];
 
 
     // 체크박스 설정하기
@@ -60,7 +75,9 @@
             // 4번 체크박스
             const checkbox = new Button(this);
 
-            checkbox.doit();
+            // 텍스트 적용을 다 넣어둔다.
+            textApplies.push(checkbox.applyText);
+
 
         }
         else {
@@ -72,23 +89,50 @@
 
 
     const $input = $('input');
+
     const $mainText = $('.main-text-box');
+    const originalMainText = $mainText.html();
 
     // input창의 값을 본문에서 차는다.
     $input.on('keyup', function (event) {
-        // console.log($input.val());
 
-        // 본문을 가져온다.
-        $mainText.text();
+        // input 내용 : $input.val()
+        // 본문 : $mainText.text()
 
-        // input창 내용이 본문에 있는지 찾는다.
-        // 있으면 그 위치 index 수를 반환해 주는데,
-        // index수부터 시작해, input.val().length 길이 만큼
-        // 체크박스 되어 있는 옵션을 설정해준다.
-        let startIndex = $mainText.text().search($input.val());
+        $mainText.html(originalMainText);
 
+        // input 검색값을 mainText의 text에 span을 넣는 단위기능
+        if($input.val() !== '')
+            putSpan($mainText, $input.val());
+
+        console.log($mainText.html());
+        // 글자 단어 문장 옵션인지 체크해서
+        // 원하는 옵션에 꾸미기를 적용한다.
+        for (let i = 0; i < textApplies.length; i++) {
+            console.log('hi');
+            textApplies[i]($mainText);
+        }
 
     });
+
+
+    function replaceAll(str, searchStr, replaceStr) {
+        return str.split(searchStr).join(replaceStr);
+    }
+
+    function putSpan($text, inputValue) {
+        // let startIndex = $text.search(inputValue);
+
+        // $text.html($text.html().replace(inputValue, '<span>' + inputValue + '</span>'));
+        $text.html(replaceAll($text.html(), inputValue, '<span>' + inputValue + '</span>'));
+        // 한번만 되는데, 2번째 글자도 적용을 시킬 수 없을까?
+
+
+    }
+
+
+
+
 
 
 })();
