@@ -5,8 +5,6 @@
     const $openCloseButton = $('.open-close-button');
     const $aside = $('aside');
 
-    console.log($openCloseButton.attr('status'));
-
     /**
      * 검색 옵션을 열고 닫는다
      */
@@ -34,19 +32,25 @@
         const $name = $target.parent().find('.name');
 
         this.applyText = function ($text) {
-            if ($name.text() === '밑줄')
+            if ($name.text() === '밑줄') {
                 $text.find('span').css('text-decoration-line', 'underline');
+            }
             if ($name.text() === '백그라운드') {
                 // 텍스트에다 그 위치의 글자를 형광칠한다
                 // $text에 어떻게 그 위치만 적용시킬 수 있을까
-                    // 적용한다.
+                // 적용한다.
                 $text.find('span').css('background-color', 'yellow');
 
             }
             if ($name.text() === '굵게')
-                $text.find('span').css('font-weight', 'bold');
+                $text.find('span').css('font-weight', 'bolder');
             if ($name.text() === '기울이기')
                 $text.find('span').css('font-style', 'oblique');
+        };
+
+
+        this.applyTextUnit = function () {
+
         };
 
         return this;
@@ -54,11 +58,10 @@
 
 
     // 적용할 함수들을 담아둔다.
-    const textApplies = [];
+    let textApplies = [];
 
 
     // 체크박스 설정하기
-    //체크 되고 체크 풀고
     const $checkbox = $('.checkbox');
 
     $checkbox.on('click', function () {
@@ -68,22 +71,64 @@
             $(this).addClass('checked');
             $(this).append('<i class="fas fa-check"></i>');
 
-            // 그에 맞는 일을 적용한다.
-            // 1번 체크박스
-            // 2번 체크박스
-            // 3번 체크박스
-            // 4번 체크박스
-            const checkbox = new Button(this);
-
-            // 텍스트 적용을 다 넣어둔다.
-            textApplies.push(checkbox.applyText);
-
-
         }
         else {
             $(this).removeClass('checked');
             $(this).find('i').remove();
+
         }
+
+        // 텍스트 적용 함수를 비운다.
+        textApplies = [];
+
+        // 체크된걸 스타일함수를 배열에 넣는다.
+        const $decorationOption = $('.decoration-option');
+        const $checked = $decorationOption.find('.checked');
+        $checked.each(function () {
+            const checkbox = new Button(this);
+            textApplies.push(checkbox.applyText);
+        });
+
+        // 스타일 초기화
+        const $checkbox = $('.checkbox');
+        $checkbox.each(function () {
+            $mainText.find('span').css('text-decoration-line', 'none');
+            $mainText.find('span').css('background-color', 'rgba(0, 0, 0, 0)');
+            $mainText.find('span').css('font-weight', 'normal');
+            $mainText.find('span').css('font-style', 'normal');
+        });
+
+        // 새로운 스타일 적용한다.
+        for (let i = 0; i < textApplies.length; i++) {
+            textApplies[i]($mainText);
+        }
+
+    });
+
+
+    // 라디오버튼 설정하기
+    const $radioButton = $('.radio-button');
+    let unitType = '글자';
+
+    $radioButton.on('click', function () {
+
+        if (!$(this).hasClass('checked')) {
+            $(this).addClass('checked');
+            $(this).append('<div class="full-circle"></div>');
+
+            unitType = $(this).parent().find('.name').text();
+
+            const that = this;
+            // 나머지 라디오 버튼들은 체크 해제
+            $radioButton.each(function () {
+                if (this !== that) {
+                    $(this).removeClass('checked');
+                    $(this).find('.full-circle').remove();
+                }
+            });
+
+        }
+
 
     });
 
@@ -93,7 +138,7 @@
     const $mainText = $('.main-text-box');
     const originalMainText = $mainText.html();
 
-    // input창의 값을 본문에서 차는다.
+    // input창의 값을 본문에서 찾는다.
     $input.on('keyup', function (event) {
 
         // input 내용 : $input.val()
@@ -102,14 +147,13 @@
         $mainText.html(originalMainText);
 
         // input 검색값을 mainText의 text에 span을 넣는 단위기능
-        if($input.val() !== '')
+        if ($input.val() !== '')
             putSpan($mainText, $input.val());
 
         console.log($mainText.html());
         // 글자 단어 문장 옵션인지 체크해서
         // 원하는 옵션에 꾸미기를 적용한다.
         for (let i = 0; i < textApplies.length; i++) {
-            console.log('hi');
             textApplies[i]($mainText);
         }
 
@@ -120,19 +164,48 @@
         return str.split(searchStr).join(replaceStr);
     }
 
-    function putSpan($text, inputValue) {
-        // let startIndex = $text.search(inputValue);
+    function putSpan($text, inputValue) { //parameter 하나 더
+        console.log(unitType);
+        if (unitType === '글자')
+            $text.html(replaceAll($text.html(), inputValue, '<span>' + inputValue + '</span>'));
 
-        // $text.html($text.html().replace(inputValue, '<span>' + inputValue + '</span>'));
-        $text.html(replaceAll($text.html(), inputValue, '<span>' + inputValue + '</span>'));
-        // 한번만 되는데, 2번째 글자도 적용을 시킬 수 없을까?
+        if (unitType === '단어') {
+            // 글자를 포함한 단어를 모두 span을 친다.
+            // 띄우기를 기준으로 적용을 해야 한다.
+
+            let temp = $text.html().split(/([ ,?<br>])/);
+
+            for (let i = 0; i < temp.length; i++) {
+                // 각각의 단어에 input값이 있는지 찾는다.
+                if (temp[i].includes(inputValue)) {
+                    temp[i] = '<span>' + temp[i] + '</span>';
+                }
+            }
+
+            temp = temp.join('');
+
+            // console.log(temp);
+            $text.html(temp);
+
+        }
+        if (unitType === '문장') {
+            // 문장 기준으로 적용한다.
+
+            let temp = $text.html().split(/([.?])/);
+
+            for (let i = 0; i < temp.length; i++) {
+                if (temp[i].includes(inputValue)) {
+                    temp[i] = '<span>' + temp[i] + '</span>';
+                }
+            }
+
+            temp = temp.join('');
+
+            $text.html(temp);
 
 
+        }
     }
-
-
-
-
 
 
 })();

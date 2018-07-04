@@ -74,6 +74,8 @@ aside {
     height: 500px;
     padding: 16px;
     border: 1px solid #777; }
+    .main-applet > .main-text-box > span {
+      text-decoration-line: underline; }
   .main-applet > .result-box {
     height: calc(100vh - 56px - 500px);
     padding: 16px;
