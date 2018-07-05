@@ -129,6 +129,26 @@
 
         }
 
+        //새로운 span을 적용한다.
+        $mainText.html(originalMainText);
+
+        if ($input.val() !== '')
+            putSpan($mainText, $input.val());
+
+        // 새로운 span이 적용이 되었으니, span에다 속성을 다시 넣는다.
+        const $checkbox = $('.checkbox');
+        $checkbox.each(function () {
+            $mainText.find('span').css('text-decoration-line', 'none');
+            $mainText.find('span').css('background-color', 'rgba(0, 0, 0, 0)');
+            $mainText.find('span').css('font-weight', 'normal');
+            $mainText.find('span').css('font-style', 'normal');
+        });
+
+        // 새로운 스타일 적용한다.
+        for (let i = 0; i < textApplies.length; i++) {
+            textApplies[i]($mainText);
+        }
+
 
     });
 
@@ -157,7 +177,29 @@
             textApplies[i]($mainText);
         }
 
+
+        // 아래 화면에 선택된 text들을 띄운다.
+        showResult();
+
     });
+
+    function showResult() {
+        //초기화 한다.
+
+
+        const $span = $mainText.find('span');
+
+        const $resultBox = $('.result-box');
+        $resultBox.empty();
+
+        // 아래 화면에 span.text를 넣는다.
+        $span.each(function() {
+            $resultBox.append('<div class="result-item">' + $(this).text() + '</div>');
+        });
+
+
+
+    }
 
 
     function replaceAll(str, searchStr, replaceStr) {
@@ -173,7 +215,7 @@
             // 글자를 포함한 단어를 모두 span을 친다.
             // 띄우기를 기준으로 적용을 해야 한다.
 
-            let temp = $text.html().split(/([ ,?<br>])/);
+            let temp = $text.html().split(/(,|<br>|\.| )/);
 
             for (let i = 0; i < temp.length; i++) {
                 // 각각의 단어에 input값이 있는지 찾는다.
@@ -191,7 +233,7 @@
         if (unitType === '문장') {
             // 문장 기준으로 적용한다.
 
-            let temp = $text.html().split(/([.?])/);
+            let temp = $text.html().split(/(<br>|\.|\?)/);
 
             for (let i = 0; i < temp.length; i++) {
                 if (temp[i].includes(inputValue)) {
