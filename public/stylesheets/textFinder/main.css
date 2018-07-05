@@ -79,7 +79,11 @@ aside {
   .main-applet > .result-box {
     height: calc(100vh - 56px - 500px);
     padding: 16px;
+    overflow: auto;
     border: 1px solid #777; }
+    .main-applet > .result-box > .result-item {
+      margin: 5px 0;
+      cursor: pointer; }
 
 .open-close-button {
   position: absolute;

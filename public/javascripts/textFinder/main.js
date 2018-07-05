@@ -150,6 +150,10 @@
         }
 
 
+        // result 화면 적용
+        showResult();
+
+
     });
 
 
@@ -183,22 +187,44 @@
 
     });
 
+    /**
+     * 아래 화면에 선택된 text들을 띄운다.
+     */
     function showResult() {
         //초기화 한다.
-
-
         const $span = $mainText.find('span');
 
         const $resultBox = $('.result-box');
         $resultBox.empty();
 
         // 아래 화면에 span.text를 넣는다.
-        $span.each(function() {
-            $resultBox.append('<div class="result-item">' + $(this).text() + '</div>');
+        $span.each(function (index) {
+            $(this).attr('id', 'result-item' + index);
+            $resultBox.append('<div class="result-item" num=' + index + '>' + index + ': ' + $(this).text() + '</div>');
         });
 
+        const $resultItem = $('.result-item');
 
+        // result item 클릭시
+        $resultItem.on('click', function() {
+            // 초기화 한다.
+            $span.css('color', 'black');
+            $mainText.scrollTop();
 
+            // 선택된 녀석을 고른다.
+            const number = $(this).attr('num');
+            console.log(number);
+            // 그녀석의 원래 해당하는 $maintext의 span 위치로 이동한다.
+            console.log($('span[id="result-item'+ number + '"]').html());
+
+            let position = $('span[id="result-item'+ number + '"]').position();
+            $('span[id="result-item'+ number + '"]').css('color', 'red');
+            // $mainText.scrollTop(offset.top);
+
+            $mainText.animate({scrollTop : position.top}, 400);
+        });
+
+        console.log($resultBox.html());
     }
 
 
@@ -244,8 +270,6 @@
             temp = temp.join('');
 
             $text.html(temp);
-
-
         }
     }
 
