@@ -1,0 +1,25 @@
+extends layout
+
+block link
+    link(rel='stylesheet', href='/stylesheets/fractal/main.css')
+
+block main
+    .menu
+        .option
+            .title Length
+            input
+        .option
+            .title Depth
+            input
+        .option
+            .title Angle
+            input
+        .option
+            .title Color, From To
+            input
+        .execute execute!
+
+    #sketch-holder
+
+    script(src="/javascripts/fractal/sketch.js")
+    script(src="/javascripts/fractal/main.js")
