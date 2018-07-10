@@ -22,19 +22,19 @@ function draw() {
     // 한 점에서 6개의 선을 그린다.
     stroke(255);
     translate(centerPointX, centerPointY);
-    line(0, 0, 20, 0);
+    line(0, 0, length, 0);
 
     fractalize(depth, length, angle);
 
     stroke(255);
     rotate(2 * PI / 3.0);
-    line(0, 0, 20, 0);
+    line(0, 0, length, 0);
 
     fractalize(depth, length, angle);
 
     stroke(255);
     rotate(2 * PI / 3.0);
-    line(0, 0, 20, 0);
+    line(0, 0, length, 0);
 
     fractalize(depth, length, angle);
 
@@ -43,18 +43,22 @@ function draw() {
 
 const fractalize = function (depth, length, angle) {
 
-    const radAngle = radians(angle);
+    const smallizedLength = length * 0.95;
 
     if (depth > 0) {
         stroke(depth * 20, 255, 255 / depth);
         translate(length, 0);
+
         rotate(radians(angle));
-        line(0, 0, length, 0);
-        fractalize(depth - 1, length * 0.9, angle);
+        line(0, 0, smallizedLength, 0);
+        fractalize(depth - 1, smallizedLength, angle);
+
         rotate(-radians(angle * 2));
-        line(0, 0, length, 0);
-        fractalize(depth - 1, length * 0.9, angle);
+
+        line(0, 0, smallizedLength, 0);
+        fractalize(depth - 1, smallizedLength, angle);
         rotate(radians(angle));
+
         translate(-length, 0);
     }
 };
@@ -90,3 +94,5 @@ const section = new function () {
     });
 
 };
+
+
