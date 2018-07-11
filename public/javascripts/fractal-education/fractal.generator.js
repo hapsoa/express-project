@@ -5,7 +5,9 @@ const fractalGenerator = new function() {
     const drawLineByAngle = (x1, y1, degree, depth, count) => {
 
         // depthCount 이상이면 함수종료
-        if (depth > count && depth > generateData.depthCount) return;
+
+        if (depth > count
+            || depth > generateData.depthCount) return;
 
 
         const length = Math.pow(generateData.childBranchLengthRatio, depth)
@@ -16,17 +18,21 @@ const fractalGenerator = new function() {
         const y2 = Math.sin(radian) * length + y1;
 
         const c = lerpHexColor(depth / generateData.depthCount);
-        stroke(c.r, c.g, c.b, 255 - depth / generateData.depthCount * 255);
+        // stroke(c.r, c.g, c.b, 255 - depth / generateData.depthCount * 255);
+        stroke(c.r, c.g, c.b, 10);
         line(x1, y1, x2, y2);
 
         let startAngle = -(generateData.childBranchCount - 1)
             * generateData.childBranchAngle / 2 + degree * 1;
 
+        // setTimeout(() => {
+            for (let i = 0; i < generateData.childBranchCount; i++) {
+                drawLineByAngle(x2, y2, startAngle, depth + 1, count);
+                startAngle += generateData.childBranchAngle * 1;
+            }
+        // }, 1000);
 
-        for (let i = 0; i < generateData.childBranchCount; i++) {
-            drawLineByAngle(x2, y2, startAngle, depth + 1, count);
-            startAngle += generateData.childBranchAngle * 1;
-        }
+
     };
 
     const lerpHexColor = (ratio) => {
@@ -57,6 +63,7 @@ const fractalGenerator = new function() {
 
         const dAngle = 360 / data.startBranchCount;
         let currentAngle = 0;
+
         for (let i = 0; i < data.startBranchCount; i++) {
             // drawLineByAngle(cx, cy, currentAngle, 1);
 
@@ -64,10 +71,21 @@ const fractalGenerator = new function() {
 
             let count = 1;
             // 1초마다 그리기 시작
-            setInterval(function () {
-                drawLineByAngle(cx, cy, currentAngle, 1, count);
- 
+            const intervalTime = setInterval(function () {
+
+                const thisAngle;
+                    = currentAngle;
+
+                if (count > generateData.depthCount)
+                    clearInterval(intervalTime);
+
+                console.log(thisAngle);
+                drawLineByAngle(cx, cy, thisAngle, 1, count);
+
                 count++;
+
+                // console.log(count);
+
             }, 1000);
 
             console.log('hi');
