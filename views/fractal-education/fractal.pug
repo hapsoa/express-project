@@ -6,6 +6,8 @@ html
 		script(src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous")
+		script(src='/javascripts/fractal-education/color-conversion-algorithms.js')
+		script(src='/javascripts/fractal-education/hex2hsl.js')
 		link(href='/stylesheets/fractal-education/fractal.css', rel='stylesheet')
 	body
 		#renderer
@@ -23,9 +25,10 @@ html
 			.input-text child branch length ratio
 			input(type='range' min=0,max=2,step=0.01,name='childBranchLengthRatio')
 			.input-text start color
-			input(type='color',name='startColor')
+			input(type='color',name='startColor', value='#ff0000')
 			.input-text end color
-			input(type='color',name='endColor')
+			input(type='color',name='endColor', value='#00ffff')
+			.button#colorChange RGB
 			.button#exec EXECUTE
 			.button#stop -
 

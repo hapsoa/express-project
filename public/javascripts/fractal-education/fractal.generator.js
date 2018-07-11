@@ -1,14 +1,15 @@
-const fractalGenerator = new function() {
+let isPaused = false;
+let timers = [];
+
+const fractalGenerator = new function () {
 
     let generateData = {};
+    let nodes = {};
 
-    const drawLineByAngle = (x1, y1, degree, depth, count) => {
+    const drawLineByAngle = (x1, y1, degree, depth) => {
 
         // depthCount 이상이면 함수종료
-
-        if (depth > count
-            || depth > generateData.depthCount) return;
-
+        if (depth > generateData.depthCount) return;
 
         const length = Math.pow(generateData.childBranchLengthRatio, depth)
             * generateData.initialBranchLength;
@@ -17,34 +18,64 @@ const fractalGenerator = new function() {
         const x2 = Math.cos(radian) * length + x1;
         const y2 = Math.sin(radian) * length + y1;
 
-        const c = lerpHexColor(depth / generateData.depthCount);
+        //색상 설정
+        let c;
+        const $colorChange = $('#colorChange');
+        if ($colorChange.text() === 'RGB') {
+            c = lerpHexColor(depth / generateData.depthCount);
+            colorMode(RGB, 255, 255, 255, 255);
+            stroke(c.r, c.g, c.b, 10);
+        }
+        else if ($colorChange.text() === 'HSV') {
+            // hsl에 관함 함수로 적용시킨다.
+            c = hslHexColor(depth / generateData.depthCount);
+
+            colorMode(HSL, 1, 1, 1, 255);
+            stroke(c.h ,c.s , c.l, 10);
+        }
         // stroke(c.r, c.g, c.b, 255 - depth / generateData.depthCount * 255);
-        stroke(c.r, c.g, c.b, 10);
-        line(x1, y1, x2, y2);
 
-        let startAngle = -(generateData.childBranchCount - 1)
-            * generateData.childBranchAngle / 2 + degree * 1;
 
-        // setTimeout(() => {
-            for (let i = 0; i < generateData.childBranchCount; i++) {
-                drawLineByAngle(x2, y2, startAngle, depth + 1, count);
-                startAngle += generateData.childBranchAngle * 1;
+        let i = 0;
+        const intervalTime = setInterval(() => {
+            if (!isPaused) {
+                if (i > 10)
+                    clearInterval(intervalTime);
+
+                line(x1, y1, x2, y2);
+                i++;
+                // console.log(i);
             }
-        // }, 1000);
+        }, 100);
 
+        console.log(`${depth}`);
+        nodes[`${depth}`].push({x2 : getNextPoint(x1, x2, degree, depth).x, y2 : getNextPoint(x1, x2, degree, depth).y, degree : degree});
+
+        // let startAngle = -(generateData.childBranchCount - 1)
+        //     * generateData.childBranchAngle / 2 + degree * 1;
+
+        // timers.push(new Timer(() => {
+        //     for (let i = 0; i < generateData.childBranchCount; i++) {
+        //         drawLineByAngle(x2, y2, startAngle, depth + 1);
+        //         startAngle += generateData.childBranchAngle * 1;
+        //     }
+        //
+        // }, 1000));
 
     };
 
+
     const lerpHexColor = (ratio) => {
-        const r1 = Number('0x' + generateData.startColor[ 1 ] + generateData.startColor[ 2 ]);
-        const g1 = Number('0x' + generateData.startColor[ 3 ] + generateData.startColor[ 4 ]);
-        const b1 = Number('0x' + generateData.startColor[ 5 ] + generateData.startColor[ 6 ]);
-        const r2 = Number('0x' + generateData.endColor[ 1 ] + generateData.endColor[ 2 ]);
-        const g2 = Number('0x' + generateData.endColor[ 3 ] + generateData.endColor[ 4 ]);
-        const b2 = Number('0x' + generateData.endColor[ 5 ] + generateData.endColor[ 6 ]);
+        const r1 = Number('0x' + generateData.startColor[1] + generateData.startColor[2]);
+        const g1 = Number('0x' + generateData.startColor[3] + generateData.startColor[4]);
+        const b1 = Number('0x' + generateData.startColor[5] + generateData.startColor[6]);
+        const r2 = Number('0x' + generateData.endColor[1] + generateData.endColor[2]);
+        const g2 = Number('0x' + generateData.endColor[3] + generateData.endColor[4]);
+        const b2 = Number('0x' + generateData.endColor[5] + generateData.endColor[6]);
         const r = r1 * (1 - ratio) + r2 * ratio;
         const g = g1 * (1 - ratio) + g2 * ratio;
         const b = b1 * (1 - ratio) + b2 * ratio;
+
         return {
             r,
             g,
@@ -52,49 +83,107 @@ const fractalGenerator = new function() {
         }
     };
 
+    const hslHexColor = (ratio) => {
+        const r1 = Number('0x' + generateData.startColor[1] + generateData.startColor[2]);
+        const g1 = Number('0x' + generateData.startColor[3] + generateData.startColor[4]);
+        const b1 = Number('0x' + generateData.startColor[5] + generateData.startColor[6]);
+        const r2 = Number('0x' + generateData.endColor[1] + generateData.endColor[2]);
+        const g2 = Number('0x' + generateData.endColor[3] + generateData.endColor[4]);
+        const b2 = Number('0x' + generateData.endColor[5] + generateData.endColor[6]);
+        let h1 = rgbToHsl(r1, g1, b1)[0];
+        let s1 = rgbToHsl(r1, g1, b1)[1];
+        let l1 = rgbToHsl(r1, g1, b1)[2];
+        let h2 = rgbToHsl(r2, g2, b2)[0];
+        let s2 = rgbToHsl(r2, g2, b2)[1];
+        let l2 = rgbToHsl(r2, g2, b2)[2];
+        const h = h1 * (1 - ratio) + h2 * ratio;
+        const s = s1 * (1 - ratio) + s2 * ratio;
+        const l = l1 * (1 - ratio) + l2 * ratio;
+
+        return {
+            h,
+            s,
+            l
+        };
+    };
+
+    const getNextPoint = (x1, y1, degree, depth) => {
+        const length = Math.pow(generateData.childBranchLengthRatio, depth)
+            * generateData.initialBranchLength;
+
+        const radian = degree / 180 * Math.PI;
+        const x2 = Math.cos(radian) * length + x1;
+        const y2 = Math.sin(radian) * length + y1;
+
+        return {
+            x : x2,
+            y : y2
+        };
+
+    };
+
+
     this.generate = (data) => {
 
         generateData = data;
         blendMode(BLEND);
         background(0);
+        for (let i = 1; i < 99999; i++)
+            window.clearInterval(i);
+
+        timers = [];
+
         blendMode(ADD);
         const cx = width / 2;
         const cy = height / 2;
 
         const dAngle = 360 / data.startBranchCount;
         let currentAngle = 0;
+        // let thisAngle = [];
+
+        nodes = {};
+        for (let i = 0; i <= data.depthCount+1; i++)
+            nodes[i] = [];
 
         for (let i = 0; i < data.startBranchCount; i++) {
-            // drawLineByAngle(cx, cy, currentAngle, 1);
+            drawLineByAngle(cx, cy, currentAngle, 1);
 
-            console.log('hello');
-
-            let count = 1;
-            // 1초마다 그리기 시작
-            const intervalTime = setInterval(function () {
-
-                const thisAngle;
-                    = currentAngle;
-
-                if (count > generateData.depthCount)
-                    clearInterval(intervalTime);
-
-                console.log(thisAngle);
-                drawLineByAngle(cx, cy, thisAngle, 1, count);
-
-                count++;
-
-                // console.log(count);
-
-            }, 1000);
-
-            console.log('hi');
 
             currentAngle += dAngle;
         }
+        // 1 depth 돌면, timer가 하나 있도록 한다.
+        // 다음 depth를 돌린다.
+        let i = 1;
+        const timer = setInterval(() => {
+
+            if(i > generateData.depthCount)
+                clearInterval(timer);
+
+                // 노드 수만큼 돌린다.
+                for(let j = 0; j < nodes[i].length; j++) {
+
+                    const e = nodes[i][j];
+
+                    let startAngle = -(generateData.childBranchCount - 1)
+                        * generateData.childBranchAngle / 2 + e.degree;
+
+                    for (let i = 0; i < generateData.childBranchCount; i++) {
+                        drawLineByAngle(e.x2, e.y2, startAngle, 1 + 1);
+                        startAngle += generateData.childBranchAngle * 1;
+                    }
+                }
+
+            i++;
+
+        }, 1000);
 
 
-        // drawLine(0, 0, 500, 500, '#ff0000');
+
     }
 
+
+
+
 };
+
+
