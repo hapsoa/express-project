@@ -18,55 +18,23 @@ const fractalGenerator = new function () {
         const x2 = Math.cos(radian) * length + x1;
         const y2 = Math.sin(radian) * length + y1;
 
-        //색상 설정
-        let c;
-        const $colorChange = $('#colorChange');
-        if ($colorChange.text() === 'RGB') {
-            c = lerpHexColor(depth / generateData.depthCount);
-            colorMode(RGB, 255, 255, 255, 255);
-            stroke(c.r, c.g, c.b, 10);
-        }
-        else if ($colorChange.text() === 'HSV') {
-            // hsl에 관함 함수로 적용시킨다.
-            c = hslHexColor(depth / generateData.depthCount);
 
-            colorMode(HSL, 1, 1, 1, 255);
-            stroke(c.h, c.s, c.l, 10);
-        }
-        // stroke(c.r, c.g, c.b, 255 - depth / generateData.depthCount * 255);
-
-
-        // let i = 0;
-        // const intervalTime = setInterval(() => {
-        //     if (!isPaused) {
-        //         if (i > 10)
-        //             clearInterval(intervalTime);
-        //
-        //         line(x1, y1, x2, y2);
-        //         i++;
-        //         // console.log(i);
-        //     }
-        // }, 100);
-
-
-        let nextDepth = depth + 1;
-        console.log(nextDepth);
-        nodes[`${nextDepth}`].push({
-            x2: getNextPoint(x1, y1, degree, depth+1).x,
-            y2: getNextPoint(x1, y1, degree, depth+1).y,
-            degree: degree
+        // 현재 선 정보를 저장한다.
+        nodes[`${depth}`].push({
+            x1: x1,
+            y1: y1,
+            x2: x2,
+            y2: y2
         });
 
-        // let startAngle = -(generateData.childBranchCount - 1)
-        //     * generateData.childBranchAngle / 2 + degree * 1;
+        let startAngle = -(generateData.childBranchCount - 1)
+            * generateData.childBranchAngle / 2 + degree * 1;
 
-        // timers.push(new Timer(() => {
-        //     for (let i = 0; i < generateData.childBranchCount; i++) {
-        //         drawLineByAngle(x2, y2, startAngle, depth + 1);
-        //         startAngle += generateData.childBranchAngle * 1;
-        //     }
-        //
-        // }, 1000));
+        for (let i = 0; i < generateData.childBranchCount; i++) {
+            drawLineByAngle(x2, y2, startAngle, depth + 1);
+            startAngle += generateData.childBranchAngle * 1;
+        }
+
 
     };
 
@@ -113,21 +81,6 @@ const fractalGenerator = new function () {
         };
     };
 
-    const getNextPoint = (x1, y1, degree, depth) => {
-        const length = Math.pow(generateData.childBranchLengthRatio, depth)
-            * generateData.initialBranchLength;
-
-        const radian = degree / 180 * Math.PI;
-        const x2 = Math.cos(radian) * length + x1;
-        const y2 = Math.sin(radian) * length + y1;
-
-        return {
-            x: x2,
-            y: y2
-        };
-
-    };
-
 
     this.generate = (data) => {
 
@@ -152,55 +105,18 @@ const fractalGenerator = new function () {
             nodes[i] = [];
 
         // 첫 가지를 그린다.
-        //색상 설정
-        let c;
-        const $colorChange = $('#colorChange');
-        if ($colorChange.text() === 'RGB') {
-            c = lerpHexColor(1 / generateData.depthCount);
-            colorMode(RGB, 255, 255, 255, 255);
-            stroke(c.r, c.g, c.b, 10);
-        }
-        else if ($colorChange.text() === 'HSV') {
-            // hsl에 관함 함수로 적용시킨다.
-            c = hslHexColor(1 / generateData.depthCount);
-
-            colorMode(HSL, 1, 1, 1, 255);
-            stroke(c.h, c.s, c.l, 10);
-        }
-
         for (let i = 0; i < data.startBranchCount; i++) {
             drawLineByAngle(cx, cy, currentAngle, 1);
             currentAngle += dAngle;
-
-            line(cx, cy, getNextPoint(cx, cy, currentAngle, 1).x, getNextPoint(cx, cy, currentAngle, 1).y);
         }
-        // 1 depth 돌면, timer가 하나 있도록 한다.
-        // 다음 depth를 돌린다.
-        for (let i = 2; i < Object.size(nodes); i++) {
 
-            for (let j = 0; j < nodes[i].length; j++) {
-                const e = nodes[i][j];
-
-                let startAngle = -(generateData.childBranchCount - 1)
-                    * generateData.childBranchAngle / 2 + e.degree;
-
-                for (let k = 0; k < generateData.childBranchCount; k++) {
-                    drawLineByAngle(e.x2, e.y2, startAngle, i);
-                    startAngle += generateData.childBranchAngle * 1;
-
-                }
-            }
-        }
-        let i = 2;
-        const timer = setInterval(() => {
+        // 한 depth 돌때마다, timer가 하나 있도록 한다.
+        let i = 0;
+        const totalTimer = setInterval(() => {
             if (i > generateData.depthCount)
-                clearInterval(timer);
+                clearInterval(totalTimer);
 
             // 1초 1depth, 2초 2depth ... 노드 수만큼 돌린다.
-            console.log(Object.size(nodes));
-            console.log(nodes);
-
-
             let m = 0;
             const intervalTime = setInterval(() => {
                 if (!isPaused) {
@@ -222,34 +138,30 @@ const fractalGenerator = new function () {
                         colorMode(HSL, 1, 1, 1, 255);
                         stroke(c.h, c.s, c.l, 10);
                     }
+                    //*
 
                     for (let j = 0; j < nodes[i].length; j++) {
                         const e = nodes[i][j];
 
-                        let startAngle = -(generateData.childBranchCount - 1)
-                            * generateData.childBranchAngle / 2 + e.degree;
-
-                        line(e.x2, e.y2, getNextPoint(e.x2, e.y2, startAngle, i).x, getNextPoint(e.x2, e.y2, startAngle, i).y);
-                        m++;
+                        line(e.x1, e.y1, e.x2, e.y2);
                     }
-                    // console.log(i);
+
+                    m++;
                 }
             }, 100);
-
 
             i++;
         }, 1000);
 
-
     }
 
 };
 
 
-Object.size = function(obj) {
-    var size = 0, key;
-    for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-};
+// Object.size = function (obj) {
+//     var size = 0, key;
+//     for (key in obj) {
+//         if (obj.hasOwnProperty(key)) size++;
+//     }
+//     return size;
+// };
