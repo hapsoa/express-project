@@ -31,25 +31,31 @@ const fractalGenerator = new function () {
             c = hslHexColor(depth / generateData.depthCount);
 
             colorMode(HSL, 1, 1, 1, 255);
-            stroke(c.h ,c.s , c.l, 10);
+            stroke(c.h, c.s, c.l, 10);
         }
         // stroke(c.r, c.g, c.b, 255 - depth / generateData.depthCount * 255);
 
 
-        let i = 0;
-        const intervalTime = setInterval(() => {
-            if (!isPaused) {
-                if (i > 10)
-                    clearInterval(intervalTime);
+        // let i = 0;
+        // const intervalTime = setInterval(() => {
+        //     if (!isPaused) {
+        //         if (i > 10)
+        //             clearInterval(intervalTime);
+        //
+        //         line(x1, y1, x2, y2);
+        //         i++;
+        //         // console.log(i);
+        //     }
+        // }, 100);
 
-                line(x1, y1, x2, y2);
-                i++;
-                // console.log(i);
-            }
-        }, 100);
 
-        console.log(`${depth}`);
-        nodes[`${depth}`].push({x2 : getNextPoint(x1, x2, degree, depth).x, y2 : getNextPoint(x1, x2, degree, depth).y, degree : degree});
+        let nextDepth = depth + 1;
+        console.log(nextDepth);
+        nodes[`${nextDepth}`].push({
+            x2: getNextPoint(x1, y1, degree, depth+1).x,
+            y2: getNextPoint(x1, y1, degree, depth+1).y,
+            degree: degree
+        });
 
         // let startAngle = -(generateData.childBranchCount - 1)
         //     * generateData.childBranchAngle / 2 + degree * 1;
@@ -116,8 +122,8 @@ const fractalGenerator = new function () {
         const y2 = Math.sin(radian) * length + y1;
 
         return {
-            x : x2,
-            y : y2
+            x: x2,
+            y: y2
         };
 
     };
@@ -139,51 +145,111 @@ const fractalGenerator = new function () {
 
         const dAngle = 360 / data.startBranchCount;
         let currentAngle = 0;
-        // let thisAngle = [];
 
+        // 초기화
         nodes = {};
-        for (let i = 0; i <= data.depthCount+1; i++)
+        for (let i = 0; i <= data.depthCount + 1; i++)
             nodes[i] = [];
+
+        // 첫 가지를 그린다.
+        //색상 설정
+        let c;
+        const $colorChange = $('#colorChange');
+        if ($colorChange.text() === 'RGB') {
+            c = lerpHexColor(1 / generateData.depthCount);
+            colorMode(RGB, 255, 255, 255, 255);
+            stroke(c.r, c.g, c.b, 10);
+        }
+        else if ($colorChange.text() === 'HSV') {
+            // hsl에 관함 함수로 적용시킨다.
+            c = hslHexColor(1 / generateData.depthCount);
+
+            colorMode(HSL, 1, 1, 1, 255);
+            stroke(c.h, c.s, c.l, 10);
+        }
 
         for (let i = 0; i < data.startBranchCount; i++) {
             drawLineByAngle(cx, cy, currentAngle, 1);
-
-
             currentAngle += dAngle;
+
+            line(cx, cy, getNextPoint(cx, cy, currentAngle, 1).x, getNextPoint(cx, cy, currentAngle, 1).y);
         }
         // 1 depth 돌면, timer가 하나 있도록 한다.
         // 다음 depth를 돌린다.
-        let i = 1;
-        const timer = setInterval(() => {
+        for (let i = 2; i < Object.size(nodes); i++) {
 
-            if(i > generateData.depthCount)
+            for (let j = 0; j < nodes[i].length; j++) {
+                const e = nodes[i][j];
+
+                let startAngle = -(generateData.childBranchCount - 1)
+                    * generateData.childBranchAngle / 2 + e.degree;
+
+                for (let k = 0; k < generateData.childBranchCount; k++) {
+                    drawLineByAngle(e.x2, e.y2, startAngle, i);
+                    startAngle += generateData.childBranchAngle * 1;
+
+                }
+            }
+        }
+        let i = 2;
+        const timer = setInterval(() => {
+            if (i > generateData.depthCount)
                 clearInterval(timer);
 
-                // 노드 수만큼 돌린다.
-                for(let j = 0; j < nodes[i].length; j++) {
+            // 1초 1depth, 2초 2depth ... 노드 수만큼 돌린다.
+            console.log(Object.size(nodes));
+            console.log(nodes);
 
-                    const e = nodes[i][j];
 
-                    let startAngle = -(generateData.childBranchCount - 1)
-                        * generateData.childBranchAngle / 2 + e.degree;
+            let m = 0;
+            const intervalTime = setInterval(() => {
+                if (!isPaused) {
+                    if (m > 10)
+                        clearInterval(intervalTime);
 
-                    for (let i = 0; i < generateData.childBranchCount; i++) {
-                        drawLineByAngle(e.x2, e.y2, startAngle, 1 + 1);
-                        startAngle += generateData.childBranchAngle * 1;
+                    //색상 설정
+                    let c;
+                    const $colorChange = $('#colorChange');
+                    if ($colorChange.text() === 'RGB') {
+                        c = lerpHexColor(i / generateData.depthCount);
+                        colorMode(RGB, 255, 255, 255, 255);
+                        stroke(c.r, c.g, c.b, 10);
                     }
+                    else if ($colorChange.text() === 'HSV') {
+                        // hsl에 관함 함수로 적용시킨다.
+                        c = hslHexColor(i / generateData.depthCount);
+
+                        colorMode(HSL, 1, 1, 1, 255);
+                        stroke(c.h, c.s, c.l, 10);
+                    }
+
+                    for (let j = 0; j < nodes[i].length; j++) {
+                        const e = nodes[i][j];
+
+                        let startAngle = -(generateData.childBranchCount - 1)
+                            * generateData.childBranchAngle / 2 + e.degree;
+
+                        line(e.x2, e.y2, getNextPoint(e.x2, e.y2, startAngle, i).x, getNextPoint(e.x2, e.y2, startAngle, i).y);
+                        m++;
+                    }
+                    // console.log(i);
                 }
+            }, 100);
+
 
             i++;
-
         }, 1000);
-
 
 
     }
 
-
-
-
 };
 
 
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
