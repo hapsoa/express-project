@@ -1,4 +1,3 @@
-let isPaused = false;
 let timers = [];
 
 const fractalGenerator = new function () {
@@ -112,16 +111,16 @@ const fractalGenerator = new function () {
 
         // 한 depth 돌때마다, timer가 하나 있도록 한다.
         let i = 0;
-        const totalTimer = setInterval(() => {
+        const totalTimer = new IntervalTimer(() => {
             if (i > generateData.depthCount)
-                clearInterval(totalTimer);
+                totalTimer.clearSetInterval();
 
             // 1초 1depth, 2초 2depth ... 노드 수만큼 돌린다.
             let m = 0;
-            const intervalTime = setInterval(() => {
-                if (!isPaused) {
+            const milliTimer = new IntervalTimer(() => {
+
                     if (m > 10)
-                        clearInterval(intervalTime);
+                        milliTimer.clearSetInterval();
 
                     //색상 설정
                     let c;
@@ -146,13 +145,14 @@ const fractalGenerator = new function () {
                         line(e.x1, e.y1, e.x2, e.y2);
                     }
 
+                    console.log(m);
                     m++;
-                }
-            }, 100);
 
+            }, 100);
+            timers.push(milliTimer);
             i++;
         }, 1000);
-
+        timers.push(totalTimer);
     }
 
 };

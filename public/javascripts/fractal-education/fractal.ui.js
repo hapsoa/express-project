@@ -35,7 +35,6 @@ const button = new function() {
 
         //execute버튼을 누르면 stop버튼이 stop으로 바뀐다.
         $stop.text('stop');
-        isPaused = false;
     });
 
     $stop.on('click', () => {
@@ -45,8 +44,6 @@ const button = new function() {
         switch(buttonName) {
             case 'stop' :
                 $stop.text('continue');
-                isPaused = true;
-                console.log(isPaused);
 
                 timers.forEach((element) => {
                     // 전부 멈추게 한다.
@@ -56,8 +53,6 @@ const button = new function() {
                 break;
             case 'continue' :
                 $stop.text('stop');
-                isPaused = false;
-                console.log(isPaused);
 
                 timers.forEach((element) => {
                     element.resume();
@@ -101,7 +96,7 @@ function IntervalTimer(callback, interval) {
     var state = 0; //  0 = idle, 1 = running, 2 = paused, 3= resumed
 
     this.pause = function () {
-        if (state != 1) return;
+        if (state !== 1) return;
 
         remaining = interval - (new Date() - startTime);
         window.clearInterval(timerId);
@@ -109,20 +104,24 @@ function IntervalTimer(callback, interval) {
     };
 
     this.resume = function () {
-        if (state != 2) return;
+        if (state !== 2) return;
 
         state = 3;
         window.setTimeout(this.timeoutCallback, remaining);
     };
 
     this.timeoutCallback = function () {
-        if (state != 3) return;
+        if (state !== 3) return;
 
         callback();
 
         startTime = new Date();
         timerId = window.setInterval(callback, interval);
         state = 1;
+    };
+
+    this.clearSetInterval = function () {
+        window.clearInterval(timerId);
     };
 
     startTime = new Date();
