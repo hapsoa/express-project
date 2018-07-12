@@ -7,6 +7,7 @@ var sassMiddleware = require('node-sass-middleware');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var ajouRouter = require('./routes/ajou-university');
 var kakaotalkRouter = require('./routes/kakaotalk');
 var calculatorRouter = require('./routes/calculator');
 var jsonFilter01Router = require('./routes/jsonFilter01');
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/ajou', ajouRouter);
 app.use('/kakaotalk', kakaotalkRouter);
 app.use('/calculator', calculatorRouter);
 app.use('/json-filter-01', jsonFilter01Router);
