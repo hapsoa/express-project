@@ -24,14 +24,25 @@ const snowGenerator = new function () {
         snowArray.push(snowElement);
     };
 
-    this.update = function () {
+    this.update = function (volume) {
         tick++;
         if (tick % 90 === 0) {
             this.generateSnow();
         }
 
-        // snow의 생명시간을 계속 뺀다.
-        this.minusLifeTime();
+        // snowArray의 loop를 돌면서 update 한다.
+        this.updateSnowArray();
+
+        // 소리에 반응할 때
+        if (volume > 0.01) {
+            // 모든 눈이 순간적으로 커지고, 눈 생성도 순간적으로 많아진다.
+            snowArray.forEach((element) => {
+                element.size = volume * 2000;
+            });
+        }
+
+
+
 
     };
 
@@ -40,12 +51,13 @@ const snowGenerator = new function () {
             fill(element.colorR, element.colorG, element.colorB);
             stroke(255);
             ellipse(element.positionX, element.positionY, element.size, element.size);
-            // filter('blur');
+
         });
+
 
     };
 
-    this.minusLifeTime = () => {
+    this.updateSnowArray = () => {
 
         snowArray.forEach((element) => {
             element.lifeTime--;
@@ -55,6 +67,16 @@ const snowGenerator = new function () {
 
             // 눈이 내리게 속도 조절을 한다.
             element.positionY += element.velocityY;
+
+            // snow의 사이즈가 10보다 클 때 점점 10으로 간다
+            if (element.size > 10 && tick % 4 === 0) {
+                element.size--;
+            }
+            else if (element.size < 10) {
+                element.size = 10;
+            }
+            // 줄어 드는 속도를 좀 줄인다.
+
         });
 
 
@@ -64,6 +86,7 @@ const snowGenerator = new function () {
 
 };
 
+let mic;
 function setup() {
     const $body = $('body');
 
@@ -73,16 +96,18 @@ function setup() {
 
     background(255, 255, 255);
 
-    // filter(BLUR, 3);
+
+    mic = new p5.AudioIn();
+    mic.start();
 }
 
 function draw() {
     background(255, 255, 255);
     // put drawing code here
-    snowGenerator.update();
+    snowGenerator.update(mic.getLevel());
     snowGenerator.renderSnow();
 
-
+    // filter(BLUR, 3);
 }
 
 
