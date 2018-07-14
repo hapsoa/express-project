@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
-var indexRouter = require('./routes/index');
+// var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ajouRouter = require('./routes/ajou-university');
 var kakaotalkRouter = require('./routes/kakaotalk');
@@ -14,6 +14,7 @@ var jsonFilter01Router = require('./routes/jsonFilter01');
 var selectionControlsRouter = require('./routes/selectionControls');
 var textFinderRouter = require('./routes/textFinder');
 var fractalRouter = require('./routes/fractal');
+var mainPageRouter = require('./routes/mainPage');
 
 var app = express();
 
@@ -33,7 +34,8 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
+app.use('/', mainPageRouter);
 app.use('/users', usersRouter);
 app.use('/ajou', ajouRouter);
 app.use('/kakaotalk', kakaotalkRouter);
@@ -42,6 +44,7 @@ app.use('/json-filter-01', jsonFilter01Router);
 app.use('/selectionControls', selectionControlsRouter);
 app.use('/textFinder', textFinderRouter);
 app.use('/fractal', fractalRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
