@@ -1,30 +1,35 @@
-.test {
-  width: 100px;
-  height: 100px;
-  background-color: yellow; }
+.main .title {
+  font-size: 3rem;
+  padding: 100px 150px; }
 
-.ui {
-  position: fixed;
-  left: 16px;
-  top: 16px;
-  width: 200px;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.5);
-  border: solid 1px rgba(255, 255, 255, 0.3); }
-  .ui .input-text {
-    padding-top: 12px;
-    color: #ccc; }
-  .ui input {
-    width: 100%; }
-  .ui .button {
-    margin-top: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    height: 24px;
-    color: #fff;
-    line-height: 24px;
-    text-align: center;
-    cursor: pointer; }
-    .ui .button:hover {
-      background: rgba(255, 255, 255, 0.3); }
+.main .card-grid {
+  width: 100%;
+  display: flex;
+  margin: 20px 0; }
+  .main .card-grid .card-cell {
+    flex: 1;
+    background-color: rgba(200, 200, 200, 0.2);
+    box-shadow: 0 0 20px 3px #ddd inset; }
+  .main .card-grid .column-cards {
+    flex: 1;
+    display: flex;
+    flex-direction: column; }
+  .main .card-grid .normal-size-cell {
+    height: 300px; }
+  .main .card-grid .left {
+    margin-right: 10px; }
+  .main .card-grid .right {
+    margin-left: 10px; }
+  .main .card-grid .bottom {
+    margin-bottom: 20px; }
+  .main .card-grid a[href="/calculator"] {
+    background-image: url("../../images/main-page/calculator-cover.png");
+    background-size: auto;
+    background-position: center; }
+
+.main .big {
+  height: 500px;
+  background-color: rgba(200, 200, 200, 0.2);
+  box-shadow: 0 0 20px 3px #ddd inset; }
 
 /*# sourceMappingURL=main.css.map */

@@ -34,8 +34,10 @@ const snowGenerator = new function () {
         this.updateSnowArray();
 
         // 소리에 반응할 때
-        if (volume > 0.01) {
+        if (volume > 0.01 &&
+            snowArray[0].size < volume * 2000) {
             // 모든 눈이 순간적으로 커지고, 눈 생성도 순간적으로 많아진다.
+
             snowArray.forEach((element) => {
                 element.size = volume * 2000;
             });
@@ -49,7 +51,7 @@ const snowGenerator = new function () {
     this.renderSnow = () => {
         snowArray.forEach((element) => {
             fill(element.colorR, element.colorG, element.colorB);
-            stroke(255);
+            stroke(255, 0);
             ellipse(element.positionX, element.positionY, element.size, element.size);
 
         });
@@ -75,9 +77,12 @@ const snowGenerator = new function () {
             else if (element.size < 10) {
                 element.size = 10;
             }
-            // 줄어 드는 속도를 좀 줄인다.
+
 
         });
+
+        if (snowArray[0] !== undefined)
+            snowArray[snowArray.length-1].size = snowArray[0].size;
 
 
         snowArray = _.difference(snowArray, deadSnowArray); //이게 작동을 안하는 듯 한데
@@ -96,14 +101,14 @@ function setup() {
 
     background(255, 255, 255);
 
-
     mic = new p5.AudioIn();
     mic.start();
 }
 
 function draw() {
     background(255, 255, 255);
-    // put drawing code here
+    // background(0, 0, 0);
+
     snowGenerator.update(mic.getLevel());
     snowGenerator.renderSnow();
 

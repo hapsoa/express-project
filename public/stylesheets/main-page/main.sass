@@ -1,30 +1,47 @@
-.test
-  width: 100px
-  height: 100px
-  background-color: yellow
+@import "global"
+.main
+  .title
+    font-size: 3rem
 
+    //margin: 0 200px
+    padding: 100px 150px
 
-.ui
-  position: fixed
-  left: 16px
-  top: 16px
-  width: 200px
-  padding: 16px
-  //height: 300px
-  background: rgba(0, 0, 0, 0.5)
-  border: solid 1px rgba(255, 255, 255, 0.3)
-  .input-text
-    padding-top: 12px
-    color: #ccc
-  input
+  .card-grid
     width: 100%
-  .button
-    margin-top: 12px
-    background: rgba(255, 255, 255, 0.1)
-    height: 24px
-    color: #fff
-    line-height: 24px
-    text-align: center
-    cursor: pointer
-    &:hover
-      background : rgba(255,255,255,0.3)
+    display: flex
+    margin: 20px 0
+
+    .card-cell
+      flex: 1
+      //border: $test-border
+
+      @include cell-basic-design
+
+    .column-cards
+      flex: 1
+      display: flex
+      flex-direction: column
+
+    .normal-size-cell
+      height: 300px
+
+    .left
+      margin-right: 10px
+
+    .right
+      margin-left: 10px
+
+    .bottom
+      margin-bottom: 20px
+
+    a
+      &[href="/calculator"]
+        background-image: url("../../images/main-page/calculator-cover.png")
+        background-size: auto
+        background-position: center
+
+
+  .big
+    height: 500px
+    @include cell-basic-design
+
