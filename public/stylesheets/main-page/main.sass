@@ -34,17 +34,35 @@
     .bottom
       margin-bottom: 20px
 
-    a
-      @include background-image-design
+  a
+    @include background-image-design
+    transition-property: background-size
+    transition-duration: 1s
 
-      &[href="/calculator"]
-        background-image: url("../../images/main-page/calculator-cover2.png")
+    &[href="/calculator"]
+      background-image: url("../../images/main-page/calculator-cover2.png")
+    &[href="/kakaotalk/login"]
+      background-image: url("../../images/main-page/kakaotalk-cover.png")
+    &[href="/fractal/education"]
+      background-image: url("../../images/main-page/fractal-cover2.png")
+    &[href="/textFinder"]
+      background-image: url("../../images/main-page/textFinder-cover.png")
+    &[href="/firebase"]
+      background-image: url("../../images/main-page/firebase-cover.png")
+    &[href="/ajou"]
+      background-image: url("../../images/main-page/ajou-cover2.png")
+    &[href="/modal"]
+      background-image: url("../../images/main-page/modal-cover.png")
 
-      &[href="/kakaotalk/login"]
-        background-image: url("../../images/main-page/kakaotalk-cover.png")
+    &:hover
+      background-size: 105% auto
 
-      &:hover > .curtain
-        background-color: rgba(0, 0, 0, 0.1)
+    &:hover > .curtain
+      background-color: rgba(100, 100, 100, 0.2)
+
+    > .curtain
+      width: 100%
+      height: 100%
 
   .big
     height: 500px

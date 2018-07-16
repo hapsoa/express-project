@@ -14,9 +14,12 @@ const snowGenerator = new function () {
             positionX: Math.random() * $body.width(),
             positionY: 10,
             size: 10,
+            velocityX: 0,
+            accelX: 0,
             velocityY: 1,
             colorHue: Math.random() * 255,
-            lifeTime: 3600 // 4초 or 2초
+            lifeTime: 3600, // 60초
+            randomReduce: Math.random() * 3
         };
 
         snowArray.push(snowElement);
@@ -34,22 +37,18 @@ const snowGenerator = new function () {
         // 소리에 반응할 때
         if (volume > 0.01) {
             // 모든 눈이 순간적으로 커지고, 눈 생성도 순간적으로 많아진다.
-            if (snowArray[0] !== undefined &&
-                snowArray[0].size < volume * 2000) {
 
-                snowArray.forEach((element) => {
+            snowArray.forEach((element) => {
+                if (element.size < volume * 2000)
                     element.size = volume * 2000;
-                });
-            }
+            });
 
         }
-
-
     };
 
     this.renderSnow = () => {
         snowArray.forEach((element) => {
-            fill(element.colorHue, 50, 100, 0.2);
+            fill(element.colorHue, 50, 100, 1);
             stroke(255, 0);
             ellipse(element.positionX, element.positionY, element.size, element.size);
 
@@ -69,9 +68,25 @@ const snowGenerator = new function () {
             // 눈이 내리게 속도 조절을 한다.
             element.positionY += element.velocityY;
 
+            element.positionX += element.velocityX;
+            if (tick % 10 === 0) {
+                element.accelX = Math.random() - 0.5;
+                element.velocityX += element.accelX;
+                if (element.velocityX > 1)
+                    element.velocityX = 1;
+                else if (element.velocityX < -1)
+                    element.velocityX = -1;
+            }
+
             // snow의 사이즈가 10보다 클 때 점점 10으로 간다
             if (element.size > 10) {
-                element.size--;
+                if (element.randomReduce < 1)
+                    element.size -= 0.2;
+                else if (element.randomReduce < 2)
+                    element.size -= 3;
+                else
+                    element.size -= 6;
+
             }
             else if (element.size < 10) {
                 element.size = 10;
@@ -80,11 +95,11 @@ const snowGenerator = new function () {
 
         });
 
-        if (snowArray[0] !== undefined)
-            snowArray[snowArray.length - 1].size = snowArray[0].size;
+        // 똑같은 사이즈로 내려오게 만든다.
+        // if (snowArray[0] !== undefined)
+        //     snowArray[snowArray.length - 1].size = snowArray[0].size;
 
-
-        snowArray = _.difference(snowArray, deadSnowArray); //이게 작동을 안하는 듯 한데
+        snowArray = _.difference(snowArray, deadSnowArray);
         deadSnowArray = [];
     };
 
