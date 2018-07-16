@@ -35,11 +35,16 @@
       margin-bottom: 20px
 
     a
-      &[href="/calculator"]
-        background-image: url("../../images/main-page/calculator-cover.png")
-        background-size: auto
-        background-position: center
+      @include background-image-design
 
+      &[href="/calculator"]
+        background-image: url("../../images/main-page/calculator-cover2.png")
+
+      &[href="/kakaotalk/login"]
+        background-image: url("../../images/main-page/kakaotalk-cover.png")
+
+      &:hover > .curtain
+        background-color: rgba(0, 0, 0, 0.1)
 
   .big
     height: 500px

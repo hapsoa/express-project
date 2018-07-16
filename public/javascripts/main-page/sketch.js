@@ -14,10 +14,8 @@ const snowGenerator = new function () {
             positionX: Math.random() * $body.width(),
             positionY: 10,
             size: 10,
-            velocityY : 1,
-            colorR: Math.random() * 255,
-            colorG: Math.random() * 255,
-            colorB: Math.random() * 255,
+            velocityY: 1,
+            colorHue: Math.random() * 255,
             lifeTime: 3600 // 4초 or 2초
         };
 
@@ -34,23 +32,24 @@ const snowGenerator = new function () {
         this.updateSnowArray();
 
         // 소리에 반응할 때
-        if (volume > 0.01 &&
-            snowArray[0].size < volume * 2000) {
+        if (volume > 0.01) {
             // 모든 눈이 순간적으로 커지고, 눈 생성도 순간적으로 많아진다.
+            if (snowArray[0] !== undefined &&
+                snowArray[0].size < volume * 2000) {
 
-            snowArray.forEach((element) => {
-                element.size = volume * 2000;
-            });
+                snowArray.forEach((element) => {
+                    element.size = volume * 2000;
+                });
+            }
+
         }
-
-
 
 
     };
 
     this.renderSnow = () => {
         snowArray.forEach((element) => {
-            fill(element.colorR, element.colorG, element.colorB);
+            fill(element.colorHue, 50, 100, 0.2);
             stroke(255, 0);
             ellipse(element.positionX, element.positionY, element.size, element.size);
 
@@ -71,7 +70,7 @@ const snowGenerator = new function () {
             element.positionY += element.velocityY;
 
             // snow의 사이즈가 10보다 클 때 점점 10으로 간다
-            if (element.size > 10 && tick % 4 === 0) {
+            if (element.size > 10) {
                 element.size--;
             }
             else if (element.size < 10) {
@@ -82,7 +81,7 @@ const snowGenerator = new function () {
         });
 
         if (snowArray[0] !== undefined)
-            snowArray[snowArray.length-1].size = snowArray[0].size;
+            snowArray[snowArray.length - 1].size = snowArray[0].size;
 
 
         snowArray = _.difference(snowArray, deadSnowArray); //이게 작동을 안하는 듯 한데
@@ -91,7 +90,9 @@ const snowGenerator = new function () {
 
 };
 
+
 let mic;
+
 function setup() {
     const $body = $('body');
 
@@ -99,6 +100,7 @@ function setup() {
 
     canvas.parent('sketch-holder');
 
+    colorMode(HSB, 255, 100, 100, 1);
     background(255, 255, 255);
 
     mic = new p5.AudioIn();
@@ -106,7 +108,7 @@ function setup() {
 }
 
 function draw() {
-    background(255, 255, 255);
+    background(255, 0, 255);
     // background(0, 0, 0);
 
     snowGenerator.update(mic.getLevel());

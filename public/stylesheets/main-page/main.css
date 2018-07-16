@@ -22,10 +22,16 @@
     margin-left: 10px; }
   .main .card-grid .bottom {
     margin-bottom: 20px; }
-  .main .card-grid a[href="/calculator"] {
-    background-image: url("../../images/main-page/calculator-cover.png");
-    background-size: auto;
-    background-position: center; }
+  .main .card-grid a {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto; }
+    .main .card-grid a[href="/calculator"] {
+      background-image: url("../../images/main-page/calculator-cover2.png"); }
+    .main .card-grid a[href="/kakaotalk/login"] {
+      background-image: url("../../images/main-page/kakaotalk-cover.png"); }
+    .main .card-grid a:hover > .curtain {
+      background-color: rgba(0, 0, 0, 0.1); }
 
 .main .big {
   height: 500px;
