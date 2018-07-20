@@ -43,8 +43,6 @@
     background-image: url("../../images/main-page/ajou-cover2.png"); }
   .main a[href="/modal"] {
     background-image: url("../../images/main-page/modal-cover.png"); }
-  .main a:hover {
-    background-size: 105% auto; }
   .main a:hover > .curtain {
     background-color: rgba(100, 100, 100, 0.2); }
   .main a > .curtain {
