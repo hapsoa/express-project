@@ -21,8 +21,12 @@ body {
   .ui .input-text {
     padding-top: 12px;
     color: #ccc; }
-  .ui input {
-    width: 100%; }
+  .ui .input-box {
+    display: flex; }
+    .ui .input-box > input {
+      width: 100%; }
+    .ui .input-box > .input-value {
+      color: white; }
   .ui .button {
     margin-top: 12px;
     background: rgba(255, 255, 255, 0.1);

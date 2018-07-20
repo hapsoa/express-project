@@ -13,16 +13,16 @@ function setup() {
 
 }
 
-const button = new function() {
+const button = new function () {
 
     const inputs = $('input');
     const $stop = $('#stop');
 
 
-    $('#exec').on('click',() => {
+    $('#exec').on('click', () => {
 
         const data = {};
-        for(let i = 0 ; i < inputs.length ; i++){
+        for (let i = 0; i < inputs.length; i++) {
             const $input = $(inputs[i]);
             const k = $input.attr('name');
             const v = $input.val();
@@ -41,7 +41,7 @@ const button = new function() {
 
         let buttonName = $stop.text();
 
-        switch(buttonName) {
+        switch (buttonName) {
             case 'stop' :
                 $stop.text('continue');
 
@@ -83,6 +83,25 @@ const button = new function() {
     });
 
 
+};
+
+const rangeInputs = new function () {
+    const $inputs = $('input[type=range]');
+
+    // input-value 값 초기화
+    $inputs.each(function() {
+        const $this = $(this);
+
+
+    });
+
+    $inputs.on('input', function () {
+        const $this = $(this);
+        console.log($this.parent().find('.input-value').html());
+        const $inputValue = $this.parent().find('.input-value');
+        $inputValue.text($this.val());
+
+    });
 
 };
 
