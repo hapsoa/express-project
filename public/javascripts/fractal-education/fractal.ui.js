@@ -17,7 +17,7 @@ const button = new function () {
 
     const inputs = $('input');
     const $stop = $('#stop');
-
+    const $download = $('#download');
 
     $('#exec').on('click', () => {
 
@@ -83,7 +83,31 @@ const button = new function () {
     });
 
 
+    // $download.on('click', () => {
+    //     console.log(this);
+    //
+    //     downloadCanvas(this, 'defaultCanvas0', 'fractalCapture.png');
+    // });
 };
+
+$(document).ready(function() {
+    document.getElementById('download').addEventListener('click', function() {
+        // console.log(this);
+        downloadCanvas(this, 'defaultCanvas0', 'fractalCapture.png');
+    }, false);
+});
+
+
+/**
+ * This is the function that will take care of image extracting and
+ * setting proper filename for the download.
+ * IMPORTANT: Call it from within a onclick event.
+ */
+function downloadCanvas(link, canvasId, filename) {
+    console.log(link);
+    link.href = document.getElementById(canvasId).toDataURL();
+    link.download = filename;
+}
 
 const rangeInputs = new function () {
     const $inputs = $('input[type=range]');
@@ -105,7 +129,11 @@ const rangeInputs = new function () {
 
     });
 
+
+
 };
+
+
 
 /**
  * setInterval() 타이머
@@ -150,27 +178,5 @@ function IntervalTimer(callback, interval) {
     state = 1;
 }
 
-/**
- * setTimeout timer
- */
-// function Timer(callback, delay) {
-//     let timerId;
-//     let start;
-//     let remaining = delay;
-//
-//     this.pause = function() {
-//         clearTimeout(timerId);
-//         remaining -= new Date() - start;
-//     };
-//
-//     this.resume = function() {
-//         start = new Date();
-//         clearTimeout(timerId);
-//
-//         if (remaining >= 0)
-//             timerId = setTimeout(callback, remaining);
-//     };
-//
-//     this.resume();
-// }
+
 

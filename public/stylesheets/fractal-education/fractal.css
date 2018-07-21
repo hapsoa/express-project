@@ -29,6 +29,7 @@ body {
       color: white; }
   .ui .button {
     margin-top: 12px;
+    width: 166px;
     background: rgba(255, 255, 255, 0.1);
     height: 24px;
     color: #fff;
@@ -37,5 +38,9 @@ body {
     cursor: pointer; }
     .ui .button:hover {
       background: rgba(255, 255, 255, 0.3); }
+
+a {
+  display: block;
+  text-decoration: none; }
 
 /*# sourceMappingURL=fractal.css.map */
