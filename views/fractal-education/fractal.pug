@@ -19,24 +19,31 @@ html
             .input-text child branch count
             .input-box
                 input(type='range' min=2,max=6,step=1,name='childBranchCount')
+                .input-value
             .input-text child branch angle
             .input-box
                 input(type='range' min=0,max=50,step=1,name='childBranchAngle')
+                .input-value
             .input-text depth count
             .input-box
                 input(type='range' min=2,max=10,step=1,name='depthCount')
+                .input-value
             .input-text initial branch length
             .input-box
                 input(type='range' min=0,max=200,step=0.01,name='initialBranchLength')
+                .input-value
             .input-text child branch length ratio
             .input-box
                 input(type='range' min=0,max=2,step=0.01,name='childBranchLengthRatio')
+                .input-value
             .input-text start color
             .input-box
                 input(type='color',name='startColor', value='#00ffff')
+                .input-value
             .input-text end color
             .input-box
                 input(type='color',name='endColor', value='#ff0000')
+                .input-value
             .button#colorChange RGB
             .button#exec EXECUTE
             .button#stop -

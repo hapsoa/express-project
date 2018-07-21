@@ -92,7 +92,9 @@ const rangeInputs = new function () {
     $inputs.each(function() {
         const $this = $(this);
 
+        const $inputValue = $this.parent().find('.input-value');
 
+        $inputValue.text($this.val());
     });
 
     $inputs.on('input', function () {
