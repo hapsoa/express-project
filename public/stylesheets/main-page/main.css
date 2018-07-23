@@ -2,26 +2,29 @@
   font-size: 3rem;
   padding: 100px 150px; }
 
-.main .card-grid {
-  width: 100%;
+.main .grid {
   display: flex;
-  margin: 20px 0; }
-  .main .card-grid .card-cell {
-    flex: 1;
-    background-color: rgba(200, 200, 200, 0.2);
-    box-shadow: 0 0 20px 3px #ddd inset; }
-  .main .card-grid .column-cards {
-    flex: 1;
-    display: flex;
-    flex-direction: column; }
-  .main .card-grid .normal-size-cell {
-    height: 300px; }
-  .main .card-grid .left {
-    margin-right: 10px; }
-  .main .card-grid .right {
-    margin-left: 10px; }
-  .main .card-grid .bottom {
-    margin-bottom: 20px; }
+  width: 100%; }
+
+.main .grid-item {
+  margin-bottom: 20px;
+  background-color: rgba(200, 200, 200, 0.2);
+  box-shadow: 0 0 20px 3px #ddd inset; }
+
+.main .grid-sizer {
+  width: 49%; }
+
+.main .gutter-sizer {
+  width: 2%; }
+
+.main .left {
+  margin-right: 10px; }
+
+.main .right {
+  margin-left: 10px; }
+
+.main .bottom {
+  margin-bottom: 20px; }
 
 .main a {
   background-position: center top;
@@ -55,7 +58,16 @@
     width: 100%;
     height: 100%; }
 
+.main .small {
+  width: 49%;
+  height: 250px; }
+
+.main .long {
+  width: 49%;
+  height: 500px; }
+
 .main .big {
+  width: 100%;
   height: 500px;
   background-color: rgba(200, 200, 200, 0.2);
   box-shadow: 0 0 20px 3px #ddd inset; }

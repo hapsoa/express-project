@@ -8,34 +8,42 @@ block main
 
     .title Jaejong
 
-    .card-grid
-        a(href="/calculator").card-cell.normal-size-cell.left
-            .curtain
-        a(href="/kakaotalk/login").card-cell.normal-size-cell.right
-            .curtain
-    a(href="/fractal/education").card-grid.big#fractal
-        .curtain
+    .grid
+        .grid-sizer
+        .gutter-sizer
 
-    .card-grid
-        .column-cards.left
-            a(href="/textFinder").card-cell.normal-size-cell.bottom
-                .curtain
-            a(href="/firebase").card-cell.normal-size-cell
-                .curtain
-        a(href="/ajou").card-cell.right
+        // 좌우
+        a(href="/calculator").grid-item.small
+            .curtain
+        a(href="/kakaotalk/login").grid-item.small
             .curtain
 
-    a(href="/modal").card-grid.big
-        .curtain
-
-    .card-grid
-        a(href="/grid-1").card-cell.normal-size-cell.left#grid-1
-            .curtain
-        a(href="/card-4").card-cell.normal-size-cell.right#card-4
+        // 큰 그리드
+        a(href="/fractal/education").grid-item.big#fractal
             .curtain
 
-    a(href="/table").card-grid.big#table
-        .curtain
+        // 왼쪽 작은거 2개, 오른쪽 큰거 1개
+        a(href="/textFinder").grid-item.small
+            .curtain
+        a(href="/ajou").grid-item.long
+            .curtain
+        a(href="/firebase").grid-item.small
+            .curtain
+
+        // 큰 그리드
+        a(href="/modal").grid-item.big
+            .curtain
+
+        // 좌우 그리드
+        a(href="/grid-1").grid-item.small#grid-1
+            .curtain
+        a(href="/card-4").grid-item.small#card-4
+            .curtain
+
+        // 큰 그리드
+        a(href="/table").grid-item.big#table
+            .curtain
 
 
     script(src='/javascripts/main-page/sketch.js')
+    script(src='/javascripts/main-page/masonry.js')
