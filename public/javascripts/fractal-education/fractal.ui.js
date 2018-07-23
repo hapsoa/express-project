@@ -83,19 +83,21 @@ const button = new function () {
     });
 
 
-    // $download.on('click', () => {
-    //     console.log(this);
-    //
-    //     downloadCanvas(this, 'defaultCanvas0', 'fractalCapture.png');
-    // });
+    $download.on('click', () => {
+        canvasToImage('defaultCanvas0', {
+            name: 'fractalCapture',
+            type: 'jpg',
+            quality: 1
+        });
+    });
 };
 
-$(document).ready(function() {
-    document.getElementById('download').addEventListener('click', function() {
-        // console.log(this);
-        downloadCanvas(this, 'defaultCanvas0', 'fractalCapture.png');
-    }, false);
-});
+// $(document).ready(function() {
+//     document.getElementById('download').addEventListener('click', function() {
+//         // console.log(this);
+//         downloadCanvas(this, 'defaultCanvas0', 'fractalCapture.png');
+//     }, false);
+// });
 
 
 /**
