@@ -17,14 +17,16 @@
 .main .gutter-sizer {
   width: 2%; }
 
-.main .left {
-  margin-right: 10px; }
-
-.main .right {
-  margin-left: 10px; }
-
 .main .bottom {
   margin-bottom: 20px; }
+
+.main .img-center {
+  background-position: center;
+  background-size: auto 100%; }
+
+.main .img-top {
+  background-position: top;
+  background-size: 100% auto; }
 
 .main a {
   background-position: center top;
@@ -33,9 +35,9 @@
   transition-property: background-size;
   transition-duration: 1s; }
   .main a[href="/calculator"] {
-    background-image: url("../../images/main-page/calculator-cover2.png"); }
+    background-image: url("../../images/main-page/calculator-cover3.png"); }
   .main a[href="/kakaotalk/login"] {
-    background-image: url("../../images/main-page/kakaotalk-cover.png"); }
+    background-image: url("../../images/main-page/kakaotalk-cover2.png"); }
   .main a[href="/fractal/education"] {
     background-image: url("../../images/main-page/fractal-cover2.png"); }
   .main a[href="/textFinder"] {
