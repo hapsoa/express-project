@@ -1,4 +1,5 @@
 const dataManager = new function () {
+    const that = this;
     const dataArray = [];
 
     dataArray.push({
@@ -122,7 +123,15 @@ const dataManager = new function () {
     const $searchInput = $('input.form-control.mr-sm-2');
 
     $searchButton.on('click', () => {
+        that.doSearch()
+    });
 
+    $searchInput.on('keyup', (event) => {
+        if(event.keyCode === 13)
+            that.doSearch();
+    });
+
+    this.doSearch = () => {
         // $root.find('.grid-item').remove();
         $root.masonry('remove', $root.find('.grid-item'))
             .masonry();
@@ -156,10 +165,7 @@ const dataManager = new function () {
 
             }
         });
-
-        console.log('yes');
-
-    });
+    };
 
 
 };
