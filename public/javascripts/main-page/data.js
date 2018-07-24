@@ -223,9 +223,39 @@ const dataManager = new function () {
 
             }
         });
+
+        const $tags = $('.tag');
+
+        $tags.on('click', (event) => {
+            console.log('event!');
+            // console.dir(event);
+            const $this = $(event.target);
+
+            const seedString = $this.text().substr(1);
+
+            $searchInput.val(seedString);
+
+            this.doSearch();
+
+            $('body').scrollTop(0);
+
+        });
     };
 
+    const $tags = $('.tag');
 
+    $tags.on('click', (event) => {
+        console.log('event!');
+        // console.dir(event);
+        const $this = $(event.target);
+
+        const seedString = $this.text().substr(1);
+
+        $searchInput.val(seedString);
+
+        this.doSearch();
+
+    });
 };
 
 

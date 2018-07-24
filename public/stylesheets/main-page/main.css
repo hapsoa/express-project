@@ -23,7 +23,11 @@
       padding-left: 5px;
       font-size: 1rem;
       text-align: end;
-      cursor: pointer; }
+      cursor: pointer;
+      transition-property: color;
+      transition-duration: 0.7s; }
+      .main .grid-item > .tags > .tag:hover {
+        color: #00B7FF; }
 
 .main .bottom {
   margin-bottom: 20px; }
