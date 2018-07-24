@@ -237,9 +237,12 @@ const dataManager = new function () {
 
             this.doSearch();
 
-            $('body').scrollTop(0);
-
         });
+
+        // $('body').css('scrollTop', 0);
+
+        $('html, body').animate( {scrollTop: 0}, 400);
+
     };
 
     const $tags = $('.tag');
