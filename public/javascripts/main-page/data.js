@@ -2,6 +2,7 @@ const dataManager = new function () {
     const dataArray = [];
 
     dataArray.push({
+        title: 'Calculator',
         href: '/calculator',
         cellSize: 'small',
         imagePosition: 'img-center',
@@ -12,6 +13,7 @@ const dataManager = new function () {
         ]
     });
     dataArray.push({
+        title: 'Kakaotalk',
         href: '/kakaotalk/login',
         cellSize: 'small',
         imagePosition: 'img-center',
@@ -21,6 +23,7 @@ const dataManager = new function () {
         ]
     });
     dataArray.push({
+        title: 'Fractal',
         href: '/fractal/education',
         cellSize: 'big',
         imagePosition: 'img-center',
@@ -31,6 +34,7 @@ const dataManager = new function () {
         ]
     });
     dataArray.push({
+        title: 'Text finder',
         href: '/textFinder',
         cellSize: 'small',
         imagePosition: 'img-top',
@@ -40,6 +44,7 @@ const dataManager = new function () {
         ]
     });
     dataArray.push({
+        title: 'Ajou University website',
         href: '/ajou',
         cellSize: 'long',
         imagePosition: 'img-top',
@@ -50,6 +55,7 @@ const dataManager = new function () {
         ]
     });
     dataArray.push({
+        title: 'Firebase website',
         href: '/firebase',
         cellSize: 'small',
         imagePosition: 'img-top',
@@ -59,6 +65,7 @@ const dataManager = new function () {
         ]
     });
     dataArray.push({
+        title: 'Modal',
         href: '/modal',
         cellSize: 'big',
         imagePosition: 'img-center',
@@ -67,6 +74,7 @@ const dataManager = new function () {
         ]
     });
     dataArray.push({
+        title: 'Grid',
         href: '/grid-1',
         cellSize: 'small',
         imagePosition: 'img-center',
@@ -76,6 +84,7 @@ const dataManager = new function () {
         ]
     });
     dataArray.push({
+        title: 'Card',
         href: '/card-4',
         cellSize: 'small',
         imagePosition: 'img-center',
@@ -84,6 +93,7 @@ const dataManager = new function () {
         ]
     });
     dataArray.push({
+        title: 'Table',
         href: '/table',
         cellSize: 'big',
         imagePosition: 'img-center',
@@ -96,9 +106,12 @@ const dataManager = new function () {
 
     dataArray.forEach((element) => {
         const template = `
-            <a class="grid-item ${element.cellSize} ${element.imagePosition}" href="${element.href}">
-                <div class="curtain"></div>
-            </a>
+            <div class="grid-item ${element.cellSize}"> 
+                <div class="cell-title">${element.title}</div>
+                <a class="${element.imagePosition}" href="${element.href}">
+                    <div class="curtain"></div>
+                </a>
+            </div>
             `;
 
         $root.append(template);
@@ -129,9 +142,12 @@ const dataManager = new function () {
 
             if (isIncluded) {
                 const template = `
-                    <a class="grid-item ${element.cellSize} ${element.imagePosition}" href="${element.href}">
-                        <div class="curtain"></div>
-                    </a>
+                    <div class="grid-item ${element.cellSize}"> 
+                        <div class="cell-title">${element.title}</div>
+                        <a class="${element.imagePosition}" href="${element.href}">
+                            <div class="curtain"></div>
+                        </a>
+                    </div>
                     `;
 
                 const $template = $(template);
@@ -141,7 +157,7 @@ const dataManager = new function () {
             }
         });
 
-
+        console.log('yes');
 
     });
 

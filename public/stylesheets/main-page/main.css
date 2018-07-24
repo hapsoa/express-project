@@ -7,9 +7,12 @@
   width: 100%; }
 
 .main .grid-item {
-  margin-bottom: 20px;
-  background-color: rgba(200, 200, 200, 0.2);
-  border: 1px solid rgba(170, 170, 170, 0.2); }
+  margin-bottom: 20px; }
+  .main .grid-item > .cell-title {
+    font-size: 1.2rem;
+    text-align: center;
+    width: 100%;
+    height: 1.5rem; }
 
 .main .grid-sizer {
   width: 49%; }
@@ -29,9 +32,12 @@
   background-size: 100% auto; }
 
 .main a {
-  background-position: center top;
+  display: block;
+  width: 100%;
+  height: calc(100% - 1.5rem);
+  background-color: rgba(200, 200, 200, 0.2);
+  border: 1px solid rgba(170, 170, 170, 0.2);
   background-repeat: no-repeat;
-  background-size: 100% auto;
   transition-property: background-size;
   transition-duration: 1s; }
   .main a[href="/calculator"] {
@@ -66,13 +72,11 @@
 
 .main .long {
   width: 49%;
-  height: 500px; }
+  height: 520px; }
 
 .main .big {
   width: 100%;
-  height: 500px;
-  background-color: rgba(200, 200, 200, 0.2);
-  border: 1px solid rgba(170, 170, 170, 0.2); }
+  height: 500px; }
 
 .main #fractal, .main #card-4 {
   background-position: center;
