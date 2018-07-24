@@ -3,7 +3,7 @@
   padding: 100px 150px; }
 
 .main .grid {
-  display: flex;
+  display: inline-block;
   width: 100%; }
 
 .main .grid-item {
@@ -13,12 +13,17 @@
     text-align: center;
     width: 100%;
     height: 1.5rem; }
-
-.main .grid-sizer {
-  width: 49%; }
-
-.main .gutter-sizer {
-  width: 2%; }
+  .main .grid-item > .tags {
+    display: flex;
+    width: 100%; }
+    .main .grid-item > .tags > .empty-flex {
+      flex: 1; }
+    .main .grid-item > .tags > .tag {
+      height: 1.2rem;
+      padding-left: 5px;
+      font-size: 1rem;
+      text-align: end;
+      cursor: pointer; }
 
 .main .bottom {
   margin-bottom: 20px; }
@@ -34,10 +39,9 @@
 .main a {
   display: block;
   width: 100%;
-  height: calc(100% - 1.5rem);
+  background-repeat: no-repeat;
   background-color: rgba(200, 200, 200, 0.2);
-  border: 1px solid rgba(170, 170, 170, 0.2);
-  background-repeat: no-repeat; }
+  border: 1px solid rgba(170, 170, 170, 0.2); }
   .main a[href="/calculator"] {
     background-image: url("../../images/main-page/calculator-cover3.png"); }
   .main a[href="/kakaotalk/login"] {
@@ -66,23 +70,36 @@
     transition-property: background-color;
     transition-duration: 0.6s; }
 
-.main .small {
-  width: 49%;
-  height: calc(250px + 1.5rem); }
+@media screen and (min-width: 1024px) {
+  .grid-sizer {
+    width: 49%; }
+  .gutter-sizer {
+    width: 2%; }
+  .small-width {
+    width: 49%; }
+  .big-width {
+    width: 100%; }
+  .small-height {
+    height: 250px; }
+  .long-height {
+    height: calc(520px + 1.2rem + 1.5rem); }
+  .big-height {
+    height: 500px; } }
 
-.main .long {
-  width: 49%;
-  height: calc(520px + 3.0rem); }
-
-.main .big {
-  width: 100%;
-  height: calc(500px + 1.5rem); }
-
-.main #fractal, .main #card-4 {
-  background-position: center;
-  background-size: auto 100%; }
-
-.main #grid-1, .main #table {
-  background-position: center; }
+@media screen and (max-width: 1024px) {
+  .grid-sizer {
+    width: 100%; }
+  .gutter-sizer {
+    width: 0; }
+  .small-width {
+    width: 100%; }
+  .big-width {
+    width: 100%; }
+  .small-height {
+    height: 250px; }
+  .long-height {
+    height: 250px; }
+  .big-height {
+    height: 250px; } }
 
 /*# sourceMappingURL=main.css.map */

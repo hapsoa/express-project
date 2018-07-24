@@ -104,18 +104,48 @@ const dataManager = new function () {
     });
 
     const $root = $('.grid');
-
+    // 데이터를 template으로 append
     dataArray.forEach((element) => {
+
         const template = `
-            <div class="grid-item ${element.cellSize}"> 
+            <div class="grid-item"> 
                 <div class="cell-title">${element.title}</div>
                 <a class="${element.imagePosition}" href="${element.href}">
                     <div class="curtain"></div>
                 </a>
+                <div class="tags">
+                    <div class="empty-flex"></div>
+                </div>
             </div>
             `;
 
-        $root.append(template);
+        const $template = $(template);
+
+        switch (element.cellSize){
+            case 'small':
+                $template.addClass('small-width');
+                $template.find('a').addClass('small-height');
+                break;
+            case 'long':
+                $template.addClass('small-width');
+                $template.find('a').addClass('long-height');
+                break;
+            case 'big':
+                $template.addClass('big-width');
+                $template.find('a').addClass('big-height');
+                break;
+            default:
+                console.log('size error!');
+                break;
+        }
+
+
+        for (let i = 0; i < element.tag.length; i++) {
+            const tagTemplate = `<div class="tag">#${element.tag[i]}</div>`;
+            $template.find('.tags').append(tagTemplate);
+        }
+
+        $root.append($template);
     });
 
 
@@ -151,15 +181,43 @@ const dataManager = new function () {
 
             if (isIncluded) {
                 const template = `
-                    <div class="grid-item ${element.cellSize}"> 
-                        <div class="cell-title">${element.title}</div>
-                        <a class="${element.imagePosition}" href="${element.href}">
-                            <div class="curtain"></div>
-                        </a>
-                    </div>
-                    `;
+            <div class="grid-item"> 
+                <div class="cell-title">${element.title}</div>
+                <a class="${element.imagePosition}" href="${element.href}">
+                    <div class="curtain"></div>
+                </a>
+                <div class="tags">
+                    <div class="empty-flex"></div>
+                </div>
+            </div>
+            `;
 
                 const $template = $(template);
+
+                switch (element.cellSize){
+                    case 'small':
+                        $template.addClass('small-width');
+                        $template.find('a').addClass('small-height');
+                        break;
+                    case 'long':
+                        $template.addClass('small-width');
+                        $template.find('a').addClass('long-height');
+                        break;
+                    case 'big':
+                        $template.addClass('big-width');
+                        $template.find('a').addClass('big-height');
+                        break;
+                    default:
+                        console.log('size error!');
+                        break;
+                }
+
+
+                for (let i = 0; i < element.tag.length; i++) {
+                    const tagTemplate = `<div class="tag">#${element.tag[i]}</div>`;
+                    $template.find('.tags').append(tagTemplate);
+                }
+
                 $root.append($template)
                     .masonry('appended', $template);
 
