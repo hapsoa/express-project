@@ -3,8 +3,7 @@ const dataManager = new function () {
     const dataArray = [{
         title: 'Calculator',
         href: '/calculator',
-        cellSize: 'small',
-        imagePosition: 'img-center',
+        imageSource: 'calculator-cover3.png',
         tag: [
             'calculator',
             'number',
@@ -14,8 +13,7 @@ const dataManager = new function () {
         {
             title: 'Kakaotalk',
             href: '/kakaotalk/login',
-            cellSize: 'small',
-            imagePosition: 'img-center',
+            imageSource: 'kakaotalk-cover2.png',
             tag: [
                 'kakaotalk',
                 'chatting'
@@ -24,8 +22,7 @@ const dataManager = new function () {
         {
             title: 'Fractal',
             href: '/fractal/education',
-            cellSize: 'big',
-            imagePosition: 'img-center',
+            imageSource: 'fractal-cover2.png',
             tag: [
                 'fractal',
                 'math',
@@ -35,8 +32,7 @@ const dataManager = new function () {
         {
             title: 'Text finder',
             href: '/textFinder',
-            cellSize: 'small',
-            imagePosition: 'img-top',
+            imageSource: 'textFinder-cover.png',
             tag: [
                 'textFinder',
                 'search'
@@ -45,8 +41,7 @@ const dataManager = new function () {
         {
             title: 'Ajou University website',
             href: '/ajou',
-            cellSize: 'long',
-            imagePosition: 'img-top',
+            imageSource: 'ajou-cover2.png',
             tag: [
                 'ajou university',
                 'website',
@@ -56,8 +51,7 @@ const dataManager = new function () {
         {
             title: 'Firebase website',
             href: '/firebase',
-            cellSize: 'small',
-            imagePosition: 'img-top',
+            imageSource: 'firebase-cover.png',
             tag: [
                 'firebase',
                 'website'
@@ -66,51 +60,53 @@ const dataManager = new function () {
         {
             title: 'Modal',
             href: '/modal',
-            cellSize: 'big',
-            imagePosition: 'img-center',
+            imageSource: 'modal-cover.png',
             tag: [
                 'modal'
             ]
         },
-        {
-            title: 'Grid',
-            href: '/grid-1',
-            cellSize: 'small',
-            imagePosition: 'img-center',
-            tag: [
-                'grid',
-                'cell'
-            ]
-        },
-        {
-            title: 'Card',
-            href: '/card-4',
-            cellSize: 'small',
-            imagePosition: 'img-center',
-            tag: [
-                'card design'
-            ]
-        },
-        {
-            title: 'Table',
-            href: '/table',
-            cellSize: 'big',
-            imagePosition: 'img-center',
-            tag: [
-                'table'
-            ]
-        }
+        // {
+        //     title: 'Grid',
+        //     href: '/grid-1',
+        //     cellSize: 'small',
+        //     imagePosition: 'img-center',
+        //     tag: [
+        //         'grid',
+        //         'cell'
+        //     ]
+        // },
+        // {
+        //     title: 'Card',
+        //     href: '/card-4',
+        //     cellSize: 'small',
+        //     imagePosition: 'img-center',
+        //     tag: [
+        //         'card design'
+        //     ]
+        // },
+        // {
+        //     title: 'Table',
+        //     href: '/table',
+        //     cellSize: 'big',
+        //     imagePosition: 'img-center',
+        //     tag: [
+        //         'table'
+        //     ]
+        // }
     ];
 
 
+
     const $root = $('.grid');
+
     // 데이터를 template으로 append
     dataArray.forEach((element) => {
 
         const template = `
             <div class="grid-item"> 
                 <div class="cell-title">${element.title}</div>
-                <a class="${element.imagePosition}" href="${element.href}">
+                <a href="${element.href}">
+                    <img src="../../images/main-page/${element.imageSource}" alt="${element.title} image">
                     <div class="curtain"></div>
                 </a>
                 <div class="tags">
@@ -121,23 +117,23 @@ const dataManager = new function () {
 
         const $template = $(template);
 
-        switch (element.cellSize) {
-            case 'small':
-                $template.addClass('small-width');
-                $template.find('a').addClass('small-height');
-                break;
-            case 'long':
-                $template.addClass('small-width');
-                $template.find('a').addClass('long-height');
-                break;
-            case 'big':
-                $template.addClass('big-width');
-                $template.find('a').addClass('big-height');
-                break;
-            default:
-                console.log('size error!');
-                break;
-        }
+        // switch (element.cellSize) {
+        //     case 'small':
+        //         $template.addClass('small-width');
+        //         $template.find('a').addClass('small-height');
+        //         break;
+        //     case 'long':
+        //         $template.addClass('small-width');
+        //         $template.find('a').addClass('long-height');
+        //         break;
+        //     case 'big':
+        //         $template.addClass('big-width');
+        //         $template.find('a').addClass('big-height');
+        //         break;
+        //     default:
+        //         console.log('size error!');
+        //         break;
+        // }
 
 
         for (let i = 0; i < element.tag.length; i++) {
@@ -145,7 +141,14 @@ const dataManager = new function () {
             $template.find('.tags').append(tagTemplate);
         }
 
-        $root.append($template);
+        // $root.append($template);
+        $root.masonry()
+            .append($template)
+            .masonry( 'appended', $template)
+            // layout
+            .masonry();
+        $root.masonry('layout');
+
     });
 
 
@@ -183,7 +186,8 @@ const dataManager = new function () {
                 const template = `
             <div class="grid-item"> 
                 <div class="cell-title">${element.title}</div>
-                <a class="${element.imagePosition}" href="${element.href}">
+                <a href="${element.href}">
+                    <img src="../../images/main-page/${element.imageSource}" alt="${element.title} image">
                     <div class="curtain"></div>
                 </a>
                 <div class="tags">
@@ -194,32 +198,19 @@ const dataManager = new function () {
 
                 const $template = $(template);
 
-                switch (element.cellSize) {
-                    case 'small':
-                        $template.addClass('small-width');
-                        $template.find('a').addClass('small-height');
-                        break;
-                    case 'long':
-                        $template.addClass('small-width');
-                        $template.find('a').addClass('long-height');
-                        break;
-                    case 'big':
-                        $template.addClass('big-width');
-                        $template.find('a').addClass('big-height');
-                        break;
-                    default:
-                        console.log('size error!');
-                        break;
-                }
-
 
                 for (let i = 0; i < element.tag.length; i++) {
                     const tagTemplate = `<div class="tag">#${element.tag[i]}</div>`;
                     $template.find('.tags').append(tagTemplate);
                 }
 
-                $root.append($template)
-                    .masonry('appended', $template);
+                // $root.append($template);
+                $root.masonry()
+                    .append($template)
+                    .masonry( 'appended', $template)
+                    // layout
+                    .masonry();
+                $root.masonry('layout');
 
             }
         });

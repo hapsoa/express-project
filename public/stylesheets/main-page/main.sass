@@ -10,6 +10,10 @@
     width: 100%
 
   .grid-item
+    display: block
+    width: 32%
+    //height: 700px
+
     margin-bottom: 20px
 
     > .cell-title
@@ -38,19 +42,22 @@
 
   .bottom
     margin-bottom: 20px
-  .img-center
-    background-position: center
-    background-size: auto 100%
-  .img-top
-    background-position: top
-    background-size: 100% auto
+  //.img-center
+  //  background-position: center
+  //  background-size: auto 100%
+  //.img-top
+  //  background-position: top
+  //  background-size: 100% auto
 
   a
-    display: block
+    position: relative
+
     width: 100%
-    //height: calc(100% - 1.5rem)
-    background-repeat: no-repeat
-    @include cell-basic-design
+    height: auto
+    display: block
+    //background-size: 100% auto
+    //background: $light-gray no-repeat
+    border: 1px solid rgba(170, 170, 170, 0.2)
 
     &[href="/calculator"]
       background-image: url("../../images/main-page/calculator-cover3.png")
@@ -76,7 +83,13 @@
     &:hover > .curtain
       background-color: rgba(100, 100, 100, 0.3)
 
+    > img
+      width: 100%
+      height: auto
+
     > .curtain
+      position: absolute
+      top: 0
       width: 100%
       height: 100%
 
@@ -86,21 +99,9 @@
 @media screen and (min-width: 1024px)
 
   .grid-sizer
-    width: 49%
+    width: 32%
   .gutter-sizer
     width: 2%
-
-
-  .small-width
-    width: 49%
-  .big-width
-    width: 100%
-  .small-height
-    height: 250px
-  .long-height
-    height: calc(520px + 1.2rem + 1.5rem)
-  .big-height
-    height: 500px
 
 
 
@@ -110,15 +111,4 @@
     width: 100%
   .gutter-sizer
     width: 0
-
-  .small-width
-    width: 100%
-  .big-width
-    width: 100%
-  .small-height
-    height: 250px
-  .long-height
-    height: 250px
-  .big-height
-    height: 250px
 

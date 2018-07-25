@@ -7,6 +7,8 @@
   width: 100%; }
 
 .main .grid-item {
+  display: block;
+  width: 32%;
   margin-bottom: 20px; }
   .main .grid-item > .cell-title {
     font-size: 1.2rem;
@@ -32,19 +34,11 @@
 .main .bottom {
   margin-bottom: 20px; }
 
-.main .img-center {
-  background-position: center;
-  background-size: auto 100%; }
-
-.main .img-top {
-  background-position: top;
-  background-size: 100% auto; }
-
 .main a {
-  display: block;
+  position: relative;
   width: 100%;
-  background-repeat: no-repeat;
-  background-color: rgba(200, 200, 200, 0.2);
+  height: auto;
+  display: block;
   border: 1px solid rgba(170, 170, 170, 0.2); }
   .main a[href="/calculator"] {
     background-image: url("../../images/main-page/calculator-cover3.png"); }
@@ -68,7 +62,12 @@
     background-image: url("../../images/main-page/table-cover.png"); }
   .main a:hover > .curtain {
     background-color: rgba(100, 100, 100, 0.3); }
+  .main a > img {
+    width: 100%;
+    height: auto; }
   .main a > .curtain {
+    position: absolute;
+    top: 0;
     width: 100%;
     height: 100%;
     transition-property: background-color;
@@ -76,34 +75,14 @@
 
 @media screen and (min-width: 1024px) {
   .grid-sizer {
-    width: 49%; }
+    width: 32%; }
   .gutter-sizer {
-    width: 2%; }
-  .small-width {
-    width: 49%; }
-  .big-width {
-    width: 100%; }
-  .small-height {
-    height: 250px; }
-  .long-height {
-    height: calc(520px + 1.2rem + 1.5rem); }
-  .big-height {
-    height: 500px; } }
+    width: 2%; } }
 
 @media screen and (max-width: 1024px) {
   .grid-sizer {
     width: 100%; }
   .gutter-sizer {
-    width: 0; }
-  .small-width {
-    width: 100%; }
-  .big-width {
-    width: 100%; }
-  .small-height {
-    height: 250px; }
-  .long-height {
-    height: 250px; }
-  .big-height {
-    height: 250px; } }
+    width: 0; } }
 
 /*# sourceMappingURL=main.css.map */
