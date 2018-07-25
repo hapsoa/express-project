@@ -1,8 +1,6 @@
 const dataManager = new function () {
     const that = this;
-    const dataArray = [];
-
-    dataArray.push({
+    const dataArray = [{
         title: 'Calculator',
         href: '/calculator',
         cellSize: 'small',
@@ -12,96 +10,98 @@ const dataManager = new function () {
             'number',
             'math'
         ]
-    });
-    dataArray.push({
-        title: 'Kakaotalk',
-        href: '/kakaotalk/login',
-        cellSize: 'small',
-        imagePosition: 'img-center',
-        tag: [
-            'kakaotalk',
-            'chatting'
-        ]
-    });
-    dataArray.push({
-        title: 'Fractal',
-        href: '/fractal/education',
-        cellSize: 'big',
-        imagePosition: 'img-center',
-        tag: [
-            'fractal',
-            'math',
-            'art'
-        ]
-    });
-    dataArray.push({
-        title: 'Text finder',
-        href: '/textFinder',
-        cellSize: 'small',
-        imagePosition: 'img-top',
-        tag: [
-            'textFinder',
-            'search'
-        ]
-    });
-    dataArray.push({
-        title: 'Ajou University website',
-        href: '/ajou',
-        cellSize: 'long',
-        imagePosition: 'img-top',
-        tag: [
-            'ajou university',
-            'website',
-            'homepage'
-        ]
-    });
-    dataArray.push({
-        title: 'Firebase website',
-        href: '/firebase',
-        cellSize: 'small',
-        imagePosition: 'img-top',
-        tag: [
-            'firebase',
-            'website'
-        ]
-    });
-    dataArray.push({
-        title: 'Modal',
-        href: '/modal',
-        cellSize: 'big',
-        imagePosition: 'img-center',
-        tag: [
-            'modal'
-        ]
-    });
-    dataArray.push({
-        title: 'Grid',
-        href: '/grid-1',
-        cellSize: 'small',
-        imagePosition: 'img-center',
-        tag: [
-            'grid',
-            'cell'
-        ]
-    });
-    dataArray.push({
-        title: 'Card',
-        href: '/card-4',
-        cellSize: 'small',
-        imagePosition: 'img-center',
-        tag: [
-            'card design'
-        ]
-    });
-    dataArray.push({
-        title: 'Table',
-        href: '/table',
-        cellSize: 'big',
-        imagePosition: 'img-center',
-        tag: [
-            'table'
-        ]
-    });
+    },
+        {
+            title: 'Kakaotalk',
+            href: '/kakaotalk/login',
+            cellSize: 'small',
+            imagePosition: 'img-center',
+            tag: [
+                'kakaotalk',
+                'chatting'
+            ]
+        },
+        {
+            title: 'Fractal',
+            href: '/fractal/education',
+            cellSize: 'big',
+            imagePosition: 'img-center',
+            tag: [
+                'fractal',
+                'math',
+                'art'
+            ]
+        },
+        {
+            title: 'Text finder',
+            href: '/textFinder',
+            cellSize: 'small',
+            imagePosition: 'img-top',
+            tag: [
+                'textFinder',
+                'search'
+            ]
+        },
+        {
+            title: 'Ajou University website',
+            href: '/ajou',
+            cellSize: 'long',
+            imagePosition: 'img-top',
+            tag: [
+                'ajou university',
+                'website',
+                'homepage'
+            ]
+        },
+        {
+            title: 'Firebase website',
+            href: '/firebase',
+            cellSize: 'small',
+            imagePosition: 'img-top',
+            tag: [
+                'firebase',
+                'website'
+            ]
+        },
+        {
+            title: 'Modal',
+            href: '/modal',
+            cellSize: 'big',
+            imagePosition: 'img-center',
+            tag: [
+                'modal'
+            ]
+        },
+        {
+            title: 'Grid',
+            href: '/grid-1',
+            cellSize: 'small',
+            imagePosition: 'img-center',
+            tag: [
+                'grid',
+                'cell'
+            ]
+        },
+        {
+            title: 'Card',
+            href: '/card-4',
+            cellSize: 'small',
+            imagePosition: 'img-center',
+            tag: [
+                'card design'
+            ]
+        },
+        {
+            title: 'Table',
+            href: '/table',
+            cellSize: 'big',
+            imagePosition: 'img-center',
+            tag: [
+                'table'
+            ]
+        }
+    ];
+
 
     const $root = $('.grid');
     // 데이터를 template으로 append
@@ -121,7 +121,7 @@ const dataManager = new function () {
 
         const $template = $(template);
 
-        switch (element.cellSize){
+        switch (element.cellSize) {
             case 'small':
                 $template.addClass('small-width');
                 $template.find('a').addClass('small-height');
@@ -157,7 +157,7 @@ const dataManager = new function () {
     });
 
     $searchInput.on('keyup', (event) => {
-        if(event.keyCode === 13)
+        if (event.keyCode === 13)
             that.doSearch();
     });
 
@@ -194,7 +194,7 @@ const dataManager = new function () {
 
                 const $template = $(template);
 
-                switch (element.cellSize){
+                switch (element.cellSize) {
                     case 'small':
                         $template.addClass('small-width');
                         $template.find('a').addClass('small-height');
@@ -241,7 +241,7 @@ const dataManager = new function () {
 
         // $('body').css('scrollTop', 0);
 
-        $('html, body').animate( {scrollTop: 0}, 400);
+        $('html, body').animate({scrollTop: 0}, 400);
 
     };
 
