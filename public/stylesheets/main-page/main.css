@@ -9,7 +9,7 @@
 .main .grid-item {
   display: block;
   width: 32%;
-  margin-bottom: 20px; }
+  margin-bottom: 30px; }
   .main .grid-item > .cell-title {
     font-size: 1.2rem;
     text-align: center;
@@ -75,9 +75,9 @@
 
 @media screen and (min-width: 1024px) {
   .grid-sizer {
-    width: 32%; }
+    width: 30%; }
   .gutter-sizer {
-    width: 2%; } }
+    width: 5%; } }
 
 @media screen and (max-width: 1024px) {
   .grid-sizer {

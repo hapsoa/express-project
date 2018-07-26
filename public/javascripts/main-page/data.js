@@ -1,3 +1,56 @@
+const DataElement = function(data) {
+
+    const template = `
+            <div class="grid-item">
+                <div class="cell-title">${data.title}</div>
+                <a href="${data.href}">
+                    <img src="../../images/main-page/${data.imageSource}" alt="${data.title} image">
+                    <div class="curtain"></div>
+                </a>
+                <div class="tags">
+                    <div class="empty-flex"></div>
+                </div>
+            </div>
+            `;
+
+    const $template = $(template);
+
+    _.forEach(data.tag, (t) => {
+        const tagTemplate = `<div class="tag">#${t}</div>`;
+        $template.find('.tags').append(tagTemplate);
+    });
+
+
+    this.$template = $template;
+
+    this.hasTag = (inputValue) => {
+
+        return !_.isEmpty(_.filter(data.tag, (t) => {
+            return t.indexOf(inputValue) !== -1;
+        }));
+
+    };
+
+    this.title = data.title;
+
+};
+
+const EventAdder = function() {
+
+    this.addEvent = (dataManager) => {
+        const $tags = $('.tag');
+        const $searchInput = $('input.form-control.mr-sm-2');
+
+        $tags.on('click', (event) => {
+            const $this = $(event.target);
+            const seedString = $this.text().substr(1);
+            $searchInput.val(seedString);
+            dataManager.doSearch();
+        });
+    };
+
+};
+
 const dataManager = new function () {
     const that = this;
     const dataArray = [{
@@ -65,150 +118,144 @@ const dataManager = new function () {
                 'modal'
             ]
         },
-        // {
-        //     title: 'Grid',
-        //     href: '/grid-1',
-        //     cellSize: 'small',
-        //     imagePosition: 'img-center',
-        //     tag: [
-        //         'grid',
-        //         'cell'
-        //     ]
-        // },
-        // {
-        //     title: 'Card',
-        //     href: '/card-4',
-        //     cellSize: 'small',
-        //     imagePosition: 'img-center',
-        //     tag: [
-        //         'card design'
-        //     ]
-        // },
-        // {
-        //     title: 'Table',
-        //     href: '/table',
-        //     cellSize: 'big',
-        //     imagePosition: 'img-center',
-        //     tag: [
-        //         'table'
-        //     ]
-        // }
+        {
+            title: 'Grid',
+            href: '/grid-1',
+            imageSource: 'grid-1-cover.png',
+            tag: [
+                'grid',
+                'cell'
+            ]
+        },
+        {
+            title: 'Card',
+            href: '/card-4',
+            imageSource: 'card-4-cover.png',
+            tag: [
+                'card design'
+            ]
+        },
+        {
+            title: 'Table',
+            href: '/table',
+            imageSource: 'table-cover.png',
+            tag: [
+                'table'
+            ]
+        }
     ];
-
-
+    let dataElements = [];
+    let viewedElements = [];
 
     const $root = $('.grid');
     const $searchButton = $('button.btn.btn-outline-success.my-2.my-sm-0');
     const $searchInput = $('input.form-control.mr-sm-2');
 
     // 데이터를 template으로 append
+    _.forEach(dataArray, (element) => {
+        const dataElement = new DataElement(element);
+        dataElements.push(dataElement);
+        viewedElements.push(dataElement);
 
-    // dataArray.forEach((element) => {
-    //
-    //     const template = `
-    //         <div class="grid-item">
-    //             <div class="cell-title">${element.title}</div>
-    //             <a href="${element.href}">
-    //                 <img src="../../images/main-page/${element.imageSource}" alt="${element.title} image">
-    //                 <div class="curtain"></div>
-    //             </a>
-    //             <div class="tags">
-    //                 <div class="empty-flex"></div>
-    //             </div>
-    //         </div>
-    //         `;
-    //
-    //     const $template = $(template);
-    //
-    //     for (let i = 0; i < element.tag.length; i++) {
-    //         const tagTemplate = `<div class="tag">#${element.tag[i]}</div>`;
-    //         $template.find('.tags').append(tagTemplate);
-    //     }
-    //
-    //     // $root.append($template);
-    //     $root.masonry()
-    //         .append($template)
-    //         .masonry( 'appended', $template)
-    //         // layout
-    //         .masonry();
-    //     $root.masonry('layout');
-    //
-    // });
+        $root.masonry()
+            .append(dataElement.$template)
+            .masonry( 'appended', dataElement.$template)
+            // layout
+            .masonry();
+    });
+
+    // image가 load된 다음에 진행한다.
+    $grid.imagesLoaded().progress( function() {
+        $grid.masonry('layout');
+    });
+
+    const eventAdder = new EventAdder();
+    eventAdder.addEvent(this);
+    /****init의 끝****/
 
     this.doSearch = () => {
-        // $root.find('.grid-item').remove();
-        $root.masonry('remove', $root.find('.grid-item'))
-            .masonry();
 
-        // loop를 돌면서 모든 tag들을 검사한다.
-        dataArray.forEach((element) => {
+        const correctElements = _.filter(dataElements, (element) => {
+            if(element.hasTag($searchInput.val())) {
+                return true;
+            }
+        });
 
-            let isIncluded = false;
+        viewedElements = _.filter(viewedElements, (viewedElement) => {
+            // 화면에 나와 있는 것 중 검색 요건에 맞는게 없으면
+            if(_.isEmpty(_.filter(correctElements, (correctElement) => {
+                return viewedElement.title === correctElement.title;
+            }))) {
+                // 화면에 나와 있는 것 중 검색요건 맞지 않는건 제거한다.
+                $root.masonry('remove', viewedElement.$template)
+                    .masonry();
 
-            for (let i = 0; i < element.tag.length; i++) {
-                if (element.tag[i].includes($searchInput.val())) {
-                    // 이 조건에 충족하는 cell만 나타나도록 한다.
-                    isIncluded = true;
-                }
+
+                // viewedElements 에서 검색요건이 맞지 않는 element를 제거한다.
+                return true;
+            }
+            else {
+                // 검색 요건에 맞으면 더 추가하지 않는다.
             }
 
-            if (isIncluded) {
-                const template = `
-            <div class="grid-item"> 
-                <div class="cell-title">${element.title}</div>
-                <a href="${element.href}">
-                    <img src="../../images/main-page/${element.imageSource}" alt="${element.title} image">
-                    <div class="curtain"></div>
-                </a>
-                <div class="tags">
-                    <div class="empty-flex"></div>
-                </div>
-            </div>
-            `;
+        });
 
-                const $template = $(template);
+        _.forEach(viewedElements, (viewedElement) => {
+            console.log(viewedElement.title);
+        });
 
 
-                for (let i = 0; i < element.tag.length; i++) {
-                    const tagTemplate = `<div class="tag">#${element.tag[i]}</div>`;
-                    $template.find('.tags').append(tagTemplate);
-                }
+        // 여기가 문제가 있는듯 한데
+        _.forEach(correctElements, (correctElement) => {
 
+            if (_.isEmpty(_.filter(viewedElements, (viewedElement) => {
+                // console.log(correctElement.title + ", " + viewedElement.title);
+                return correctElement.title === viewedElement.title;
+            }))) {
 
-                $root.masonry()
-                    .append($template)
-                    .masonry( 'appended', $template)
+                $root.append(correctElement.$template)
+                    .masonry( 'appended', correctElement.$template)
                     // layout
                     .masonry();
-                $root.masonry('layout');
 
+                viewedElements.push(correctElement);
             }
-
         });
 
-        $grid.imagesLoaded().progress( function() {
-            $grid.masonry('layout');
-        });
 
-        const $tags = $('.tag');
-        $tags.on('click', (event) => {
-            console.log('event!');
-            // console.dir(event);
-            const $this = $(event.target);
 
-            const seedString = $this.text().substr(1);
 
-            $searchInput.val(seedString);
+        // $root.masonry('remove', $root.find('.grid-item'))
+        //     .masonry();
+        //
+        // // loop를 돌면서 모든 tag들을 검사한다.
+        // _.forEach(dataArray, (element) => {
+        //     let isIncluded = false;
+        //
+        //     _.forEach(element.tag, (t) => {
+        //         if (t.includes($searchInput.val())) {
+        //             // 이 조건에 충족하는 cell만 나타나도록 한다.
+        //             isIncluded = true;
+        //         }
+        //     });
+        //
+        //     if (isIncluded) {
+        //         const dataElement = new DataElement(element);
+        //
+        //         $root.masonry()
+        //             .append(dataElement.$template)
+        //             .masonry( 'appended', dataElement.$template)
+        //             // layout
+        //             .masonry();
+        //         $root.masonry('layout');
+        //     }
+        // });
 
-            this.doSearch();
-
-        });
+        // eventAdder.addEvent(that);
 
         $('html, body').animate({scrollTop: 0}, 400);
 
     };
-
-    this.doSearch();
 
 
     $searchButton.on('click', () => {
@@ -220,20 +267,13 @@ const dataManager = new function () {
             that.doSearch();
     });
 
-    const $tags = $('.tag');
 
-    $tags.on('click', (event) => {
-        console.log('event!');
-
-        const $this = $(event.target);
-
-        const seedString = $this.text().substr(1);
-
-        $searchInput.val(seedString);
-
-        this.doSearch();
-
-    });
 };
+
+
+
+
+
+
 
 
