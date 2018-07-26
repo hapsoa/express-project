@@ -178,13 +178,8 @@ const dataManager = new function () {
     this.doSearch = () => {
 
         const correctElements = _.filter(dataElements, (element) => {
-            if(element.hasTag($searchInput.val())) {
-                return true;
-            }
+            return element.hasTag($searchInput.val());
         });
-
-        console.log(viewedElements);
-
 
         viewedElements = _.filter(viewedElements, (viewedElement) => {
 
@@ -206,8 +201,6 @@ const dataManager = new function () {
             }
 
         });
-        console.log(viewedElements);
-
 
         _.forEach(correctElements, (correctElement) => {
 
@@ -225,36 +218,6 @@ const dataManager = new function () {
             }
         });
 
-
-
-
-        // $root.masonry('remove', $root.find('.grid-item'))
-        //     .masonry();
-        //
-        // // loop를 돌면서 모든 tag들을 검사한다.
-        // _.forEach(dataArray, (element) => {
-        //     let isIncluded = false;
-        //
-        //     _.forEach(element.tag, (t) => {
-        //         if (t.includes($searchInput.val())) {
-        //             // 이 조건에 충족하는 cell만 나타나도록 한다.
-        //             isIncluded = true;
-        //         }
-        //     });
-        //
-        //     if (isIncluded) {
-        //         const dataElement = new DataElement(element);
-        //
-        //         $root.masonry()
-        //             .append(dataElement.$template)
-        //             .masonry( 'appended', dataElement.$template)
-        //             // layout
-        //             .masonry();
-        //         $root.masonry('layout');
-        //     }
-        // });
-
-        // eventAdder.addEvent(that);
 
         $('html, body').animate({scrollTop: 0}, 400);
 
