@@ -8,7 +8,6 @@
 
 .main .grid-item {
   display: block;
-  width: 32%;
   margin-bottom: 30px; }
   .main .grid-item > .cell-title {
     font-size: 1.2rem;
@@ -74,12 +73,24 @@
     transition-duration: 0.6s; }
 
 @media screen and (min-width: 1024px) {
+  .grid-item {
+    width: 30%; }
   .grid-sizer {
     width: 30%; }
   .gutter-sizer {
     width: 5%; } }
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 480px) and (max-width: 1024px) {
+  .grid-item {
+    width: 45%; }
+  .grid-sizer {
+    width: 45%; }
+  .gutter-sizer {
+    width: 10%; } }
+
+@media screen and (max-width: 480px) {
+  .grid-item {
+    width: 100%; }
   .grid-sizer {
     width: 100%; }
   .gutter-sizer {

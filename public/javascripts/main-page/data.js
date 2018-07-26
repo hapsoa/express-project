@@ -163,6 +163,8 @@ const dataManager = new function () {
             // layout
             .masonry();
     });
+    // console.log(dataElements);
+    // console.log(viewedElements);
 
     // image가 load된 다음에 진행한다.
     $grid.imagesLoaded().progress( function() {
@@ -181,7 +183,11 @@ const dataManager = new function () {
             }
         });
 
+        console.log(viewedElements);
+
+
         viewedElements = _.filter(viewedElements, (viewedElement) => {
+
             // 화면에 나와 있는 것 중 검색 요건에 맞는게 없으면
             if(_.isEmpty(_.filter(correctElements, (correctElement) => {
                 return viewedElement.title === correctElement.title;
@@ -192,24 +198,21 @@ const dataManager = new function () {
 
 
                 // viewedElements 에서 검색요건이 맞지 않는 element를 제거한다.
-                return true;
+                return false;
             }
             else {
                 // 검색 요건에 맞으면 더 추가하지 않는다.
+                return true;
             }
 
         });
-
-        _.forEach(viewedElements, (viewedElement) => {
-            console.log(viewedElement.title);
-        });
+        console.log(viewedElements);
 
 
-        // 여기가 문제가 있는듯 한데
         _.forEach(correctElements, (correctElement) => {
 
             if (_.isEmpty(_.filter(viewedElements, (viewedElement) => {
-                // console.log(correctElement.title + ", " + viewedElement.title);
+
                 return correctElement.title === viewedElement.title;
             }))) {
 
