@@ -98,77 +98,47 @@ const dataManager = new function () {
 
 
     const $root = $('.grid');
-
-    // 데이터를 template으로 append
-    dataArray.forEach((element) => {
-
-        const template = `
-            <div class="grid-item"> 
-                <div class="cell-title">${element.title}</div>
-                <a href="${element.href}">
-                    <img src="../../images/main-page/${element.imageSource}" alt="${element.title} image">
-                    <div class="curtain"></div>
-                </a>
-                <div class="tags">
-                    <div class="empty-flex"></div>
-                </div>
-            </div>
-            `;
-
-        const $template = $(template);
-
-        // switch (element.cellSize) {
-        //     case 'small':
-        //         $template.addClass('small-width');
-        //         $template.find('a').addClass('small-height');
-        //         break;
-        //     case 'long':
-        //         $template.addClass('small-width');
-        //         $template.find('a').addClass('long-height');
-        //         break;
-        //     case 'big':
-        //         $template.addClass('big-width');
-        //         $template.find('a').addClass('big-height');
-        //         break;
-        //     default:
-        //         console.log('size error!');
-        //         break;
-        // }
-
-
-        for (let i = 0; i < element.tag.length; i++) {
-            const tagTemplate = `<div class="tag">#${element.tag[i]}</div>`;
-            $template.find('.tags').append(tagTemplate);
-        }
-
-        // $root.append($template);
-        $root.masonry()
-            .append($template)
-            .masonry( 'appended', $template)
-            // layout
-            .masonry();
-        $root.masonry('layout');
-
-    });
-
-
     const $searchButton = $('button.btn.btn-outline-success.my-2.my-sm-0');
     const $searchInput = $('input.form-control.mr-sm-2');
 
-    $searchButton.on('click', () => {
-        that.doSearch()
-    });
+    // 데이터를 template으로 append
 
-    $searchInput.on('keyup', (event) => {
-        if (event.keyCode === 13)
-            that.doSearch();
-    });
+    // dataArray.forEach((element) => {
+    //
+    //     const template = `
+    //         <div class="grid-item">
+    //             <div class="cell-title">${element.title}</div>
+    //             <a href="${element.href}">
+    //                 <img src="../../images/main-page/${element.imageSource}" alt="${element.title} image">
+    //                 <div class="curtain"></div>
+    //             </a>
+    //             <div class="tags">
+    //                 <div class="empty-flex"></div>
+    //             </div>
+    //         </div>
+    //         `;
+    //
+    //     const $template = $(template);
+    //
+    //     for (let i = 0; i < element.tag.length; i++) {
+    //         const tagTemplate = `<div class="tag">#${element.tag[i]}</div>`;
+    //         $template.find('.tags').append(tagTemplate);
+    //     }
+    //
+    //     // $root.append($template);
+    //     $root.masonry()
+    //         .append($template)
+    //         .masonry( 'appended', $template)
+    //         // layout
+    //         .masonry();
+    //     $root.masonry('layout');
+    //
+    // });
 
     this.doSearch = () => {
         // $root.find('.grid-item').remove();
         $root.masonry('remove', $root.find('.grid-item'))
             .masonry();
-
 
         // loop를 돌면서 모든 tag들을 검사한다.
         dataArray.forEach((element) => {
@@ -204,7 +174,7 @@ const dataManager = new function () {
                     $template.find('.tags').append(tagTemplate);
                 }
 
-                // $root.append($template);
+
                 $root.masonry()
                     .append($template)
                     .masonry( 'appended', $template)
@@ -213,10 +183,14 @@ const dataManager = new function () {
                 $root.masonry('layout');
 
             }
+
+        });
+
+        $grid.imagesLoaded().progress( function() {
+            $grid.masonry('layout');
         });
 
         const $tags = $('.tag');
-
         $tags.on('click', (event) => {
             console.log('event!');
             // console.dir(event);
@@ -230,17 +204,27 @@ const dataManager = new function () {
 
         });
 
-        // $('body').css('scrollTop', 0);
-
         $('html, body').animate({scrollTop: 0}, 400);
 
     };
+
+    this.doSearch();
+
+
+    $searchButton.on('click', () => {
+        that.doSearch()
+    });
+
+    $searchInput.on('keyup', (event) => {
+        if (event.keyCode === 13)
+            that.doSearch();
+    });
 
     const $tags = $('.tag');
 
     $tags.on('click', (event) => {
         console.log('event!');
-        // console.dir(event);
+
         const $this = $(event.target);
 
         const seedString = $this.text().substr(1);
