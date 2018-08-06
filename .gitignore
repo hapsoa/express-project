@@ -130,3 +130,8 @@ typings/
 
 
 .DS_Store
+
+
+# firebase 금지
+public/javascripts/firebaseStart/initializeFirebase.js
+
