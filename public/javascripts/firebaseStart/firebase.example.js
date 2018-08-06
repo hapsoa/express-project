@@ -56,6 +56,7 @@ const FirebaseApi = new function() {
             // ...
         });
     };
+
     return this;
 };
 
