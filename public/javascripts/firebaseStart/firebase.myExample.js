@@ -4,12 +4,14 @@ const FirebaseApi = new function() {
 
     this.signUp = async () => {
 
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        firebase.auth().createUserWithEmailAndPassword('asdf', '12345678').catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             // ...
-            console.log('What the Error!');
+            console.log(errorCode);
+            console.log(errorMessage);
+            // console.log('What the Error!');
         });
     }
 
