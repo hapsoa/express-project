@@ -10,21 +10,16 @@ html
         script(src="https://code.jquery.com/jquery-3.3.1.min.js",
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=",
         crossorigin="anonymous")
-
-        //firebase
         script(src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js")
 
-        //css
-        link(rel='stylesheet', href='/stylesheets/firebaseStart/myExample.css')
 
     body
-        h1 Firebase Example
-        a(href="./my/signup") sign up
+        h1 sign up your account
 
         input(type="email" placeholder="email")
         input(type="password" placeholder="password")
-        h3#loginButton(style='background:#f00; color:#fff; display : block; height:40px') SIGN IN!
-        h3#logoutButton(style='background:#f0f; color:#fff; display : none; height:40px') SIGN OUT!
+        h3#signUpButton sign up
 
         script(src='/javascripts/firebaseStart/initializeFirebase.js')
-        script(src='/javascripts/firebaseStart/firebase.myExample.js')
+        script(src='/javascripts/firebaseStart/myFirebaseApi.js')
+        script(src='/javascripts/firebaseStart/signupEventManager.js')

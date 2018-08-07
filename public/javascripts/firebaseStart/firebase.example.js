@@ -1,7 +1,10 @@
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 
-const FirebaseApi = new function() {
+// Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
+
+const FirebaseApi = new function () {
     auth.onAuthStateChanged((user) => {
         if (authStateChangeEvent !== null) {
             authStateChangeEvent(user);
@@ -38,7 +41,7 @@ const FirebaseApi = new function() {
         // const ret = await auth.signInWithPopup(provider);
 
 
-        auth.signInWithPopup(provider).then(function(result) {
+        auth.signInWithPopup(provider).then(function (result) {
             var token = result.credential.accessToken;
             var user = result.user;
             // console.log(user);
@@ -47,7 +50,7 @@ const FirebaseApi = new function() {
             //todo
 
 
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.error(error);
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -55,6 +58,19 @@ const FirebaseApi = new function() {
             var credential = error.credential;
             // ...
         });
+
+
+        db.collection("users").add({
+            first: "Ada",
+            last: "Lovelace",
+            born: 1815
+        })
+            .then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
     };
 
     return this;
@@ -139,7 +155,7 @@ async function testAsync() {
 
         await waitPromise(2000);
         console.log('!!!@#!@#!@#');
-    } catch(e){
+    } catch (e) {
         console.error(e);
         // 로그인 에러 처리
     }
@@ -147,11 +163,11 @@ async function testAsync() {
 
 function waitPromise(ms) {
     return new Promise((resolve, reject) => {
-        setTimeout(()=>{
+        setTimeout(() => {
 
-            reject({error:'wait error'});
+            reject({error: 'wait error'});
         }, ms);
     });
 }
 
-testAsync();
+// testAsync();
