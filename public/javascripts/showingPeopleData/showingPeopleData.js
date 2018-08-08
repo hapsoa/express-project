@@ -1,23 +1,60 @@
-const dataManager = new function() {
-    // 선택된 checkbox 들을 for문 돌면서
+const dataManager = new function () {
+
+    this.processData = async () => {
+        const dataArray = await gatherData();
+
+        await showData(dataArray);
+    };
+
+    const gatherData = async () => {
+
+        const $checkedBox = $('input:checked');
+
+        const dataArray = [];
+
+        const getData = (filename) => {
+            return new Promise((resolve, reject) => {
+                $.get(`/data/personData/${filename}.json`, (data, status) => {
+                    resolve(data);
+                });
+            });
+        };
+
+        for (let i = 0; i < $checkedBox.length; i++) {
+            const $element = $($checkedBox[i]);
+            const filename = $element.attr('value');
+
+            dataArray.push(await getData(filename));
+        }
+
+        return dataArray;
+    };
+
+    const showData = (dataArray) => {
+        return new Promise((resolve, reject) => {
+            // append() 한다.
+            const $resultZone = $('.result-zone');
+
+            for (let i = 0; i < dataArray.length; i++) {
+                $resultZone.append(JSON.stringify(dataArray[i]));
+            }
+
+            resolve();
+        });
+    }
 
 };
 
-const eventManager = new function() {
+const eventManager = new function () {
 
     const $confirmButton = $('button');
+    const $resultZone = $('.result-zone');
 
-    $confirmButton.on('click', function() {
-        const $checkedBox = $('input:checked');
+    $confirmButton.on('click', function () {
 
-        // console.log($checkedBox.length);
+        $resultZone.empty();
+        dataManager.processData();
 
-        $checkedBox.each((index, element) => {
-            console.log(index);
-            console.log(element);
-
-            // input의 해당 id와 $.get(/data/peopleData/${id}); 이 필요하다.
-        });
     });
 };
 
