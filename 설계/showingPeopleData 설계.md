@@ -10,7 +10,7 @@
 
 그냥 json array를 보여준다.
 
-
+$().append() 한다.
 
 
 
@@ -18,13 +18,16 @@
 
 -- 문제점 --
 
+await로 전부 dataArray에 넣어주고,
 
+다 넣어진 dataArray를 리턴해줘야 하는데
 
-
-
+다 넣어지기 전에 return해 버리니 문제가 된다.
 
 
 
 -- 아이디어 --
-dataManager와,
-eventManager가 필요해 보인다.
+each문을 돌면서 해결하는 건데,
+
+
+
