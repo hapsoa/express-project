@@ -17,4 +17,5 @@ router.get('/my2', function (req, res, next) {
     res.render('firebaseExample2/example2');
 });
 
+
 module.exports = router;

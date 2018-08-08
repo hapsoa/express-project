@@ -1,0 +1,55 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(name='description' content='')
+        meta(name='author' content='')
+        title Showing People Data
+        // jQuery
+        script(src="https://code.jquery.com/jquery-3.3.1.min.js",
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=",
+        crossorigin="anonymous")
+
+        // firebase
+        //script(src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js")
+        //script(src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js")
+
+        // lodash
+        script(src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js")
+
+        //css
+        //link(rel='stylesheet', href='/stylesheets/firebaseExample2/example2.css')
+
+
+    body
+        form
+            div
+                label
+                    input#jaejong(type='checkbox')
+                    | 재종
+            div
+                label
+                    input#junyup(type='checkbox')
+                    | 준엽
+            div
+                label
+                    input#hyunsik(type='checkbox')
+                    | 현식
+            div
+                label
+                    input#soojung(type='checkbox')
+                    | 수정
+            div
+                label
+                    input#juwon(type='checkbox')
+                    | 주원
+
+        button(type="button") Confirm
+
+        script(src='/javascripts/showingPeopleData/showingPeopleData.js')
+
+
+
+
+

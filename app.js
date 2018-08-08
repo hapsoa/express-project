@@ -16,6 +16,7 @@ var textFinderRouter = require('./routes/textFinder');
 var fractalRouter = require('./routes/fractal');
 var mainPageRouter = require('./routes/mainPage');
 var firebaseStartRouter = require('./routes/firebaseStart');
+var showingPeopleDataRouter = require('./routes/showingPeopleData');
 
 
 var app = express();
@@ -47,6 +48,7 @@ app.use('/selectionControls', selectionControlsRouter);
 app.use('/textFinder', textFinderRouter);
 app.use('/fractal', fractalRouter);
 app.use('/firebaseStart', firebaseStartRouter);
+app.use('/showingPeopleData', showingPeopleDataRouter);
 
 
 // catch 404 and forward to error handler
