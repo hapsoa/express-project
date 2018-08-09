@@ -7,9 +7,10 @@
 
 -- 지금 할 일 --
 
-Promise 안쓰고 하는 방법을 강구해야 한다.
+Promise.all() 화를 시도 한다.
 
-async를 푼다와 await를 푼다.
+Promise.all()을 하면 된다.
+
 
 
 
@@ -17,11 +18,13 @@ async를 푼다와 await를 푼다.
 
 -- 문제점 --
 
-await로 전부 dataArray에 넣어주고,
+마지막만 호출되는 데이터만 array에 들어간다.
 
-다 넣어진 dataArray를 리턴해줘야 하는데
+그 이유는 그 전에 것들이 다 되기전에 호출이 되기 때문이다.
 
-다 넣어지기 전에 return해 버리니 문제가 된다.
+
+
+
 
 
 
@@ -29,10 +32,18 @@ await로 전부 dataArray에 넣어주고,
 
 -- 아이디어 --
 
-return 값이 없음에도 왜 return을 해주길 바라는 걸까?
+
 
 
 
 -- 질문 --
 
 return 값을 주지 않은 것 같은데 왜 Promise 반환이 되는걸까?
+
+Promise가 없어도 await가 효용을 발휘하는 순간이 있는데, 어떤 현상이라고 볼 수 있을까?
+
+
+
+async 함수와 Promise 리턴이 같다.
+
+async는 await로 호출이 되는데,

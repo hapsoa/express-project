@@ -44,11 +44,11 @@ const eventManager = new function () {
     const $confirmButton = $('button');
     const $resultZone = $('.result-zone');
 
-    $confirmButton.on('click', function () {
+    $confirmButton.on('click', async function () {
 
         $resultZone.empty();
         // dataManager.processData();
-        dataManager.gatherData();
+        await dataManager.gatherData();
 
 
     });
