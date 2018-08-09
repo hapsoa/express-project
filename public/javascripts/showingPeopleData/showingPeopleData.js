@@ -9,32 +9,42 @@ const dataManager = new function () {
     };
 
     const showData = (dataArray) => {
-        return new Promise((resolve, reject) => {
-            // append() 한다.
-            const $resultZone = $('.result-zone');
 
-            for (let i = 0; i < dataArray.length; i++) {
-                $resultZone.append(JSON.stringify(dataArray[i]));
-            }
-            resolve();
-        });
+        // append() 한다.
+        const $resultZone = $('.result-zone');
+
+        for (let i = 0; i < dataArray.length; i++) {
+            $resultZone.append(JSON.stringify(dataArray[i]));
+        }
+
     };
+
 
     this.gatherData = async () => {
 
         const $checkedBox = $('input:checked');
 
-        const dataArray = [];
+        const promiseArray = [];
+        let dataArray;
+
+        // for (let i = 0; i < $checkedBox.length; i++) {
+        //     const $element = $($checkedBox[i]);
+        //     const filename = $element.attr('value');
+        //
+        //     dataArray.push(await getData(filename));
+        // }
 
         for (let i = 0; i < $checkedBox.length; i++) {
             const $element = $($checkedBox[i]);
             const filename = $element.attr('value');
 
-            dataArray.push(await getData(filename));
+            promiseArray.push(getData(filename));
         }
 
-        await showData(dataArray);
+        dataArray = await Promise.all(promiseArray);
 
+
+        showData(dataArray);
     };
 
 };
@@ -53,4 +63,7 @@ const eventManager = new function () {
 
     });
 };
+
+
+
 
