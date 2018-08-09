@@ -1,11 +1,22 @@
 const dataManager = new function () {
 
-    const getData = (filename) => {
-        return new Promise((resolve, reject) => {
-            $.get(`/data/personData/${filename}.json`, (data, status) => {
-                resolve(data);
-            });
+    const getData = () => {
+
+        const $checkedBox = $('input:checked');
+        let i = 0;
+        let $element = $($checkedBox[i]);
+        let filename = $element.attr('value');
+
+        const arr = [];
+
+        // 재귀함수로 해결할 수 있지 않을까?
+        $.get(`/data/personData/${filename}.json`, (data, status) => {
+
+            if (i < $checkedBox.length)
+                getData(i+1, );
+            return data;
         });
+
     };
 
     const showData = (dataArray) => {
@@ -30,8 +41,10 @@ const dataManager = new function () {
             const $element = $($checkedBox[i]);
             const filename = $element.attr('value');
 
-            dataArray.push(await getData(filename));
+            dataArray.push(getData(filename));
         }
+
+
 
         await showData(dataArray);
 
