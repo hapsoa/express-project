@@ -22,6 +22,7 @@ const dataManager = new function () {
 
         });
 
+
     };
 
     const showData = (dataArray) => {
