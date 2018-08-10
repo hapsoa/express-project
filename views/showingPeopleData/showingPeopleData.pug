@@ -21,6 +21,8 @@ html
         //css
         link(rel='stylesheet', href='/stylesheets/showingPeopleData/showingPeopleData.css')
 
+        // polyfill
+        script(src="/babel-polyfill/dist/polyfill.js")
 
     body
         form
@@ -49,8 +51,11 @@ html
 
         .result-zone
 
-        script(src='/javascripts/showingPeopleData/showingPeopleData.js')
+        //script(src='/javascripts/showingPeopleData/showingPeopleData.js')
+        script(src='/showingPeopleDataBabel.js')
+
         //script(src='/javascripts/showingPeopleData/showingPeopleDataByNotPromise.js')
+
 
 
 
