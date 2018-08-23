@@ -29,4 +29,10 @@ router.get('/table', function (req, res, next) {
     res.render('table/table');
 });
 
+
+// 예시 프로젝트
+router.get('/broadcastserver', function (req, res, next) {
+    res.render('broadcastServer/client');
+});
+
 module.exports = router;
