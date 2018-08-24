@@ -2,7 +2,7 @@ const clientManager = new function () {
     const $chatContent = $('.chat-content');
 
     // Create WebSocket connection.
-    const socket = new WebSocket('ws://localhost:8080');
+    const socket = new WebSocket('ws://192.168.11.64:8080');
     this.socket = socket;
 
     // Connection opened
@@ -16,6 +16,15 @@ const clientManager = new function () {
         $chatContent.append(`<div class="sentence">${event.data}</div>`);
     });
 };
+
+
+
+
+
+
+
+
+
 
 const writingManager = new function () {
     const $writingZone = $('.writing-zone');
